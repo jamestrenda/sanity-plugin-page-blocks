@@ -25,9 +25,33 @@ A configurable block for listing articles, blog posts, or other structured conte
 
 ## Installation
 
+To install `@trenda/sanity-plugin-page-blocks`, run:
+
 ```sh
 npm install @trenda/sanity-plugin-page-blocks
 ```
+
+or with pnpm:
+
+```sh
+pnpm add @trenda/sanity-plugin-page-blocks
+```
+
+## Peer Dependencies
+
+This plugin requires the following dependencies to be installed in your Sanity Studio project:
+
+```sh
+npm install lucide-react
+```
+
+or:
+
+```sh
+pnpm add lucide-react
+```
+
+These dependencies are not bundled with the plugin to ensure compatibility with your project’s version of React and Sanity.
 
 ## Basic Usage
 
