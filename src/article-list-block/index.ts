@@ -8,6 +8,7 @@ import {
   SchemaTypeDefinition,
   TitledListValue,
 } from 'sanity'
+
 import {schema} from './schema'
 
 export type ArticleListBlockConfig = {
@@ -22,6 +23,7 @@ export type ArticleListBlockConfig = {
 } | void
 
 /**
+ * @public
  * Usage in `sanity.config.ts` (or .js)
  *
  * ```ts
@@ -35,7 +37,7 @@ export type ArticleListBlockConfig = {
  * ```
  */
 export const articleListBlock = definePlugin<ArticleListBlockConfig>((config) => {
-  let types: SchemaTypeDefinition[] = []
+  const types: SchemaTypeDefinition[] = []
   if (!config || !config.categoryField) {
     const categories = defineType({
       name: 'category',

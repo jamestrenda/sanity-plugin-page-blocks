@@ -1,9 +1,10 @@
-import {defineField, defineType} from 'sanity'
 import {LayoutListIcon} from 'lucide-react'
+import {defineField, defineType, SchemaTypeDefinition} from 'sanity'
+
 import {ArticleListBlockConfig} from '.'
 
 const title = 'Article List'
-export const schema = (options: ArticleListBlockConfig) =>
+export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
   defineType({
     name: options?.name ?? 'articleListBlock',
     title,
