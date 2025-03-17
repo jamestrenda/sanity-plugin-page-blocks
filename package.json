@@ -1,0 +1,84 @@
+{
+  "name": "@trenda/sanity-plugin-page-blocks",
+  "version": "1.0.0",
+  "description": "A collection of open-source Sanity page blocks designed for modular content modeling. Each plugin provides ready-to-use and customizable schemas for common content blocks, making it easy to build structured, flexible pages in Sanity.",
+  "keywords": [
+    "sanity",
+    "sanity-plugin"
+  ],
+  "homepage": "https://github.com/jamestrenda/sanity-plugin-page-blocks#readme",
+  "bugs": {
+    "url": "https://github.com/jamestrenda/sanity-plugin-page-blocks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jamestrenda/sanity-plugin-page-blocks.git"
+  },
+  "license": "MIT",
+  "author": "James Trenda <james@trenda.dev>",
+  "sideEffects": false,
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "sanity.json",
+    "src",
+    "v2-incompatible.js"
+  ],
+  "scripts": {
+    "build": "plugin-kit verify-package --silent && pkg-utils build --strict --check --clean",
+    "format": "prettier --write --cache --ignore-unknown .",
+    "link-watch": "plugin-kit link-watch",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build",
+    "watch": "pkg-utils watch --strict",
+    "commit": "commit",
+    "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0"
+  },
+  "dependencies": {
+    "@sanity/incompatible-plugin": "^1.0.5"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.28.1",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/config-pnpm-scopes": "^19.8.0",
+    "@commitlint/prompt-cli": "^19.8.0",
+    "@commitlint/types": "^19.8.0",
+    "@sanity/pkg-utils": "^7.1.0",
+    "@sanity/plugin-kit": "^4.0.19",
+    "@types/react": "^19.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-config-sanity": "^7.1.4",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-packagejson": "^2.5.10",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^3.79.0",
+    "styled-components": "^6.1.15",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "react": "^18",
+    "sanity": "^3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
