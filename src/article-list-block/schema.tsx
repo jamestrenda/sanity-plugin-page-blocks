@@ -1,14 +1,25 @@
 import {LayoutListIcon} from 'lucide-react'
-import {defineField, defineType, SchemaTypeDefinition} from 'sanity'
+import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
 
+import {mergeGroups} from '../lib/utils'
 import {ArticleListBlockConfig} from '.'
 
+export type ArticleListBlockFieldNames = 'articleType' | 'title' | 'categories'
+
 const title = 'Article List'
-export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
-  defineType({
+
+// no default groups for this schema
+const GROUPS: FieldGroupDefinition[] = []
+
+export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition => {
+  const groups = mergeGroups<FieldGroupDefinition>(GROUPS, options?.groups)
+
+  return defineType({
     name: options?.name ?? 'articleListBlock',
     title,
     type: 'object',
+    fieldsets: [...(options?.fieldsets ?? [])],
+    groups,
     icon: () => <LayoutListIcon size="1em" />,
     preview: options?.preview ?? {
       select: {
@@ -30,6 +41,10 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
           list: options?.articleTypes ?? [{title: 'Post', value: 'post'}],
         },
         validation: (Rule) => Rule.required(),
+        fieldset: options?.fieldsetAssignments?.find(
+          (assignment) => assignment.field === 'articleType',
+        )?.fieldset,
+        group: options?.groupAssignments?.find((group) => group.field === 'articleType')?.group,
       }),
       options?.header ??
         defineField({
@@ -37,6 +52,7 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
           title: 'Title',
           type: 'string',
           description: 'Optional title to display above the article list.',
+          group: options?.groupAssignments?.find((group) => group.field === 'title')?.group,
         }),
       options?.categoryField ??
         defineField({
@@ -45,8 +61,10 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
           type: 'array',
           of: [{type: 'reference', to: [{type: 'category'}]}],
           description: 'Optional: Show only articles from selected categories.',
+          group: options?.groupAssignments?.find((group) => group.field === 'categories')?.group,
         }),
       ...(options?.customFields ?? []),
     ],
     components: options?.customComponents,
   })
+}
