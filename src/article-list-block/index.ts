@@ -1,48 +1,7 @@
-import {
-  defineField,
-  definePlugin,
-  defineType,
-  DocumentComponents,
-  FieldDefinition,
-  FieldGroupDefinition,
-  FieldsetDefinition,
-  PreviewConfig,
-  SchemaTypeDefinition,
-  TitledListValue,
-} from 'sanity'
+import {defineField, definePlugin, defineType, SchemaTypeDefinition} from 'sanity'
 
-import {ArticleListBlockFieldNames, schema} from './schema'
-
-// Allows assigning default fields to user-defined groups
-type GroupAssignment = {
-  field: ArticleListBlockFieldNames // Type-checked against existing fields
-  group: string | string[] // Can be any string from user-defined groups
-}
-
-type FieldsetAssignment = {
-  field: ArticleListBlockFieldNames
-  fieldset: string
-}
-
-type SchemaBaseFields = {
-  name?: string
-  fieldsets?: Array<FieldsetDefinition>
-  fieldsetAssignments?: Array<FieldsetAssignment>
-  groups?: Array<FieldGroupDefinition>
-  groupAssignments?: Array<GroupAssignment>
-  preview?: PreviewConfig
-  customFields?: Array<FieldDefinition>
-  customComponents?: DocumentComponents
-}
-
-export type ArticleListBlockConfig =
-  | (SchemaBaseFields & {
-      articleTypes?: (string | TitledListValue<string>)[] | undefined
-      header?: FieldDefinition
-      categoryField?: FieldDefinition
-      maxArticles?: number
-    })
-  | void
+import {schema} from './schema'
+import {ArticleListBlockConfig} from './types'
 
 /**
  * @public

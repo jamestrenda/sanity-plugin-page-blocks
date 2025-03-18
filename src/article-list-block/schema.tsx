@@ -2,9 +2,7 @@ import {LayoutListIcon} from 'lucide-react'
 import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
 
 import {mergeGroups} from '../lib/utils'
-import {ArticleListBlockConfig} from '.'
-
-export type ArticleListBlockFieldNames = 'articleType' | 'title' | 'categories'
+import type {ArticleListBlockConfig} from './types'
 
 const title = 'Article List'
 
