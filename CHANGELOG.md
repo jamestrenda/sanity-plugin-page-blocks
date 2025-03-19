@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.2.0...v1.3.0) (2025-03-19)
+
+### Features
+
+- **article-feed-block, article-list-block:** add article feed block and refactor article list block ([b729ef6](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/b729ef64f0795a42755b24e8df330552bf7b1726))
+
 ## [1.2.0](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.1.0...v1.2.0) (2025-03-19)
 
 ### Features
