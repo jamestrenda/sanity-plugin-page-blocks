@@ -29,6 +29,11 @@
       "import": "./dist/article-list-block/types.mjs",
       "default": "./dist/article-list-block/types.js"
     },
+    "./text-block": {
+      "source": "./src/text-block/types.ts",
+      "import": "./dist/text-block/types.mjs",
+      "default": "./dist/text-block/types.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
