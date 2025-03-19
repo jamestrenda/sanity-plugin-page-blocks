@@ -1,3 +1,5 @@
+import {PortableTextBlock, PortableTextTextBlock} from 'sanity'
+
 /**
  * Merges user-defined field groups with default field groups.
  *
@@ -39,4 +41,38 @@ export function mergeGroups<T extends {name: string}>(
       (group) => !defaultGroups.some((defaultGroup) => defaultGroup.name === group.name),
     ) as T[]) ?? []),
   ]
+}
+
+export function getPortableTextPreview(
+  value: PortableTextBlock[],
+  title: string,
+): {
+  title: string
+  subtitle?: string
+} {
+  if (!value) {
+    return {
+      title,
+    }
+  }
+
+  // find the first default block style that is a heading or paragraph
+  let text = value.find(
+    (block) =>
+      block._type === 'block' && ['h1', 'h2', 'h3', 'normal'].includes(block.style as string),
+  ) as PortableTextTextBlock
+
+  // if no appropriate heading is detected, use the first block—whatever it may be
+  if (!text) {
+    text = value[0] as PortableTextTextBlock
+  }
+
+  // concat the block of text because it could be broken up into multiple children depending on its marks
+  const textSnippet = text?.children.map((child) => child.text).join('')
+  const hasTextSnippet = textSnippet.length > 0
+
+  return {
+    title: hasTextSnippet ? textSnippet : title,
+    subtitle: hasTextSnippet ? title : undefined,
+  }
 }
