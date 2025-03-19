@@ -9,7 +9,7 @@ import {ArticleListBlockConfig} from './types'
  *
  * ```ts
  * import {defineConfig} from 'sanity'
- * import {articleListBlock} from '@trenda/sanity-plugin-article-list-block'
+ * import {articleListBlock} from '@trenda/sanity-plugin-page-blocks
  *
  * export default defineConfig({
  *   // ...
