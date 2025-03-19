@@ -43,6 +43,19 @@ export function mergeGroups<T extends {name: string}>(
   ]
 }
 
+/**
+ * Attempts to extract an appropriate heading text from a Portable Text block array and returns a valid list preview.
+ *
+ * This function scans the provided Portable Text value for the first block with a heading (`h1`, `h2`, `h3`)
+ * or a normal paragraph (`normal`). If no such block is found, it falls back to the first block in the array.
+ * The extracted text is then used as the preview title, with the provided `title` as a fallback.
+ *
+ * @param {PortableTextBlock[]} value - The Portable Text content to extract a preview from.
+ * @param {string} title - The default title to use if no value is provided. Also used as the subtitle.
+ * @returns {{ title: string; subtitle?: string }} The extracted title and subtitle.
+ *
+ * @public
+ */
 export function getPortableTextPreview(
   value: PortableTextBlock[],
   title: string,

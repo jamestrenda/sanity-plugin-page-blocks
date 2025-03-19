@@ -1,55 +1,10 @@
 # Article List Block
 
-A configurable page builder block for displaying a list of articles, blog posts, or other structured content. Supports customizable fields, custom fields, and previews.
+A configurable page builder block for displaying a list of selected articles, blog posts, or other documents. Supports customizable fields, custom fields, and previews.
 
-![A dark-themed Sanity Studio interface displaying a page builder array field, with 'Article List' selected in the 'Add item...' drop down menu.](assets/sanity-plugin-page-blocks-article-list-block-modal.png)
+![A Sanity Studio interface displaying a modal titled 'Edit Article List' with a customizable 'Title' field and an array field titled 'Articles' with two reference documents selected.](assets/sanity-plugin-page-blocks-article-list-block-modal.png)
 
-## Overview
-
-The Article List Block is a block that signals to your queries and frontend frameworks to render a list of a given document type. It is _not_ for selecting "featured" articles.
-
-For example, you may have a blog listing page at `/blog` where you want to display your latest blog posts. You _could_ hard-code that route in your frontend framework and just query the posts directly. That's totally fine.
-
-But you might choose to implement your blog using the [Page Approach](https://www.trenda.dev/blog/how-to-manage-your-homepage-in-sanity-studio#the-page-approach-732fe6d88f05), in which case you'd have a page builder field with various page blocks, such as a `hero` block and an `articleListBlock`.
-
-The reason this is an "article" list block is because "article" is a generic term not just referring to news or blog articles. Maybe you have a podcast with an `episode` schema or a food blog with a `recipe` schema or even an e-commerce store with a `product` schema.
-
-An example query might look like this, where `articleType` is a customizable field on the Article List Block:
-
-```ts
-{
-  export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
-    // ...
-    blocks[] {
-      _type,
-      _key,
-      _type == "articleListBlock" => {
-        "articles": *[_type == ^.articleType && defined(slug.current)] {
-          ^.articleType == "post" => {
-            // ...
-          },
-          ^.articleType == "episode" => {
-            // ...
-          },
-          ^.articleType == "recipe" => {
-            // ...
-          },
-        }
-      },
-    },
-  }`
-}
-```
-
-Then in your frontend code, you might render it like this:
-
-```tsx
-<ArticleList>
-  {articles.map((article) => (
-    <article key={article._key}>{article.title}</article>
-  ))}
-</ArticleList>
-```
+![A Sanity Studio list preview for 'Article List' showcasing the layout-list icon by Lucide Icons, the user-provided title, and the block name as the subtitle](assets/sanity-plugin-page-blocks-article-list-block-preview.png)
 
 ## Installation
 
@@ -119,25 +74,7 @@ export default defineConfig({
 })
 ```
 
-#### Example: Custom Article Types
-
-```ts
-import {defineConfig, defineField} from 'sanity'
-import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
-
-const articleTypes = ['post', 'episode', 'recipe']
-
-export default defineConfig({
-  //...
-  plugins: [
-    articleListBlock({
-      articleTypes,
-    }),
-  ],
-})
-```
-
-#### Example: Header Field
+#### Example: Custom Block Header
 
 By default, `articleListBlock` uses a simple `string` field for the header.
 
@@ -163,48 +100,35 @@ export default defineConfig({
       header: defineField({
         name: 'header',
         title: 'Custom Header',
-        type: 'portableText',
+        type: 'array',
+        of: [{type: 'block'}],
       }),
     }),
   ],
 })
 ```
 
-#### Example: Category Field
+#### Example: Articles
 
-By default, `articleListBlock` creates a `category` schema and references it in a `categories` field to satisfy the Sanity schema engine. If you pass a value to `categoryField`, as in the example below, the plugin will _not_ create a `category` schema for you.
-
-```ts
-defineField({
-  name: 'categories',
-  title: 'Filter by Categories',
-  type: 'array',
-  of: [{type: 'reference', to: [{type: 'category'}]}],
-  description: 'Optional: Show only articles from selected categories.',
-})
-```
-
-If your project uses a different schema name (e.g., tags), or if you want to change other things about the field, you can override it with your own field:
+The Article List Block requires an `options` object with the only required property being `articleTypes`. The value of `articleTypes` is used to populate the `articles` array field with the appropriate reference types.
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
 import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
 
+const articleTypes = ['post', 'episode', 'recipe']
+
 export default defineConfig({
   //...
   plugins: [
     articleListBlock({
-      categoryField: defineField({
-        name: 'tags',
-        title: 'Filter by Tag',
-        type: 'array',
-        of: [{type: 'reference', to: [{type: 'tag'}]}],
-        description: 'Optional: Show only articles from selected tags.',
-      }),
+      articleTypes,
     }),
   ],
 })
 ```
+
+![A Sanity Studio interface displaying a modal titled 'Edit Article List' with a drop down menu listing references to different types of documents.](assets/sanity-plugin-page-blocks-article-list-block-articles.png)
 
 #### Example: Custom Fields
 
@@ -230,13 +154,15 @@ export default defineConfig({
 })
 ```
 
+![A Sanity Studio interface displaying a modal titled 'Edit Article List, featuring a custom text field titled 'My Custom Field'.](assets/sanity-plugin-page-blocks-article-list-block-custom-field.png)
+
 #### Example: Custom Preview
 
 You can add your own preview config:
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
-import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
+import {articleListBlock, getPortableTextPreview} from '@trenda/sanity-plugin-page-blocks'
 
 export default defineConfig({
   //...
@@ -245,7 +171,8 @@ export default defineConfig({
       header: defineField({
         name: 'header',
         title: 'Custom Header',
-        type: 'portableText',
+        type: 'array',
+        of: [{type: 'block'}],
       }),
       // custom preview config
       preview: {
@@ -253,7 +180,6 @@ export default defineConfig({
           header: 'header',
         },
         prepare(selection) {
-          // NOTE: Not an exported function with this plugin
           const preview = getPortableTextPreview(selection.header, 'Article List')
 
           return preview
@@ -263,6 +189,10 @@ export default defineConfig({
   ],
 })
 ```
+
+![A Sanity Studio interface displaying a modal titled 'Edit Article List, featuring a custom Portable Text header field.](assets/sanity-plugin-page-blocks-article-list-block-custom-header.png)
+
+![A Sanity Studio interface showcasing a custom list preview that uses the value from the custom header field as the title.](assets/sanity-plugin-page-blocks-article-list-block-custom-header-preview.png)
 
 ## License
 

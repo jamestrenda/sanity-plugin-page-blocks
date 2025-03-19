@@ -21,6 +21,7 @@ Instead of providing a **full project starter**, these plugins are like **_start
 
 ## Available Blocks
 
+- [Article Feed Block](./src/article-feed-block)
 - [Article List Block](./src/article-list-block)
 - [Text Block](./src/text-block)
 

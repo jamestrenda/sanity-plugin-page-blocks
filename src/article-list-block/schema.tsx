@@ -13,13 +13,13 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
   const groups = mergeGroups<FieldGroupDefinition>(GROUPS, options?.groups)
 
   return defineType({
-    name: options?.name ?? 'articleListBlock',
+    name: options.name ?? 'articleListBlock',
     title,
     type: 'object',
     fieldsets: [...(options?.fieldsets ?? [])],
     groups,
     icon: () => <LayoutListIcon size="1em" />,
-    preview: options?.preview ?? {
+    preview: options.preview ?? {
       select: {
         title: 'title',
       },
@@ -31,20 +31,7 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
       },
     },
     fields: [
-      defineField({
-        name: 'articleType',
-        title: 'Article Type',
-        type: 'string',
-        options: {
-          list: options?.articleTypes ?? [{title: 'Post', value: 'post'}],
-        },
-        validation: (Rule) => Rule.required(),
-        fieldset: options?.fieldsetAssignments?.find(
-          (assignment) => assignment.field === 'articleType',
-        )?.fieldset,
-        group: options?.groupAssignments?.find((group) => group.field === 'articleType')?.group,
-      }),
-      options?.header ??
+      options.header ??
         defineField({
           name: 'title',
           title: 'Title',
@@ -52,17 +39,29 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
           description: 'Optional title to display above the article list.',
           group: options?.groupAssignments?.find((group) => group.field === 'title')?.group,
         }),
-      options?.categoryField ??
-        defineField({
-          name: 'categories',
-          title: 'Filter by Categories',
-          type: 'array',
-          of: [{type: 'reference', to: [{type: 'category'}]}],
-          description: 'Optional: Show only articles from selected categories.',
-          group: options?.groupAssignments?.find((group) => group.field === 'categories')?.group,
-        }),
-      ...(options?.customFields ?? []),
+      defineField({
+        name: 'articles',
+        title: 'Articles',
+        description: 'Select documents to display in the list.',
+        type: 'array',
+        of: [
+          {
+            type: 'reference',
+            to: options.articleTypes.sort().map((type) => {
+              if (typeof type === 'string') {
+                return {type: type.toLocaleLowerCase()}
+              }
+              return {type: type.value.toLocaleLowerCase()}
+            }),
+          },
+        ],
+        validation: (Rule) => Rule.required().unique(),
+        fieldset: options.fieldsetAssignments?.find((assignment) => assignment.field === 'articles')
+          ?.fieldset,
+        group: options.groupAssignments?.find((group) => group.field === 'articles')?.group,
+      }),
+      ...(options.customFields ?? []),
     ],
-    components: options?.customComponents,
+    components: options.customComponents,
   })
 }
