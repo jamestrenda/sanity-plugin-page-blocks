@@ -1,4 +1,5 @@
 import {FieldDefinition, TitledListValue} from 'sanity'
+
 import {SchemaBaseFields} from '../types'
 
 type ArticleListBlockFieldNames = 'articleType' | 'title' | 'categories'
