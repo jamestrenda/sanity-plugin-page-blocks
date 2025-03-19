@@ -21,13 +21,10 @@ Instead of providing a **full project starter**, these plugins are like **_start
 
 ## Available Blocks
 
-### [Article List Block](./src/article-list-block)
-
-A configurable block for listing articles, blog posts, or other structured content. Supports **customizable fields, custom fields, and previews**.
+- [Article List Block](./src/article-list-block)
+- [Text Block](./src/text-block)
 
 ## Installation
-
-To install `@trenda/sanity-plugin-page-blocks`, run:
 
 ```sh
 npm install @trenda/sanity-plugin-page-blocks
@@ -41,7 +38,7 @@ pnpm add @trenda/sanity-plugin-page-blocks
 
 ## Peer Dependencies
 
-This plugin requires the following dependencies to be installed in your Sanity Studio project:
+This plugin utilizes [Lucide Icons](https://lucide.dev/) and requires the following dependencies to be installed in your Sanity Studio project:
 
 ```sh
 npm install lucide-react
@@ -51,21 +48,6 @@ or:
 
 ```sh
 pnpm add lucide-react
-```
-
-These dependencies are not bundled with the plugin to ensure compatibility with your project's version of React and Sanity.
-
-## Basic Usage
-
-Use only the blocks you want.
-
-```ts
-import {defineConfig} from 'sanity'
-import {articleListBlock} from '@trenda/sanity-plugin-page-blocks/article-list-block'
-
-export default defineConfig({
-  plugins: [articleListBlock()],
-})
 ```
 
 ## Coming Soon

@@ -1,6 +1,6 @@
 # Text Block
 
-A configurable page builder block for displaying PortableText.
+A configurable page builder block for displaying PortableText. Supports customizable fields, custom fields, and previews.
 
 ## Installation
 
