@@ -31,14 +31,16 @@ interface SchemaBaseFields {
   customComponents?: DocumentComponents
 }
 
-/**
- * Configuration options for the Article List Block.
- *
- * @public
- */
-export interface ArticleListBlockConfig extends SchemaBaseFields {
+interface Config extends SchemaBaseFields {
   articleTypes?: (string | TitledListValue<string>)[] | undefined
   header?: FieldDefinition
   categoryField?: FieldDefinition
   maxArticles?: number
 }
+
+/**
+ * Configuration options for the Article List Block.
+ *
+ * @public
+ */
+export type ArticleListBlockConfig = Config | void
