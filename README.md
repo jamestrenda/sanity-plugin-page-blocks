@@ -2,13 +2,17 @@
 
 # Sanity Page Blocks
 
-A collection of **plug-and-play page builder blocks** for Sanity Studio. These blocks are designed to **reduce initial schema definition time** while remaining **flexible enough** to fit a wide range of projects.
+A collection of lightly-opinionated **plug-and-play page builder blocks** for Sanity Studio. These blocks are designed to **reduce initial schema definition time** while remaining **flexible enough** to fit a wide range of projects.
 
 ## Why This Plugin?
 
-Sanity provides a highly customizable content structure, but setting up reusable page-building blocks can be **time-consuming and repetitive**. While there are plenty of **starter templates** in the Sanity community, they often come with **a full project structure, front-end implementation, and opinionated schemas**—you _might_ not want all of that.
+Sanity provides a highly customizable content structure, but setting up reusable page-building blocks can be **time-consuming and repetitive**. As more Sanity projects embrace a page-building Studio experience, having a robust library of block schemas can help teams get up and running quickly.
 
-You _might_ already have a project—either with a page builder schema or one that you would like to convert to a page builer schema. Or you _might_ want to use an existing starter template, but you're looking for more page builder blocks that you can just drop into your project. If any of those scenarios describe your project, you _might_ want this plugin.
+While there are plenty of **starter templates** in the Sanity community, they often come with **a full project structure, front-end implementation, and opinionated schemas**—you _might_ not want all of that.
+
+You _might_ already have a project—either with a page builder schema or one that you would like to convert to a page builer schema. Or you _might_ want to use an existing starter template, but you're looking for more page builder blocks that you can just drop into your project.
+
+If any of those scenarios describe your project, you _might_ want this plugin.
 
 ### A Different Approach
 
@@ -18,6 +22,7 @@ Instead of providing a **full project starter**, these plugins are like **_start
 - **Customizable** - Tailor fields and settings to match your content model.
 - **Flexible** - Can be dropped into **new or existing projects** without requiring major changes.
 - **Fast to implement** - Reduce the time spent on boilerplate schema setup.
+- **Lightly-opinionated** - Most schemas are designed without assumptions about how they'll be implemented in your UI. You won't find terms like "Grid" or "Accordion" here, as you may prefer a different styling approach. The naming conventions are intentionally neutral to keep things flexible.
 
 ## Available Blocks
 
