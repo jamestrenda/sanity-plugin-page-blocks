@@ -39,7 +39,7 @@ export const schema = (options: ArticleFeedBlockConfig): SchemaTypeDefinition =>
         group: isFieldHidden(options?.title) ? undefined : (options?.title?.group ?? undefined),
       }),
     defineField({
-      name: 'filter',
+      name: 'filterBy',
       title: 'Filter by',
       type: 'array',
       of:
