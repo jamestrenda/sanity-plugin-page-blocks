@@ -79,45 +79,6 @@ export default defineConfig({
 })
 ```
 
-### Removing Fields
-
-Every block has at least one core field, but many of the blocks have at least one additonal field that is more supportive in nature. If you find you don't need these fields, there's no sense in keeping them around in your schema. You can remove these less critical fields by passing `false` for the corresponding option. This completely excludes the field from the schema, rather than just hiding it in the Studio UI. If you find yourself needing to remove a core field, then you probably want to choose a different block altogether—or build your own custom block from scratch.
-
-```ts
-import {defineConfig} from 'sanity'
-import {faqBlock} from '@trenda/sanity-plugin-page-blocks'
-
-export default defineConfig({
-  //...
-  plugins: [
-    faqBlock({
-      title: false, // Removes the title field from the schema
-    }),
-  ],
-})
-```
-
-Some schemas accept a `header` option, allowing you to define a custom title field. If you provide a header, it automatically replaces the default title field, so you don't need to remove `title` manually.
-
-```ts
-import {defineConfig, defineField} from 'sanity'
-import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
-
-export default defineConfig({
-  //...
-  plugins: [
-    articleListBlock({
-      header: defineField({
-        name: 'header',
-        title: 'Custom Header',
-        type: 'array',
-        of: [{type: 'block'}],
-      }),
-    }),
-  ],
-})
-```
-
 ### Fieldsets and Groups
 
 Every block supports Sanity fieldsets and groups. To add a custom fieldsets and/or groups, pass an object where you define the structure of your fieldsets and groups and then assign fields to it.
@@ -156,22 +117,14 @@ Every block includes a set of standard fields to get you started, but you can ex
 export default defineConfig({
   //...
   plugins: [
-    faqBlock({
-      title: {
-        components: {
-          field: CharCountInput,
-        },
-      },
-      faqs: {
-        schemaType: [
-          {
-            type: 'faq',
-          },
-        ],
-        components: {
-          field: CustomField,
-        },
-      },
+    textBlock({
+      customFields: [
+        defineField({
+          name: 'anchor',
+          title: 'Anchor',
+          type: 'string',
+        }),
+      ],
     }),
   ],
 })
@@ -200,6 +153,47 @@ export default defineConfig({
       components: {
         input: MyCustomInput,
       },
+    }),
+  ],
+})
+```
+
+### Removing Fields
+
+Every block has at least one core field, but many of the blocks have at least one additonal field that is more supportive in nature. If you find you don't need these fields, there's no sense in keeping them around in your schema. You can remove these less critical fields by passing `false` for the corresponding option.
+
+This completely excludes the field from the schema, rather than just hiding it in the Studio UI. If you find yourself needing to remove a core field, then you probably want to choose a different block altogether—or build your own custom block from scratch.
+
+```ts
+import {defineConfig} from 'sanity'
+import {faqBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    faqBlock({
+      title: false, // Removes the title field from the schema
+    }),
+  ],
+})
+```
+
+Some schemas support a `header` option, allowing you to define a custom title field. When a `header` is provided, it automatically replaces the default title field, eliminating the need to remove it manually.
+
+```ts
+import {defineConfig, defineField} from 'sanity'
+import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    articleListBlock({
+      header: defineField({
+        name: 'header',
+        title: 'Custom Header',
+        type: 'array',
+        of: [{type: 'block'}],
+      }),
     }),
   ],
 })
