@@ -28,6 +28,7 @@ Instead of providing a **full project starter**, these plugins are like **_start
 
 - [Article Feed Block](./src/article-feed-block)
 - [Article List Block](./src/article-list-block)
+- [FAQ Block](./src/faq-block/)
 - [Text Block](./src/text-block)
 
 ## Installation
