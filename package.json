@@ -63,7 +63,8 @@
     "watch": "pkg-utils watch --strict",
     "commit": "commit",
     "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest"
   },
   "dependencies": {
     "@sanity/incompatible-plugin": "^1.0.5",
@@ -97,7 +98,8 @@
     "react-dom": "^19.0.0",
     "sanity": "^3.79.0",
     "styled-components": "^6.1.15",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
   },
   "peerDependencies": {
     "lucide-react": "^0.359.0",
