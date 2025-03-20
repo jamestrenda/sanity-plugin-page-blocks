@@ -1,16 +1,24 @@
-import {ArrayOfType} from 'sanity'
+import {
+  ArrayOfObjectsComponents,
+  ArrayOfPrimitivesComponents,
+  ArrayOfType,
+  FieldDefinitionBase,
+} from 'sanity'
 
 import {SchemaBaseFields} from '../types'
-
-type TextBlockFieldNames = 'text'
 
 type PortableTextConfig = {
   type: 'array'
   of: ArrayOfType[]
 }
 
-interface Config extends SchemaBaseFields<TextBlockFieldNames> {
+interface Config extends SchemaBaseFields {
   portableText?: PortableTextConfig
+  text?: {
+    fieldset?: FieldDefinitionBase['fieldset']
+    group?: FieldDefinitionBase['group']
+    components?: ArrayOfObjectsComponents | ArrayOfPrimitivesComponents | undefined
+  }
 }
 
 /**

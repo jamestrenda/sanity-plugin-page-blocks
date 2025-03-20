@@ -1,24 +1,23 @@
-import {LayoutListIcon} from 'lucide-react'
+import {MessageCircleQuestionIcon} from 'lucide-react'
 import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
 
 import {isFieldHidden, mergeGroups} from '../lib/utils'
-import type {ArticleListBlockConfig} from './types'
+import type {FaqBlockConfig} from './types'
 
-const title = 'Article List'
+const title = 'FAQ Block'
 
 // no default groups for this schema
 const GROUPS: FieldGroupDefinition[] = []
 
-export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: FaqBlockConfig): SchemaTypeDefinition => {
   const groups = mergeGroups<FieldGroupDefinition>(GROUPS, options?.groups)
 
   const fields = [
-    options.header ??
+    options?.header ??
       defineField({
         name: 'title',
-        title: 'Title',
         type: 'string',
-        description: 'Optional title to display above the article list.',
+        description: 'Optional title to display above the FAQs.',
         fieldset: isFieldHidden(options?.title)
           ? undefined
           : (options?.title?.fieldset ?? undefined),
@@ -26,41 +25,38 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
         components: isFieldHidden(options?.title) ? undefined : options?.title?.components,
       }),
     defineField({
-      name: 'articles',
-      title: 'Articles',
-      description: 'Select documents to display in the list.',
+      name: 'faqs',
+      title: 'FAQs',
+      description: 'Select FAQ documents to display in the list.',
       type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: options.articleTypes.sort().map((type) => {
-            if (typeof type === 'string') {
-              return {type: type.toLocaleLowerCase()}
-            }
-            return {type: type.value.toLocaleLowerCase()}
-          }),
-        },
-      ],
+      of: options?.faqs?.schemaType
+        ? [
+            {
+              type: 'reference',
+              to: options?.faqs?.schemaType,
+            },
+          ]
+        : [],
+      components: options?.faqs?.components,
+      fieldset: options?.faqs?.fieldset ?? undefined,
+      group: options?.faqs?.group ?? undefined,
       validation: (Rule) => Rule.required().unique(),
-      fieldset: options?.articles?.fieldset ?? undefined,
-      group: options?.articles?.group ?? undefined,
-      components: options?.articles?.components,
     }),
-    ...(options.customFields ?? []),
+    ...(options?.customFields ?? []),
   ]
 
   const visibleFields = fields.filter(({name}) => {
-    return !isFieldHidden(options?.[name as keyof ArticleListBlockConfig])
+    return !isFieldHidden(options?.[name as keyof FaqBlockConfig])
   })
 
   return defineType({
-    name: options.name ?? 'articleListBlock',
-    title,
+    name: options?.name ?? 'faqBlock',
+    title: 'FAQs',
     type: 'object',
     fieldsets: [...(options?.fieldsets ?? [])],
     groups,
-    icon: () => <LayoutListIcon size="1em" />,
-    preview: options.preview ?? {
+    icon: () => <MessageCircleQuestionIcon size="1em" />,
+    preview: options?.preview ?? {
       select: {
         title: 'title',
       },
@@ -72,6 +68,6 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
       },
     },
     fields: visibleFields,
-    components: options.components,
+    components: options?.components,
   })
 }

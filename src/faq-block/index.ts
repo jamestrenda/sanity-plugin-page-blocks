@@ -1,7 +1,7 @@
 import {definePlugin} from 'sanity'
 
 import {schema} from './schema'
-import {ArticleFeedBlockConfig} from './types'
+import {FaqBlockConfig} from './types'
 
 /**
  * @public
@@ -9,17 +9,17 @@ import {ArticleFeedBlockConfig} from './types'
  *
  * ```ts
  * import {defineConfig} from 'sanity'
- * import {articleFeedBlock} from '@trenda/sanity-plugin-page-blocks
+ * import {faqBlock} from '@trenda/sanity-plugin-page-blocks
  *
  * export default defineConfig({
  *   // ...
- *   plugins: [articleFeedBlock()],
+ *   plugins: [faqBlock()],
  * })
  * ```
  */
-export const articleFeedBlock = definePlugin<ArticleFeedBlockConfig>((config) => {
+export const faqBlock = definePlugin<FaqBlockConfig>((config) => {
   return {
-    name: '@trenda/sanity-plugin-page-blocks/article-feed-block',
+    name: '@trenda/sanity-plugin-page-blocks/faq-block',
     schema: {
       types: [schema(config)],
     },

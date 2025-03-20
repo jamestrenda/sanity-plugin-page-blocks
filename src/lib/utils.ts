@@ -89,3 +89,30 @@ export function getPortableTextPreview(
     subtitle: hasTextSnippet ? title : undefined,
   }
 }
+
+/**
+ * Determines whether a given field should be hidden.
+ *
+ * Fields are **visible by default**, meaning they are only considered hidden
+ * if they are explicitly set to `false`. If the field is `undefined` or an
+ * object, it is considered visible.
+ *
+ * @template T - The expected object type of the field when it is visible.
+ * @param field - The field value, which can be an object (visible), `false` (hidden), or `undefined` (visible by default).
+ * @returns `true` if the field is explicitly set to `false` (hidden), otherwise `false`.
+ *
+ * @example
+ * ```ts
+ * const title = { components: 'SomeComponent' };
+ * console.log(isFieldHidden(title)); // false (visible)
+ *
+ * console.log(isFieldHidden(false)); // true (hidden)
+ *
+ * console.log(isFieldHidden(undefined)); // false (visible)
+ * ```
+ *
+ * @since 1.3.0
+ */
+export function isFieldHidden<T>(field: T | false | undefined): field is false {
+  return field === false
+}

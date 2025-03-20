@@ -1,13 +1,38 @@
-import {FieldDefinition, TitledListValue} from 'sanity'
+import {
+  ArrayOfObjectsComponents,
+  ArrayOfPrimitivesComponents,
+  FieldDefinition,
+  FieldDefinitionBase,
+  ReferenceTo,
+  StringComponents,
+  TitledListValue,
+} from 'sanity'
 
 import {SchemaBaseFields} from '../types'
 
-type ArticleFeedBlockFieldNames = 'articleType' | 'title' | 'categories'
-
-interface Config extends SchemaBaseFields<ArticleFeedBlockFieldNames> {
+interface Config extends SchemaBaseFields {
   articleTypes?: (string | TitledListValue<string>)[] | undefined
   header?: FieldDefinition
-  categoryField?: FieldDefinition
+  articleType?: {
+    fieldset?: FieldDefinitionBase['fieldset']
+    group?: FieldDefinitionBase['group']
+    components?: StringComponents | undefined
+  }
+  title?:
+    | {
+        fieldset?: FieldDefinitionBase['fieldset']
+        group?: FieldDefinitionBase['group']
+        components?: StringComponents | undefined
+      }
+    | false
+  filterBy?:
+    | {
+        schemaType: ReferenceTo
+        fieldset?: FieldDefinitionBase['fieldset']
+        group?: FieldDefinitionBase['group']
+        components?: ArrayOfObjectsComponents | ArrayOfPrimitivesComponents | undefined
+      }
+    | false
 }
 
 /**

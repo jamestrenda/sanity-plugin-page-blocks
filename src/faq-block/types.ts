@@ -3,19 +3,13 @@ import {
   ArrayOfPrimitivesComponents,
   FieldDefinition,
   FieldDefinitionBase,
+  ReferenceTo,
   StringComponents,
-  TitledListValue,
 } from 'sanity'
 
 import {SchemaBaseFields} from '../types'
 
-/**
- * Configuration options for the Article List Block.
- *
- * @public
- */
-export interface ArticleListBlockConfig extends SchemaBaseFields {
-  articleTypes: (string | Required<Pick<TitledListValue<string>, 'title' | 'value'>>)[]
+interface Config extends SchemaBaseFields {
   header?: FieldDefinition
   title?:
     | {
@@ -24,9 +18,17 @@ export interface ArticleListBlockConfig extends SchemaBaseFields {
         components?: StringComponents | undefined
       }
     | false
-  articles?: {
+  faqs?: {
+    schemaType: ReferenceTo
     fieldset?: FieldDefinitionBase['fieldset']
     group?: FieldDefinitionBase['group']
     components?: ArrayOfObjectsComponents | ArrayOfPrimitivesComponents | undefined
   }
 }
+
+/**
+ * Configuration options for the Article List Block.
+ *
+ * @public
+ */
+export type FaqBlockConfig = Config | void

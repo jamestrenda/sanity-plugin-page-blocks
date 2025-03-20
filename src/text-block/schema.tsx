@@ -25,9 +25,9 @@ export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefiniti
         description: 'The text content of the block.',
         type: options?.portableText?.type ?? 'array',
         of: options?.portableText?.of ?? [{type: 'block'}],
-        fieldset: options?.fieldsetAssignments?.find((assignment) => assignment.field === 'text')
-          ?.fieldset,
-        group: options?.groupAssignments?.find((group) => group.field === 'text')?.group,
+        components: options?.text?.components,
+        fieldset: options?.text?.fieldset ?? undefined,
+        group: options?.text?.group ?? undefined,
       }),
       ...(options?.customFields ?? []),
     ],
@@ -42,6 +42,6 @@ export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefiniti
       },
     },
 
-    components: options?.customComponents,
+    components: options?.components,
   })
 }

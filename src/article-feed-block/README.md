@@ -100,28 +100,7 @@ Use it in the Studio:
 
 ### Customization
 
-You can customize the `articleFeedBlock` schema by passing options when registering the plugin.
-
-#### Example: Custom Schema Name
-
-In Sanity, you cannot register multiple schemas with the same name. If you run into a naming conflict with your own `articleFeedBlock` schema, you can override it by passing a custom value to `name`.
-
-```ts
-import {defineConfig, defineField} from 'sanity'
-import {articleFeedBlock} from '@trenda/sanity-plugin-page-blocks'
-
-export default defineConfig({
-  //...
-  plugins: [
-    articleFeedBlock({
-      name: 'myArticleFeedBlock',
-      //...
-    }),
-  ],
-})
-```
-
-#### Example: Custom Article Types
+#### Article Types
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
@@ -139,7 +118,7 @@ export default defineConfig({
 })
 ```
 
-#### Example: Header Field
+#### Header
 
 By default, `articleFeedBlock` uses a simple `string` field for the header.
 
@@ -172,21 +151,9 @@ export default defineConfig({
 })
 ```
 
-#### Example: Category Field
+#### Filtering
 
-By default, `articleFeedBlock` creates a `category` schema and references it in a `categories` field to satisfy the Sanity schema engine. If you pass a value to `categoryField`, as in the example below, the plugin will _not_ create a `category` schema for you.
-
-```ts
-defineField({
-  name: 'categories',
-  title: 'Filter by Categories',
-  type: 'array',
-  of: [{type: 'reference', to: [{type: 'category'}]}],
-  description: 'Optional: Show only articles from selected categories.',
-})
-```
-
-If your project uses a different schema name (e.g., tags), or if you want to change other things about the field, you can override it with your own field:
+`articleFeedBlock` comes with a `filterBy` field with which you can filter your queries on your frontend, but you need to pass the schema types to it first.
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
@@ -196,19 +163,24 @@ export default defineConfig({
   //...
   plugins: [
     articleFeedBlock({
-      categoryField: defineField({
-        name: 'tags',
-        title: 'Filter by Tag',
-        type: 'array',
-        of: [{type: 'reference', to: [{type: 'tag'}]}],
-        description: 'Optional: Show only articles from selected tags.',
-      }),
+      filterBy: {
+        schemaType: [
+          {
+            type: 'category',
+          },
+          {
+            type: 'tag',
+          },
+        ],
+      },
     }),
   ],
 })
 ```
 
-#### Example: Custom Fields
+If your project uses a different schema name (e.g., tags), or if you want to change other things about the field, you can override it with a custom field.
+
+#### Custom Fields
 
 You can extend the schema with additional fields:
 
@@ -222,9 +194,11 @@ export default defineConfig({
     articleFeedBlock({
       customFields: [
         defineField({
-          name: 'myCustomField',
-          title: 'My Custom Field',
-          type: 'string',
+          name: 'tags',
+          title: 'Filter by Tag',
+          type: 'array',
+          of: [{type: 'reference', to: [{type: 'tag'}]}],
+          description: 'Optional: Show only articles from selected tags.',
         }),
       ],
     }),
@@ -232,7 +206,7 @@ export default defineConfig({
 })
 ```
 
-#### Example: Custom Preview
+#### Custom Preview
 
 You can add your own preview config:
 
