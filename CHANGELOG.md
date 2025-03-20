@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.0...v1.4.1) (2025-03-20)
+
+### Bug Fixes
+
+- **article-feed-block:** update incorrect 'filter' field name to 'filterBy' ([680522c](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/680522c1d6bc4693a2e0adab25c0d2f0af8a69b3))
+
 ## [1.4.0](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.3.0...v1.4.0) (2025-03-20)
 
 ### Features
