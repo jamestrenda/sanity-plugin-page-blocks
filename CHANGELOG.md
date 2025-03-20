@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.3.0...v1.4.0) (2025-03-20)
+
+### Features
+
+- add faq block plugin, update existing blocks ([5193ad9](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/5193ad995a4137840fa75e79ae41b925863e19de))
+
 ## [1.3.0](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.2.0...v1.3.0) (2025-03-19)
 
 ### Features
