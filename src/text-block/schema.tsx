@@ -1,7 +1,8 @@
 import {TextIcon} from 'lucide-react'
 import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
 
-import {getPortableTextPreview, mergeGroups} from '../lib/utils'
+import {getPortableTextPreview} from '../lib/getPortableTextPreview'
+import {mergeGroups} from '../lib/utils'
 import {TextBlockConfig} from './types'
 
 const title = 'Text Block'
@@ -36,7 +37,7 @@ export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefiniti
         text: 'text',
       },
       prepare(selection) {
-        const preview = getPortableTextPreview(selection.text, 'Text Block')
+        const preview = getPortableTextPreview(selection.text, title)
 
         return preview
       },

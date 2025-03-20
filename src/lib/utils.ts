@@ -1,5 +1,3 @@
-import {PortableTextBlock, PortableTextTextBlock} from 'sanity'
-
 /**
  * Merges user-defined field groups with default field groups.
  *
@@ -41,53 +39,6 @@ export function mergeGroups<T extends {name: string}>(
       (group) => !defaultGroups.some((defaultGroup) => defaultGroup.name === group.name),
     ) as T[]) ?? []),
   ]
-}
-
-/**
- * Attempts to extract an appropriate heading text from a Portable Text block array and returns a valid list preview.
- *
- * This function scans the provided Portable Text value for the first block with a heading (`h1`, `h2`, `h3`)
- * or a normal paragraph (`normal`). If no such block is found, it falls back to the first block in the array.
- * The extracted text is then used as the preview title, with the provided `title` as a fallback.
- *
- * @param {PortableTextBlock[]} value - The Portable Text content to extract a preview from.
- * @param {string} title - The default title to use if no value is provided. Also used as the subtitle.
- * @returns {{ title: string; subtitle?: string }} The extracted title and subtitle.
- *
- * @public
- */
-export function getPortableTextPreview(
-  value: PortableTextBlock[],
-  title: string,
-): {
-  title: string
-  subtitle?: string
-} {
-  if (!value) {
-    return {
-      title,
-    }
-  }
-
-  // find the first default block style that is a heading or paragraph
-  let text = value.find(
-    (block) =>
-      block._type === 'block' && ['h1', 'h2', 'h3', 'normal'].includes(block.style as string),
-  ) as PortableTextTextBlock
-
-  // if no appropriate heading is detected, use the first block—whatever it may be
-  if (!text) {
-    text = value[0] as PortableTextTextBlock
-  }
-
-  // concat the block of text because it could be broken up into multiple children depending on its marks
-  const textSnippet = text?.children.map((child) => child.text).join('')
-  const hasTextSnippet = textSnippet.length > 0
-
-  return {
-    title: hasTextSnippet ? textSnippet : title,
-    subtitle: hasTextSnippet ? title : undefined,
-  }
 }
 
 /**
