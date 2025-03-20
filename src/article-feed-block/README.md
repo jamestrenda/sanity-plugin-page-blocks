@@ -178,67 +178,9 @@ export default defineConfig({
 })
 ```
 
-If your project uses a different schema name (e.g., tags), or if you want to change other things about the field, you can override it with a custom field.
+#### Other
 
-#### Custom Fields
-
-You can extend the schema with additional fields:
-
-```ts
-import {defineConfig, defineField} from 'sanity'
-import {articleFeedBlock} from '@trenda/sanity-plugin-page-blocks'
-
-export default defineConfig({
-  //...
-  plugins: [
-    articleFeedBlock({
-      customFields: [
-        defineField({
-          name: 'tags',
-          title: 'Filter by Tag',
-          type: 'array',
-          of: [{type: 'reference', to: [{type: 'tag'}]}],
-          description: 'Optional: Show only articles from selected tags.',
-        }),
-      ],
-    }),
-  ],
-})
-```
-
-#### Custom Preview
-
-You can add your own preview config:
-
-```ts
-import {defineConfig, defineField} from 'sanity'
-import {articleFeedBlock} from '@trenda/sanity-plugin-page-blocks'
-
-export default defineConfig({
-  //...
-  plugins: [
-    articleFeedBlock({
-      header: defineField({
-        name: 'header',
-        title: 'Custom Header',
-        type: 'portableText',
-      }),
-      // custom preview config
-      preview: {
-        select: {
-          header: 'header',
-        },
-        prepare(selection) {
-          // NOTE: Not an exported function with this plugin
-          const preview = getPortableTextPreview(selection.header, 'Article Feed')
-
-          return preview
-        },
-      },
-    }),
-  ],
-})
-```
+See main [README](../../README.md) for more customizations.
 
 ## License
 
