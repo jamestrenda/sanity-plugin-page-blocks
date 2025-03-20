@@ -2,7 +2,7 @@
 
 # Sanity Page Blocks
 
-A collection of lightly-opinionated **plug-and-play page builder blocks** for Sanity Studio. These blocks are designed to **reduce initial schema definition time** while remaining **flexible enough** to fit a wide range of projects.
+A collection of type-safe, lightly-opinionated **plug-and-play page builder blocks** for Sanity Studio. These blocks are designed to **reduce initial schema definition time** while remaining **flexible enough** to fit a wide range of projects.
 
 ## Why This Plugin?
 
@@ -55,6 +55,161 @@ or:
 ```sh
 pnpm add lucide-react
 ```
+
+## Customization
+
+Each block can be customized by passing options when registering the plugin.
+
+### Schema Name
+
+Sanity does not allow multiple schemas with the same name. If you have a naming conflict with an existing schema or need to register multiple instances of the same block, you can override the default schema name by passing a custom value to name. This flexibility allows you to register multiple variations of a block within your Sanity project while avoiding conflicts.
+
+```ts
+import {defineConfig} from 'sanity'
+import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    articleListBlock({
+      name: 'customArticleListBlock',
+      // Other options...
+    }),
+  ],
+})
+```
+
+### Removing Fields
+
+Every block has at least one core field, but many of the blocks have at least one additonal field that is more supportive in nature. If you find you don't need these fields, there's no sense in keeping them around in your schema. You can remove these less critical fields by passing `false` for the corresponding option. This completely excludes the field from the schema, rather than just hiding it in the Studio UI. If you find yourself needing to remove a core field, then you probably want to choose a different block altogether—or build your own custom block from scratch.
+
+```ts
+import {defineConfig} from 'sanity'
+import {faqBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    faqBlock({
+      title: false, // Removes the title field from the schema
+    }),
+  ],
+})
+```
+
+Some schemas accept a `header` option, allowing you to define a custom title field. If you provide a header, it automatically replaces the default title field, so you don't need to remove `title` manually.
+
+```ts
+import {defineConfig, defineField} from 'sanity'
+import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    articleListBlock({
+      header: defineField({
+        name: 'header',
+        title: 'Custom Header',
+        type: 'array',
+        of: [{type: 'block'}],
+      }),
+    }),
+  ],
+})
+```
+
+### Fieldsets and Groups
+
+Every block supports Sanity fieldsets and groups. To add a custom fieldsets and/or groups, pass an object where you define the structure of your fieldsets and groups and then assign fields to it.
+
+```ts
+import {defineConfig, defineField} from 'sanity'
+import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    articleListBlock({
+      articleTypes: ['post', 'episode', 'recipe'],
+      fieldsets: [{name: 'header', title: 'Header'}],
+      groups: [
+        {
+          name: 'main-content',
+          title: 'Content',
+        },
+      ],
+      // assign the default title field to fieldsets and groups
+      title: {
+        fieldset: 'header',
+        group: 'main-content',
+      },
+    }),
+  ],
+})
+```
+
+### Custom Fields
+
+Every block includes a set of standard fields to get you started, but you can extend any block with additional fields as needed. This allows you to customize the schema without having to build your own from scratch, making it easy to adapt to your specific requirements.
+
+```ts
+export default defineConfig({
+  //...
+  plugins: [
+    faqBlock({
+      title: {
+        components: {
+          field: CharCountInput,
+        },
+      },
+      faqs: {
+        schemaType: [
+          {
+            type: 'faq',
+          },
+        ],
+        components: {
+          field: CustomField,
+        },
+      },
+    }),
+  ],
+})
+```
+
+### Components
+
+Every block supports schema-level and field-level components.
+
+```ts
+export default defineConfig({
+  //...
+  plugins: [
+    faqBlock({
+      title: {
+        components: {
+          field: CharCountInput,
+        },
+      },
+      faqs: {
+        // ...
+        components: {
+          field: CustomField,
+        },
+      },
+      components: {
+        input: MyCustomInput,
+      },
+    }),
+  ],
+})
+```
+
+### Options
+
+Many Sanity field types support an `options` property. This is not yet implemented in this plugin.
+
+TODO: Add support for custom `options`.
 
 ## Coming Soon
 
