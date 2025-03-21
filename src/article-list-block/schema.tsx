@@ -30,17 +30,14 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
       title: 'Articles',
       description: 'Select documents to display in the list.',
       type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: options.articleTypes.sort().map((type) => {
-            if (typeof type === 'string') {
-              return {type: type.toLocaleLowerCase()}
-            }
-            return {type: type.value.toLocaleLowerCase()}
-          }),
-        },
-      ],
+      of: options.articles?.schemaType
+        ? [
+            {
+              type: 'reference',
+              to: options?.articles?.schemaType,
+            },
+          ]
+        : [],
       validation: (Rule) => Rule.required().unique(),
       fieldset: options?.articles?.fieldset ?? undefined,
       group: options?.articles?.group ?? undefined,
