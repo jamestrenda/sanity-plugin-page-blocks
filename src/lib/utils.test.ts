@@ -18,5 +18,8 @@ describe('isFieldHidden', () => {
 
     title = false
     expect(isFieldHidden(title)).toBe(true)
+
+    title = true
+    expect(isFieldHidden(title)).toBe(false)
   })
 })
