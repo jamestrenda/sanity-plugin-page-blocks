@@ -1,30 +1,20 @@
 import {LayoutListIcon} from 'lucide-react'
-import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
+import {defineField, SchemaTypeDefinition} from 'sanity'
 
-import {isFieldHidden, mergeGroups} from '../lib/utils'
+import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import type {ArticleListBlockConfig} from './types'
 
-const title = 'Article List'
-
-// no default groups for this schema
-const GROUPS: FieldGroupDefinition[] = []
-
 export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition => {
-  const groups = mergeGroups<FieldGroupDefinition>(GROUPS, options?.groups)
+  const blockTitle = 'Article List'
 
   const fields = [
-    options.header ??
-      defineField({
-        name: 'title',
-        title: 'Title',
-        type: 'string',
-        description: 'Optional title to display above the article list.',
-        fieldset: isFieldHidden(options?.title)
-          ? undefined
-          : (options?.title?.fieldset ?? undefined),
-        group: isFieldHidden(options?.title) ? undefined : (options?.title?.group ?? undefined),
-        components: isFieldHidden(options?.title) ? undefined : options?.title?.components,
-      }),
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'Optional title to display above the article list.',
+      ...createFieldConfig(options?.title ? options.title : {}),
+    }),
     defineField({
       name: 'articles',
       title: 'Articles',
@@ -39,36 +29,31 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
           ]
         : [],
       validation: (Rule) => Rule.required().unique(),
-      fieldset: options?.articles?.fieldset ?? undefined,
-      group: options?.articles?.group ?? undefined,
-      components: options?.articles?.components,
+      ...createFieldConfig(options?.articles),
     }),
     ...(options.customFields ?? []),
   ]
 
-  const visibleFields = fields.filter(({name}) => {
-    return !isFieldHidden(options?.[name as keyof ArticleListBlockConfig])
-  })
-
-  return defineType({
-    name: options.name ?? 'articleListBlock',
-    title,
-    type: 'object',
-    fieldsets: [...(options?.fieldsets ?? [])],
-    groups,
+  return createSchema({
+    name: 'articleListBlock',
+    title: blockTitle,
     icon: () => <LayoutListIcon size="1em" />,
-    preview: options.preview ?? {
-      select: {
-        title: 'title',
-      },
-      prepare(selection) {
-        return {
-          title: selection.title ?? title,
-          subtitle: selection.title ? title : undefined,
+    fields,
+    options: options
+      ? {
+          preview: {
+            select: {
+              title: 'title',
+            },
+            prepare(selection) {
+              return {
+                title: selection.title ?? blockTitle,
+                subtitle: selection.title ? blockTitle : undefined,
+              }
+            },
+          },
+          ...options,
         }
-      },
-    },
-    fields: visibleFields,
-    components: options.components,
+      : undefined,
   })
 }

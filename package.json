@@ -24,11 +24,6 @@
       "import": "./dist/index.mjs",
       "default": "./dist/index.js"
     },
-    "./faq-block": {
-      "source": "./src/faq-block/types.ts",
-      "import": "./dist/faq-block/types.mjs",
-      "default": "./dist/faq-block/types.js"
-    },
     "./article-feed-block": {
       "source": "./src/article-feed-block/types.ts",
       "import": "./dist/article-feed-block/types.mjs",
@@ -38,6 +33,16 @@
       "source": "./src/article-list-block/types.ts",
       "import": "./dist/article-list-block/types.mjs",
       "default": "./dist/article-list-block/types.js"
+    },
+    "./faq-block": {
+      "source": "./src/faq-block/types.ts",
+      "import": "./dist/faq-block/types.mjs",
+      "default": "./dist/faq-block/types.js"
+    },
+    "./hero-block": {
+      "source": "./src/hero-block/types.ts",
+      "import": "./dist/hero-block/types.mjs",
+      "default": "./dist/hero-block/types.js"
     },
     "./text-block": {
       "source": "./src/text-block/types.ts",

@@ -14,3 +14,8 @@ export interface SchemaBaseFields {
   customFields?: Array<FieldDefinition>
   components?: DocumentComponents
 }
+
+export interface SchemaFieldBaseFields {
+  fieldset?: FieldDefinition['fieldset']
+  group?: FieldDefinition['group']
+}

@@ -6,6 +6,8 @@ import {isPortableTextTextBlock, PortableTextBlock} from 'sanity'
  * @param value - An array of Portable Text blocks.
  * @param blockTitle - A fallback title if no valid text block is found.
  * @returns An object containing `title` and optionally `subtitle`.
+ *
+ * @public
  */
 export function getPortableTextPreview(
   value: PortableTextBlock[] | undefined,
@@ -57,8 +59,7 @@ export function filterValidBlocks(blocks: PortableTextBlock[]): PortableTextBloc
 export function findTitleBlock(blocks: PortableTextBlock[]): PortableTextBlock | undefined {
   return (
     blocks.find(
-      (block) =>
-        block._type === 'block' && ['h1', 'h2', 'h3', 'normal'].includes(String(block.style)),
+      (block) => block._type === 'block' && ['h1', 'h2', 'h3'].includes(String(block.style)),
     ) || (isPortableTextTextBlock(blocks[0]) ? blocks[0] : undefined)
   )
 }

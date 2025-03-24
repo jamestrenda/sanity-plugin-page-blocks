@@ -1,16 +1,11 @@
 import {MessageCircleQuestionIcon} from 'lucide-react'
-import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
+import {defineField, SchemaTypeDefinition} from 'sanity'
 
-import {isFieldHidden, mergeGroups} from '../lib/utils'
+import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import type {FaqBlockConfig} from './types'
 
-const title = 'FAQ Block'
-
-// no default groups for this schema
-const GROUPS: FieldGroupDefinition[] = []
-
 export const schema = (options: FaqBlockConfig): SchemaTypeDefinition => {
-  const groups = mergeGroups<FieldGroupDefinition>(GROUPS, options?.groups)
+  const blockTitle = 'FAQ Block'
 
   const fields = [
     options?.header ??
@@ -18,11 +13,7 @@ export const schema = (options: FaqBlockConfig): SchemaTypeDefinition => {
         name: 'title',
         type: 'string',
         description: 'Optional title to display above the FAQs.',
-        fieldset: isFieldHidden(options?.title)
-          ? undefined
-          : (options?.title?.fieldset ?? undefined),
-        group: isFieldHidden(options?.title) ? undefined : (options?.title?.group ?? undefined),
-        components: isFieldHidden(options?.title) ? undefined : options?.title?.components,
+        ...createFieldConfig(options?.header ?? {}),
       }),
     defineField({
       name: 'faqs',
@@ -37,37 +28,32 @@ export const schema = (options: FaqBlockConfig): SchemaTypeDefinition => {
             },
           ]
         : [],
-      components: options?.faqs?.components,
-      fieldset: options?.faqs?.fieldset ?? undefined,
-      group: options?.faqs?.group ?? undefined,
+      ...createFieldConfig(options?.faqs ?? {}),
       validation: (Rule) => Rule.required().unique(),
     }),
     ...(options?.customFields ?? []),
   ]
 
-  const visibleFields = fields.filter(({name}) => {
-    return !isFieldHidden(options?.[name as keyof FaqBlockConfig])
-  })
-
-  return defineType({
-    name: options?.name ?? 'faqBlock',
+  return createSchema({
+    name: 'faqBlock',
     title: 'FAQs',
-    type: 'object',
-    fieldsets: [...(options?.fieldsets ?? [])],
-    groups,
     icon: () => <MessageCircleQuestionIcon size="1em" />,
-    preview: options?.preview ?? {
-      select: {
-        title: 'title',
-      },
-      prepare(selection) {
-        return {
-          title: selection.title ?? title,
-          subtitle: selection.title ? title : undefined,
+    fields,
+    options: options
+      ? {
+          preview: {
+            select: {
+              title: 'title',
+            },
+            prepare(selection) {
+              return {
+                title: selection.title ?? blockTitle,
+                subtitle: selection.title ? blockTitle : undefined,
+              }
+            },
+          },
+          ...options,
         }
-      },
-    },
-    fields: visibleFields,
-    components: options?.components,
+      : {},
   })
 }
