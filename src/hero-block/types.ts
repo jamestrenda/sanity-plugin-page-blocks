@@ -25,11 +25,11 @@ interface Config extends SchemaBaseFields {
         blocks?: ArrayOfType[]
         components?: ArrayOfPrimitivesComponents | ArrayOfObjectsComponents
       } & SchemaFieldBaseFields)
-  actions?:
+  actions:
     | false
     | {
         max?: number
-        internal?: {
+        internal: {
           types: ReferenceTo
         }
         customFields?: FieldDefinition[]

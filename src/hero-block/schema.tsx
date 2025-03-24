@@ -1,9 +1,10 @@
 import {ArrowRightIcon, CrownIcon} from 'lucide-react'
-import {defineField, PreviewConfig, SchemaTypeDefinition} from 'sanity'
+import {defineField, PreviewConfig, PreviewValue, SchemaTypeDefinition} from 'sanity'
 
 import {actionField} from '../lib/fields/action'
-import {icon as ExternalLinkIcon} from '../lib/objects/externalLink'
-import {icon as InternalLinkIcon} from '../lib/objects/internalLink'
+import {preview as externalLinkPreview} from '../lib/objects/externalLink'
+import {preview as internalLinkPreview} from '../lib/objects/internalLink'
+import {preview as mediaLinkPreview} from '../lib/objects/mediaLink'
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
@@ -107,7 +108,6 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
         name: 'image',
         title: 'Image',
         type: 'image',
-        // description: 'Optional. The main image of the hero block.',
       }),
       defineField({
         name: 'actions',
@@ -130,6 +130,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                       internalSlug: 'action.to.0.link.document.slug.current',
                       internalAnchor: 'action.to[0].anchor',
                       internalParams: 'action.to[0].params',
+                      mediaFilename: 'action.to.0.link.file.asset.originalFilename',
                     },
                     prepare(selection) {
                       const {title, to} = selection
@@ -154,24 +155,30 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                           if (internalAnchor) {
                             subtitle += `#${internalAnchor}`
                           }
-                          return {
+
+                          return internalLinkPreview({
                             title: title || internalTitle || 'Untitled',
-                            subtitle,
-                            media: InternalLinkIcon,
-                          }
+                            path: subtitle,
+                            outputOnly: true,
+                          }) as PreviewValue
                         }
                         case 'external':
-                          return {
+                          return externalLinkPreview({
                             title,
-                            subtitle: to.link.url,
-                            media: ExternalLinkIcon,
-                          }
-                        case 'relative':
+                            path: to.link.url,
+                            outputOnly: true,
+                          }) as PreviewValue
+                        case 'relative': {
                           return {
                             title,
                             subtitle: to.url,
                             media: <ArrowRightIcon size="1em" />,
                           }
+                        }
+                        case 'media': {
+                          const {mediaFilename: path} = selection
+                          return mediaLinkPreview({title, path, outputOnly: true}) as PreviewValue
+                        }
                         default:
                           return {
                             title,

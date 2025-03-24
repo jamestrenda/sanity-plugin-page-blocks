@@ -1,12 +1,21 @@
 import {ArrowRightIcon, Link2Icon} from 'lucide-react'
-import {defineField, defineType, QueryParams, ReferenceTo} from 'sanity'
+import {
+  defineField,
+  defineType,
+  PreviewConfig,
+  PreviewValue,
+  QueryParams,
+  ReferenceTo,
+} from 'sanity'
 
 import {anchorField} from '../fields/anchor'
 import {externalLinkField} from '../fields/externalLink'
 import {internalLinkField} from '../fields/internalLink'
+import {mediaLinkField} from '../fields/mediaLink'
 import {queryParams} from '../fields/queryParams'
-import {icon as ExternalLinkIcon} from '../objects/externalLink'
-import {icon as InternalLinkIcon} from '../objects/internalLink'
+import {icon as ExternalLinkIcon, preview as externalLinkPreview} from '../objects/externalLink'
+import {icon as InternalLinkIcon, preview as internalLinkPreview} from '../objects/internalLink'
+import {icon as MediaLinkIcon, preview as mediaLinkPreview} from '../objects/mediaLink'
 
 export const action = (types: ReferenceTo) =>
   defineType({
@@ -33,7 +42,7 @@ export const action = (types: ReferenceTo) =>
       defineField({
         name: 'to',
         title: 'To (Choose one)',
-        description: 'Add an internal reference, external link, or relative URL.',
+        description: 'Link to an internal reference, external or relative URL, or a file.',
         type: 'array',
         of: [
           {
@@ -42,6 +51,7 @@ export const action = (types: ReferenceTo) =>
             title: 'Internal Link',
             icon: InternalLinkIcon,
             fields: [internalLinkField(types), anchorField, queryParams()],
+
             preview: {
               select: {
                 title: 'link.document.title',
@@ -60,10 +70,12 @@ export const action = (types: ReferenceTo) =>
                 if (anchor) {
                   subtitle += `#${anchor}`
                 }
-                return {
+
+                return internalLinkPreview({
                   title,
-                  subtitle,
-                }
+                  path: subtitle,
+                  outputOnly: true,
+                }) as PreviewValue
               },
             },
           },
@@ -73,18 +85,9 @@ export const action = (types: ReferenceTo) =>
             title: 'External Link',
             icon: ExternalLinkIcon,
             fields: [externalLinkField],
-            preview: {
-              select: {
-                url: 'link.url',
-              },
-              prepare(selection) {
-                const {url} = selection
-
-                return {
-                  title: url,
-                }
-              },
-            },
+            preview: externalLinkPreview({
+              prefix: 'link',
+            }) as PreviewConfig,
           },
           {
             name: 'relative',
@@ -100,6 +103,16 @@ export const action = (types: ReferenceTo) =>
                 validation: (Rule) => Rule.required(),
               }),
             ],
+          },
+          {
+            type: 'object',
+            name: 'media',
+            title: 'Media Link',
+            icon: MediaLinkIcon,
+            fields: [mediaLinkField],
+            preview: mediaLinkPreview({
+              prefix: 'link',
+            }) as PreviewConfig,
           },
         ],
         validation: (Rule) => Rule.max(1),

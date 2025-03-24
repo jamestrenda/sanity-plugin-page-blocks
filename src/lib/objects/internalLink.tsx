@@ -1,8 +1,37 @@
 import {Link2Icon} from 'lucide-react'
-import type {ReferenceTo, ValidationContext} from 'sanity'
+import type {PreviewConfig, PreviewValue, ReferenceTo, ValidationContext} from 'sanity'
 import {defineField, defineType} from 'sanity'
 
+import {prepareOutput} from '../utils/misc'
+
 export const icon = <Link2Icon size="1em" />
+
+export const preview = ({
+  path = '',
+  prefix = '',
+  outputOnly = false,
+  title: _title,
+}: {
+  path?: string
+  prefix?: string
+  outputOnly?: boolean
+} & PreviewValue = {}): PreviewConfig | PreviewValue => {
+  const defaultTitle = 'Internal Link'
+  const subtitle = path || `${prefix ? `${prefix}.` : ''}document.title`
+
+  if (outputOnly) {
+    return prepareOutput({title: _title ?? subtitle ?? defaultTitle, subtitle, media: icon})
+  }
+
+  return {
+    select: {
+      title: _title ?? subtitle ?? defaultTitle,
+    },
+    prepare({title}) {
+      return prepareOutput({title, media: icon})
+    },
+  }
+}
 
 export const internalLink = (types: ReferenceTo) =>
   defineType({
@@ -10,16 +39,7 @@ export const internalLink = (types: ReferenceTo) =>
     name: 'link',
     type: 'object',
     icon,
-    preview: {
-      select: {
-        title: 'document.title',
-      },
-      prepare({title}) {
-        return {
-          title,
-        }
-      },
-    },
+    preview: preview() as PreviewConfig,
     fields: [
       defineField({
         name: 'document',

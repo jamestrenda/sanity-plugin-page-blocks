@@ -1,7 +1,43 @@
 import {ExternalLinkIcon} from 'lucide-react'
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, PreviewConfig, PreviewValue} from 'sanity'
+
+import {prepareOutput} from '../utils/misc'
 
 export const icon = <ExternalLinkIcon size="1em" />
+
+export const preview = ({
+  path = '',
+  prefix = '',
+  outputOnly = false,
+  title: _title,
+}: {
+  path?: string
+  prefix?: string
+  outputOnly?: boolean
+} & PreviewValue = {}): PreviewConfig | PreviewValue => {
+  const defaultTitle = 'External Link'
+  const subtitle = path || `${prefix ? `${prefix}.` : ''}url`
+
+  if (outputOnly) {
+    return prepareOutput({
+      title: _title ?? subtitle ?? defaultTitle,
+      subtitle: _title ? subtitle : undefined,
+      media: icon,
+    })
+  }
+
+  return {
+    select: {
+      title: _title ?? subtitle ?? defaultTitle,
+    },
+    prepare({title}) {
+      return prepareOutput({
+        title: title ?? subtitle,
+        media: icon,
+      })
+    },
+  }
+}
 
 export const externalLink = defineType({
   title: 'External Link',
@@ -22,16 +58,5 @@ export const externalLink = defineType({
       initialValue: true,
     }),
   ],
-  preview: {
-    select: {
-      url: 'url',
-    },
-    prepare(selection) {
-      const {url} = selection
-
-      return {
-        title: url,
-      }
-    },
-  },
+  preview: preview() as PreviewConfig,
 })
