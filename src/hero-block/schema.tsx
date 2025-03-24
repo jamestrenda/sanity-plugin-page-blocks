@@ -1,7 +1,7 @@
 import {ArrowRightIcon, CrownIcon} from 'lucide-react'
 import {defineField, PreviewConfig, SchemaTypeDefinition} from 'sanity'
 
-import {actionField} from '../lib/fields/link'
+import {actionField} from '../lib/fields/action'
 import {icon as ExternalLinkIcon} from '../lib/objects/externalLink'
 import {icon as InternalLinkIcon} from '../lib/objects/internalLink'
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
