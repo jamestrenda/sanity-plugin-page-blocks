@@ -50,8 +50,9 @@ export function filterValidBlocks(blocks: PortableTextBlock[]): PortableTextBloc
 
 /**
  * Finds the first valid block that can be used as a title.
- * Prioritizes blocks with styles 'h1', 'h2', 'h3', or 'normal'.
- * If none are found, it checks if the first block contains text.
+ * Prioritizes blocks with styles 'h1', 'h2', 'h3'.
+ * If none are found, it checks if the first block is a valid text block.
+ * If not, it falls back to the first valid "normal" block.
  *
  * @param blocks - A filtered array of Portable Text blocks.
  * @returns The first valid block or `undefined` if none found.
@@ -60,7 +61,12 @@ export function findTitleBlock(blocks: PortableTextBlock[]): PortableTextBlock |
   return (
     blocks.find(
       (block) => block._type === 'block' && ['h1', 'h2', 'h3'].includes(String(block.style)),
-    ) || (isPortableTextTextBlock(blocks[0]) ? blocks[0] : undefined)
+    ) ||
+    (isPortableTextTextBlock(blocks[0])
+      ? blocks[0]
+      : blocks.find(
+          (block) => block._type === 'block' && ['normal'].includes(String(block.style)),
+        ) || undefined)
   )
 }
 
