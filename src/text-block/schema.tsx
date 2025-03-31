@@ -19,7 +19,15 @@ export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefiniti
         title: 'Text',
         description: 'The text content of the block.',
         type: options?.portableText?.type ?? 'array',
-        of: options?.portableText?.of ?? [...getPortableTextBlocks()],
+        of: options?.portableText?.of ?? [
+          ...getPortableTextBlocks({
+            styles: options?.text?.styles,
+            lists: options?.text?.lists,
+            decorators: options?.text?.decorators,
+            annotations: options?.text?.annotations,
+          }),
+          ...(options?.text?.blocks ?? []), // Add any additional block types defined by the user
+        ],
         ...createFieldConfig(options?.text),
       }),
       ...(options?.customFields ?? []),
