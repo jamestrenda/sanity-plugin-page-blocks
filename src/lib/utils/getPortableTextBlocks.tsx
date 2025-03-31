@@ -48,22 +48,10 @@ export function getPortableTextBlocks(options?: {
   }
   const {styles, lists, decorators, annotations} = options
 
-  const mergedStyles = styles
-    ? [
-        ...(portableTextBlocks.styles?.filter((style) =>
-          styles.some((s) => s.value === style.value),
-        ) ?? []),
-        ...styles.filter(
-          (defaultStyle) =>
-            !portableTextBlocks.styles?.some((style) => style.value === defaultStyle.value),
-        ),
-      ]
-    : portableTextBlocks.styles
-
   const result = [
     defineArrayMember({
       ...portableTextBlocks,
-      styles: mergedStyles,
+      styles: styles ?? portableTextBlocks.styles,
       lists: lists
         ? portableTextBlocks.lists?.filter((list) => lists?.some((l) => l.value === list.value))
         : portableTextBlocks.lists,
