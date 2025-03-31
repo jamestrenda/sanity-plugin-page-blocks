@@ -1,5 +1,7 @@
-import {defineField, FieldDefinition, ReferenceTo} from 'sanity'
+import {defineField, FieldDefinition} from 'sanity'
 
+import {HeroActionsType} from '../../hero-block/types'
 import {action} from '../objects/action'
 
-export const actionField = (types: ReferenceTo): FieldDefinition => defineField(action(types))
+export const actionField = (options: HeroActionsType): FieldDefinition =>
+  defineField(action(options))

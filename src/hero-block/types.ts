@@ -25,7 +25,12 @@ interface Config extends SchemaBaseFields {
         blocks?: ArrayOfType[]
         components?: ArrayOfPrimitivesComponents | ArrayOfObjectsComponents
       } & SchemaFieldBaseFields)
-  actions:
+  image?:
+    | false
+    | (SchemaFieldBaseFields & {
+        customFields?: FieldDefinition[]
+      })
+  actions?:
     | false
     | {
         max?: number
@@ -42,3 +47,10 @@ interface Config extends SchemaBaseFields {
  * @public
  */
 export type HeroBlockConfig = Config | void
+
+/**
+ * Configuration options for Hero Block actions.
+ *
+ * @public
+ */
+export type HeroActionsType = Exclude<Config['actions'], false | undefined>

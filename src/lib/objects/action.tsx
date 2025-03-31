@@ -1,13 +1,7 @@
 import {ArrowRightIcon, Link2Icon} from 'lucide-react'
-import {
-  defineField,
-  defineType,
-  PreviewConfig,
-  PreviewValue,
-  QueryParams,
-  ReferenceTo,
-} from 'sanity'
+import {defineField, defineType, PreviewConfig, PreviewValue, QueryParams} from 'sanity'
 
+import {HeroActionsType} from '../../hero-block/types'
 import {anchorField} from '../fields/anchor'
 import {externalLinkField} from '../fields/externalLink'
 import {internalLinkField} from '../fields/internalLink'
@@ -17,7 +11,8 @@ import {icon as ExternalLinkIcon, preview as externalLinkPreview} from '../objec
 import {icon as InternalLinkIcon, preview as internalLinkPreview} from '../objects/internalLink'
 import {icon as MediaLinkIcon, preview as mediaLinkPreview} from '../objects/mediaLink'
 
-export const action = (types: ReferenceTo) =>
+///
+export const action = (options: HeroActionsType) =>
   defineType({
     name: 'action',
     title: 'Action',
@@ -50,8 +45,9 @@ export const action = (types: ReferenceTo) =>
             name: 'internal',
             title: 'Internal Link',
             icon: InternalLinkIcon,
-            fields: [internalLinkField(types), anchorField, queryParams()],
-
+            fields: options
+              ? [internalLinkField(options.internal.types), anchorField, queryParams()]
+              : [],
             preview: {
               select: {
                 title: 'link.document.title',
@@ -115,7 +111,8 @@ export const action = (types: ReferenceTo) =>
             }) as PreviewConfig,
           },
         ],
-        validation: (Rule) => Rule.max(1),
+        validation: (Rule) => Rule.required().max(1),
       }),
+      ...(options.customFields ?? []),
     ],
   })

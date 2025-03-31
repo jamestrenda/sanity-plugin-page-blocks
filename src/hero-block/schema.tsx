@@ -2,6 +2,8 @@ import {ArrowRightIcon, CrownIcon} from 'lucide-react'
 import {defineField, PreviewConfig, PreviewValue, SchemaTypeDefinition} from 'sanity'
 
 import {actionField} from '../lib/fields/action'
+import {imageField} from '../lib/fields/imageField'
+import {imageFields} from '../lib/fields/imageFields'
 import {preview as externalLinkPreview} from '../lib/objects/externalLink'
 import {preview as internalLinkPreview} from '../lib/objects/internalLink'
 import {preview as mediaLinkPreview} from '../lib/objects/mediaLink'
@@ -36,6 +38,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
     description: textDescription,
     type: 'array',
     of: [],
+    validation: (Rule) => Rule.required(),
   })
 
   // Determine the text field dynamically
@@ -78,9 +81,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
         }),
         ...(text.blocks ?? []), // Add any additional block types defined by the user
       ],
-      components: text.components ?? undefined,
-      fieldset: text.fieldset ?? undefined,
-      group: text.group ?? undefined,
+      ...createFieldConfig(text),
     })
   })()
 
@@ -104,11 +105,15 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
     icon: () => <CrownIcon size="1em" />,
     fields: [
       textField,
-      defineField({
-        name: 'image',
-        title: 'Image',
-        type: 'image',
-      }),
+      imageField(
+        [
+          ...imageFields.filter((field) => field.name !== 'caption'),
+          ...(options && typeof options.image === 'object'
+            ? (options.image?.customFields ?? [])
+            : []),
+        ],
+        options && typeof options.image === 'object' ? options.image : undefined,
+      ),
       defineField({
         name: 'actions',
         title: 'Actions',
@@ -121,7 +126,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                   type: 'object',
                   name: 'action',
                   title: 'Action',
-                  fields: [actionField(options?.actions?.internal?.types)],
+                  fields: [actionField(options?.actions)],
                   preview: {
                     select: {
                       title: 'action.text',
