@@ -34,7 +34,7 @@ interface Config extends SchemaBaseFields {
     | false
     | {
         max?: number
-        internal: {
+        internal?: {
           types: ReferenceTo
         }
         customFields?: FieldDefinition[]

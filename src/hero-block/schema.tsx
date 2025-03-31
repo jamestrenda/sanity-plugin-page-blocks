@@ -120,13 +120,13 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
         type: 'array',
         description: 'Add a call-to-action button or link to direct visitors to a specific page.',
         of:
-          options?.actions && options?.actions.internal
+          options && options.actions !== false
             ? [
                 {
                   type: 'object',
                   name: 'action',
                   title: 'Action',
-                  fields: [actionField(options?.actions)],
+                  fields: [actionField(options.actions)],
                   preview: {
                     select: {
                       title: 'action.text',
@@ -148,7 +148,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                             selection
                           let subtitle = ''
                           if (internalSlug) {
-                            subtitle += `/${internalSlug}`
+                            subtitle += `${String(internalSlug).startsWith('/') ? '' : '/'}${internalSlug}`
                           }
                           if (internalParams) {
                             subtitle += `?${internalParams
@@ -194,6 +194,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                 },
               ]
             : [],
+
         validation: (Rule) => {
           const max =
             typeof options?.actions === 'object' && options.actions.max

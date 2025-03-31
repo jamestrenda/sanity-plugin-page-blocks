@@ -1,5 +1,12 @@
 import {ArrowRightIcon, Link2Icon} from 'lucide-react'
-import {defineField, defineType, PreviewConfig, PreviewValue, QueryParams} from 'sanity'
+import {
+  defineField,
+  defineType,
+  FieldDefinition,
+  PreviewConfig,
+  PreviewValue,
+  QueryParams,
+} from 'sanity'
 
 import {HeroActionsType} from '../../hero-block/types'
 import {anchorField} from '../fields/anchor'
@@ -11,8 +18,7 @@ import {icon as ExternalLinkIcon, preview as externalLinkPreview} from '../objec
 import {icon as InternalLinkIcon, preview as internalLinkPreview} from '../objects/internalLink'
 import {icon as MediaLinkIcon, preview as mediaLinkPreview} from '../objects/mediaLink'
 
-///
-export const action = (options: HeroActionsType) =>
+export const action = (options?: HeroActionsType) =>
   defineType({
     name: 'action',
     title: 'Action',
@@ -34,47 +40,50 @@ export const action = (options: HeroActionsType) =>
         title: 'Text',
         type: 'string',
       }),
+
       defineField({
         name: 'to',
         title: 'To (Choose one)',
         description: 'Link to an internal reference, external or relative URL, or a file.',
         type: 'array',
         of: [
-          {
-            type: 'object',
-            name: 'internal',
-            title: 'Internal Link',
-            icon: InternalLinkIcon,
-            fields: options
-              ? [internalLinkField(options.internal.types), anchorField, queryParams()]
-              : [],
-            preview: {
-              select: {
-                title: 'link.document.title',
-                slug: 'link.document.slug.current',
-                anchor: 'anchor',
-                params: 'params',
-              },
-              prepare({title, slug, anchor, params}) {
-                let subtitle = ''
-                if (slug) {
-                  subtitle += `/${slug}`
-                }
-                if (params) {
-                  subtitle += `?${params.map(({key, value}: QueryParams) => `${key}=${value}`).join('&')}`
-                }
-                if (anchor) {
-                  subtitle += `#${anchor}`
-                }
+          ...(options?.internal && options.internal.types
+            ? [
+                defineType({
+                  type: 'object',
+                  name: 'internal',
+                  title: 'Internal Link',
+                  icon: InternalLinkIcon,
+                  fields: [internalLinkField(options.internal.types), anchorField, queryParams()],
+                  preview: {
+                    select: {
+                      title: 'link.document.title',
+                      slug: 'link.document.slug.current',
+                      anchor: 'anchor',
+                      params: 'params',
+                    },
+                    prepare({title, slug, anchor, params}) {
+                      let subtitle = ''
+                      if (slug) {
+                        subtitle += `${String(slug).startsWith('/') ? '' : '/'}${slug}`
+                      }
+                      if (params) {
+                        subtitle += `?${params.map(({key, value}: QueryParams) => `${key}=${value}`).join('&')}`
+                      }
+                      if (anchor) {
+                        subtitle += `#${anchor}`
+                      }
 
-                return internalLinkPreview({
-                  title,
-                  path: subtitle,
-                  outputOnly: true,
-                }) as PreviewValue
-              },
-            },
-          },
+                      return internalLinkPreview({
+                        title,
+                        path: subtitle,
+                        outputOnly: true,
+                      }) as PreviewValue
+                    },
+                  },
+                }) as FieldDefinition,
+              ]
+            : []),
           {
             type: 'object',
             name: 'external',
@@ -110,9 +119,10 @@ export const action = (options: HeroActionsType) =>
               prefix: 'link',
             }) as PreviewConfig,
           },
-        ],
+        ].filter(Boolean),
         validation: (Rule) => Rule.required().max(1),
       }),
-      ...(options.customFields ?? []),
+
+      ...(options?.customFields ?? []),
     ],
   })
