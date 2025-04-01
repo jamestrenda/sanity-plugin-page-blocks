@@ -1,23 +1,17 @@
 import {TextIcon} from 'lucide-react'
-import {defineField, defineType, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
+import {defineField, SchemaTypeDefinition} from 'sanity'
 
-import {getPortableTextPreview} from '../lib/getPortableTextPreview'
-import {mergeGroups} from '../lib/utils'
+import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
+import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
+import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {TextBlockConfig} from './types'
 
-const title = 'Text Block'
-
-// no default groups for this schema
-const GROUPS: FieldGroupDefinition[] = []
-
 export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefinition => {
-  const groups = mergeGroups<FieldGroupDefinition>(GROUPS, options?.groups)
-  return defineType({
-    name: options?.name ?? 'textBlock',
-    title,
-    type: 'object',
-    fieldsets: [...(options?.fieldsets ?? [])],
-    groups,
+  const blockTitle = 'Text Block'
+
+  return createSchema({
+    name: 'textBlock',
+    title: blockTitle,
     icon: () => <TextIcon size="1em" />,
     fields: [
       defineField({
@@ -25,24 +19,33 @@ export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefiniti
         title: 'Text',
         description: 'The text content of the block.',
         type: options?.portableText?.type ?? 'array',
-        of: options?.portableText?.of ?? [{type: 'block'}],
-        components: options?.text?.components,
-        fieldset: options?.text?.fieldset ?? undefined,
-        group: options?.text?.group ?? undefined,
+        of: options?.portableText?.of ?? [
+          ...getPortableTextBlocks({
+            styles: options?.text?.styles,
+            lists: options?.text?.lists,
+            decorators: options?.text?.decorators,
+            annotations: options?.text?.annotations,
+          }),
+          ...(options?.text?.blocks ?? []), // Add any additional block types defined by the user
+        ],
+        ...createFieldConfig(options?.text),
       }),
       ...(options?.customFields ?? []),
     ],
-    preview: options?.preview ?? {
-      select: {
-        text: 'text',
-      },
-      prepare(selection) {
-        const preview = getPortableTextPreview(selection.text, title)
+    options: options
+      ? {
+          preview: {
+            select: {
+              text: 'text',
+            },
+            prepare(selection) {
+              const preview = getPortableTextPreview(selection.text, blockTitle)
 
-        return preview
-      },
-    },
-
-    components: options?.components,
+              return preview
+            },
+          },
+          ...options,
+        }
+      : undefined,
   })
 }

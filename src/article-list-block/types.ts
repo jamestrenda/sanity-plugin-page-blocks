@@ -1,13 +1,11 @@
 import {
   ArrayOfObjectsComponents,
   ArrayOfPrimitivesComponents,
-  FieldDefinition,
-  FieldDefinitionBase,
   ReferenceTo,
   StringComponents,
 } from 'sanity'
 
-import {SchemaBaseFields} from '../types'
+import {SchemaBaseFields, SchemaFieldBaseFields} from '../types'
 
 /**
  * Configuration options for the Article List Block.
@@ -15,18 +13,13 @@ import {SchemaBaseFields} from '../types'
  * @public
  */
 export interface ArticleListBlockConfig extends SchemaBaseFields {
-  header?: FieldDefinition
   title?:
-    | {
-        fieldset?: FieldDefinitionBase['fieldset']
-        group?: FieldDefinitionBase['group']
+    | ({
         components?: StringComponents | undefined
-      }
+      } & SchemaFieldBaseFields)
     | false
   articles?: {
     schemaType: ReferenceTo
-    fieldset?: FieldDefinitionBase['fieldset']
-    group?: FieldDefinitionBase['group']
     components?: ArrayOfObjectsComponents | ArrayOfPrimitivesComponents | undefined
-  }
+  } & SchemaFieldBaseFields
 }

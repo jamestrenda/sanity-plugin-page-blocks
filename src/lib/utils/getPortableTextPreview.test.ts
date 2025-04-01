@@ -111,7 +111,7 @@ const h1PreceededByLowerPriorityTextBlock: PortableTextBlock[] = [
   },
 ]
 
-const normalPreceededByLowerPriorityTextBlock: PortableTextBlock[] = [
+const customTextStyleFollowedByNormalParagraph: PortableTextBlock[] = [
   {
     _key: 'cc89f3c700c6',
     _type: 'block',
@@ -171,10 +171,12 @@ describe('getPortableTextPreview', () => {
       media: undefined,
     })
 
-    expect(getPortableTextPreview(normalPreceededByLowerPriorityTextBlock, 'Lorem Block')).toEqual({
-      title: 'A normal paragraph.',
-      subtitle: 'Lorem Block',
-    })
+    expect(getPortableTextPreview(customTextStyleFollowedByNormalParagraph, 'Lorem Block')).toEqual(
+      {
+        title: 'Overline',
+        subtitle: 'Lorem Block',
+      },
+    )
 
     expect(getPortableTextPreview(customBlockStyle, 'Lorem Block')).toEqual({
       title: 'An unaccounted for text-based block style',

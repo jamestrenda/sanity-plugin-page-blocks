@@ -27,7 +27,7 @@ interface Config extends SchemaBaseFields {
 }
 
 /**
- * Configuration options for the Article List Block.
+ * Configuration options for the FAQ Block.
  *
  * @public
  */
