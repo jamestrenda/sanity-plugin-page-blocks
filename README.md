@@ -1,4 +1,8 @@
-IMPORTANT: Version < 1.5 should be considered Beta. I know, I know—that's bush league, bro. But it is what it is.
+![Note](https://img.shields.io/badge/Note-Important-yellow)
+
+> Version < 1.5 should be considered Beta. I know, I know—that's bush league, bro. But it is what it is.
+
+---
 
 > This is a **Sanity Studio v3** plugin.
 
