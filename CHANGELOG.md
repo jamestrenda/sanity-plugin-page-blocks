@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.1...v1.4.2) (2025-04-01)
+
+### Bug Fixes
+
+- **article-list-block:** update articleTypes type, rename it, and re-locate it under articles prop ([50430ce](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/50430ce4d6992fc554c882c38c142180b58df315))
+- **hero-block, utils:** add hero block and utility functions ([172f9e3](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/172f9e36350b1eeee0d898a5dae17d9cfa345b6a))
+
 ## [1.4.1](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.0...v1.4.1) (2025-03-20)
 
 ### Bug Fixes
