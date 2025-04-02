@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.2...v1.4.3) (2025-04-02)
+
+### Bug Fixes
+
+- **hero-block:** remove image field if value is false ([bcd48d7](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/bcd48d73356a0a4500a368181ac2edf37967d177))
+
 ## [1.4.2](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.1...v1.4.2) (2025-04-01)
 
 ### Bug Fixes
