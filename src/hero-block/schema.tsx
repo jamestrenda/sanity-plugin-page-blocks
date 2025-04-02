@@ -105,15 +105,19 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
     icon: () => <CrownIcon size="1em" />,
     fields: [
       textField,
-      imageField(
-        [
-          ...imageFields.filter((field) => field.name !== 'caption'),
-          ...(options && typeof options.image === 'object'
-            ? (options.image?.customFields ?? [])
-            : []),
-        ],
-        options && typeof options.image === 'object' ? options.image : undefined,
-      ),
+      ...(options && options.image !== false
+        ? [
+            imageField(
+              [
+                ...imageFields.filter((field) => field.name !== 'caption'),
+                ...(options && typeof options.image === 'object'
+                  ? (options.image?.customFields ?? [])
+                  : []),
+              ],
+              options && typeof options.image === 'object' ? options.image : undefined,
+            ),
+          ]
+        : []),
       defineField({
         name: 'actions',
         title: 'Actions',
@@ -203,6 +207,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
           return max ? Rule.max(max) : Rule
         },
       }),
+      ...(options?.customFields ?? []),
     ],
     options: options
       ? {
