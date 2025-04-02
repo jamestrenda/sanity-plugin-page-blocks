@@ -76,11 +76,11 @@ By default, `textBlock` includes a default PortableText block schema:
 
 ![An open Text Block modal showing the default block styles of the editor.](assets/sanity-plugin-page-blocks-text-block-default-blocks.png)
 
-However, if can add your own custom PortableText schema instead:
+However, you can add your own custom PortableText schema instead:
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
-import {articleListBlock} from '@trenda/sanity-plugin-page-blocks'
+import {textBlock} from '@trenda/sanity-plugin-page-blocks'
 
 export default defineConfig({
   //...
