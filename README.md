@@ -140,7 +140,7 @@ export default defineConfig({
 
 ### Components
 
-Every block supports schema-level and field-level components.
+Most blocks support schema-level and field-level components.
 
 ```ts
 export default defineConfig({
@@ -170,7 +170,7 @@ export default defineConfig({
 
 Every block has at least one core field, but many of the blocks have at least one additonal field that is more supportive in nature. If you find you don't need these fields, there's no sense in keeping them around in your schema. You can remove these less critical fields by passing `false` for the corresponding option.
 
-This completely excludes the field from the schema, rather than just hiding it in the Studio UI. If you find yourself needing to remove a core field, then you probably want to choose a different block altogether—or build your own custom block from scratch.
+This completely excludes the field from the schema, rather than just hiding it in the Studio UI. If you find yourself needing to remove one or more core fields, then you probably want to choose a different block altogether—or build your own custom block from scratch.
 
 ```ts
 import {defineConfig} from 'sanity'
@@ -217,7 +217,6 @@ TODO: Add support for custom `options`.
 
 This is just the beginning! More **pre-configured page builder blocks** are in development, including:
 
-- **Hero Block**
 - **Media Block**
 - **Logo Cloud Block**
 - **Image/Text Split Block**
