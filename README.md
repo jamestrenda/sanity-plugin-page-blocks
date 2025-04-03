@@ -34,6 +34,7 @@ Instead of providing a **full project starter**, these plugins are like **_start
 
 - [Article Feed Block](./src/article-feed-block)
 - [Article List Block](./src/article-list-block)
+- [Carousel Block](./src/carousel-block)
 - [FAQ Block](./src/faq-block/)
 - [Hero Block](./src/hero-block/)
 - [Text Block](./src/text-block)

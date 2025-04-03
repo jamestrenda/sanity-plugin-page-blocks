@@ -49,10 +49,6 @@ export const page = defineType({
 })
 ```
 
-Use it in the Studio:
-
-![A Sanity Studio interface displaying a page builder array field, with 'Carousel' selected in the 'Add item...' drop down menu.](assets/sanity-plugin-page-blocks-hero-block.png)
-
 ### Customization
 
 You can customize the `carouselBlock` schema by passing options when registering the plugin.
