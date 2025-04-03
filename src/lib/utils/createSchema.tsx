@@ -128,7 +128,7 @@ export function createSchema<T extends Record<string, unknown> & SchemaBaseField
     fieldsets: [...(options?.fieldsets ?? [])],
     groups,
     icon,
-    preview: options?.preview ?? undefined,
+    preview: options?.preview ?? undefined, // TODO: make a default preview
     fields: visibleFields,
     components: options?.components,
   }
