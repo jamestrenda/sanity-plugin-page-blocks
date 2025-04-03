@@ -1,5 +1,6 @@
 export {articleFeedBlock} from './article-feed-block'
 export {articleListBlock} from './article-list-block'
+export {carouselBlock} from './carousel-block'
 export {faqBlock} from './faq-block'
 export {heroBlock} from './hero-block'
 export {getPortableTextPreview} from './lib/utils/getPortableTextPreview'
