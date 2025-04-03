@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.3...v1.4.4) (2025-04-03)
+
+### Bug Fixes
+
+- **carousel-block:** feat: initial commit of carousel block ([9e26aa9](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/9e26aa92fae25bd2b8808383072e26722f612d67))
+
 ## [1.4.3](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.2...v1.4.3) (2025-04-02)
 
 ### Bug Fixes
