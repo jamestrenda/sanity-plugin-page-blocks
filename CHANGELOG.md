@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.4...v1.4.5) (2025-04-04)
+
+### ⚠ BREAKING CHANGES
+
+- **hero-block:** The "image" field has been renamed to "file".
+  Existing data will need to be manually updated.
+
+### Features
+
+- **hero-block:** add validation config for image fields ([00f52dc](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/00f52dcc5aed2052477f7d011f7613b520dfe525))
+
 ## [1.4.4](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.3...v1.4.4) (2025-04-03)
 
 ### Bug Fixes
