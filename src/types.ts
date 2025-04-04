@@ -3,7 +3,12 @@ import {
   FieldDefinition,
   FieldGroupDefinition,
   FieldsetDefinition,
+  ImageRule,
+  ImageValue,
+  ObjectRule,
   PreviewConfig,
+  StringRule,
+  ValidationBuilder,
 } from 'sanity'
 
 export interface SchemaBaseFields {
@@ -19,3 +24,22 @@ export interface SchemaFieldBaseFields {
   fieldset?: FieldDefinition['fieldset']
   group?: FieldDefinition['group']
 }
+
+export type StringFieldValidationType = ValidationBuilder<StringRule, string> | undefined
+
+export type CustomImageType =
+  | false
+  | (SchemaFieldBaseFields & {
+      customFields?: FieldDefinition[]
+      validation?: ValidationBuilder<ObjectRule, Record<string, unknown>> | undefined
+    } & {
+      file?: {
+        validation?: ValidationBuilder<ImageRule, ImageValue> | undefined
+      }
+      altText?: {
+        validation?: StringFieldValidationType
+      }
+      caption?: {
+        validation?: StringFieldValidationType
+      }
+    })

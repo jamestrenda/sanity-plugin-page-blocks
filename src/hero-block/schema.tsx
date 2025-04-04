@@ -102,6 +102,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
   return createSchema({
     name: 'heroBlock',
     title: 'Hero',
+
     icon: () => <CrownIcon size="1em" />,
     fields: [
       textField,
@@ -109,12 +110,10 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
         ? [
             imageField(
               [
-                ...imageFields.filter((field) => field.name !== 'caption'),
-                ...(options && typeof options.image === 'object'
-                  ? (options.image?.customFields ?? [])
-                  : []),
+                ...imageFields(options.image).filter((field) => field.name !== 'caption'),
+                ...(typeof options.image === 'object' ? (options.image?.customFields ?? []) : []),
               ],
-              options && typeof options.image === 'object' ? options.image : undefined,
+              typeof options.image === 'object' ? options.image : undefined,
             ),
           ]
         : []),
