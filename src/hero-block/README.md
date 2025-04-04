@@ -146,7 +146,7 @@ By default, `heroBlock` includes an image schema with Hotspot & Crop enabled, as
 
 ![An open Hero Block modal showing the default image fields.](assets/sanity-plugin-page-blocks-hero-block-image.png)
 
-In Sanity, you can enter alt text on the asset itself, but sometimes you might want to use and _alternate_ alt text. If you need additional image fields, you can add those when registering the plugin:
+In Sanity, you can enter alt text on the asset itself, but sometimes you might want to use an _alternate_ alt text. If you need additional image fields, you can add those when registering the plugin:
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
@@ -173,7 +173,43 @@ export default defineConfig({
 
 ![An open Hero Block modal showing a custom image-related field.](assets/sanity-plugin-page-blocks-hero-block-image-custom-field.png)
 
-I tried to use sensible defaults. However, if you find yourself needing to override the image field or the alt text field, it's probably best to hide the image field and add your own using the `customFields` prop.
+#### Validation
+
+You can add schema validation props to the image field. In this case, the image field is actually a custom `object` that has its own fields (`file` and `altText`). Therefore, simplying applying validation to the object won't ensure that an image is actually uploaded. For instance, if `altText` contains a value, but `file` does not, the parent object will pass validation. Therefore, each nested field also accepts a `validation` prop.
+
+```ts
+import {defineConfig, defineField} from 'sanity'
+import {heroBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    heroBlock({
+      image: {
+        validation: (Rule) => Rule.required(), // require the image object as a whole
+        group: 'media',
+        file: {
+          // ensures that an image file is uploaded if alt text is provided
+          validation: (Rule) =>
+            Rule.custom((value, context) => {
+              // Check if alt text exists but image doesn't
+              const parent = context?.parent as {altText?: string}
+              if (parent?.altText && !value?.asset?._ref) {
+                return 'Image is required when alt text is provided'
+              }
+
+              return true
+            }),
+        },
+      },
+    }),
+  ],
+})
+```
+
+#### Custom Fields
+
+I tried to use sensible defaults. However, if you find yourself needing to heavily customize the `file` or `altText` fields, or you have your own tailor-made image field that you want to use instead, you can simply remove the image field from the schema and add your own.
 
 ```ts
 import {defineConfig, defineField} from 'sanity'
@@ -188,7 +224,7 @@ export default defineConfig({
         defineField({
           name: 'myCustomImage',
           title: 'Custom Image',
-          type: 'image',
+          type: 'myCustomImage', // or whatever your image type name is
         }),
       ],
     }),
