@@ -123,6 +123,10 @@ export default defineConfig({
 })
 ```
 
+## Demo
+
+A Next.js [demo](https://sanity-page-blocks-demo.vercel.app/faq-block) with a header customization.
+
 ## License
 
 [MIT](LICENSE) © James Trenda
