@@ -1,4 +1,10 @@
 {
   "extends": "@sanity/semantic-release-preset",
-  "branches": ["main"]
+  "branches": ["main"],
+  "releaseRules": [
+    {"type": "feat", "release": "patch"},
+    {"type": "fix", "release": "patch"},
+    {"breaking": true, "release": "patch"},
+    {"type": "chore", "release": false}
+  ]
 }
