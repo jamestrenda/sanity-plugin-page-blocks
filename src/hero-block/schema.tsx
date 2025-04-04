@@ -2,12 +2,11 @@ import {ArrowRightIcon, CrownIcon} from 'lucide-react'
 import {defineField, PreviewConfig, PreviewValue, SchemaTypeDefinition} from 'sanity'
 
 import {actionField} from '../lib/fields/action'
-import {imageField} from '../lib/fields/imageField'
-import {imageFields} from '../lib/fields/imageFields'
 import {preview as externalLinkPreview} from '../lib/objects/externalLink'
 import {preview as internalLinkPreview} from '../lib/objects/internalLink'
 import {preview as mediaLinkPreview} from '../lib/objects/mediaLink'
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
+import {getDisplayImage} from '../lib/utils/getDisplayImageField'
 import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {HeroBlockConfig} from './types'
@@ -106,17 +105,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
     icon: () => <CrownIcon size="1em" />,
     fields: [
       textField,
-      ...(options && options.image !== false
-        ? [
-            imageField(
-              [
-                ...imageFields(options.image).filter((field) => field.name !== 'caption'),
-                ...(typeof options.image === 'object' ? (options.image?.customFields ?? []) : []),
-              ],
-              typeof options.image === 'object' ? options.image : undefined,
-            ),
-          ]
-        : []),
+      ...(options && options.image !== false ? [getDisplayImage(options.image)] : []),
       defineField({
         name: 'actions',
         title: 'Actions',

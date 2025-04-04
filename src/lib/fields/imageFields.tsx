@@ -1,4 +1,5 @@
 import {defineField} from 'sanity'
+
 import {CustomImageType} from '../../types'
 
 export const imageFields = (options?: Exclude<CustomImageType, false>) => [
