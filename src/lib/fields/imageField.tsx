@@ -1,11 +1,9 @@
 import {defineField, FieldDefinition} from 'sanity'
 
-import {SchemaFieldBaseFields} from '../../types'
+import {CustomImageType} from '../../types'
 import {customImage} from '../objects/image'
-import {createFieldConfig} from '../utils/createSchema'
 
-export const imageField = (fields?: FieldDefinition[], config?: SchemaFieldBaseFields) =>
+export const imageField = (fields?: FieldDefinition[], config?: Exclude<CustomImageType, false>) =>
   defineField({
-    ...customImage(fields),
-    ...createFieldConfig(config),
+    ...customImage(fields, config),
   })

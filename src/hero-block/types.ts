@@ -2,15 +2,17 @@ import {
   ArrayOfObjectsComponents,
   ArrayOfPrimitivesComponents,
   ArrayOfType,
+  ArrayRule,
   BlockListDefinition,
   BlockMarksDefinition,
   BlockStyleDefinition,
   FieldDefinition,
   ReferenceTo,
   StringComponents,
+  ValidationBuilder,
 } from 'sanity'
 
-import {SchemaBaseFields, SchemaFieldBaseFields} from '../types'
+import {CustomImageType, SchemaBaseFields, SchemaFieldBaseFields} from '../types'
 
 interface Config extends SchemaBaseFields {
   text?:
@@ -24,12 +26,9 @@ interface Config extends SchemaBaseFields {
         annotations?: BlockMarksDefinition['annotations']
         blocks?: ArrayOfType[]
         components?: ArrayOfPrimitivesComponents | ArrayOfObjectsComponents
+        validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
       } & SchemaFieldBaseFields)
-  image?:
-    | false
-    | (SchemaFieldBaseFields & {
-        customFields?: FieldDefinition[]
-      })
+  image?: CustomImageType
   actions?:
     | false
     | {

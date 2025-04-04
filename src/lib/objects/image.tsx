@@ -2,12 +2,17 @@ import {ImageIcon} from 'lucide-react'
 import {defineType, FieldDefinition} from 'sanity'
 
 import {imageFields} from '../fields/imageFields'
+import {CustomImageType} from '../../types'
+import {createFieldConfig} from '../utils/createSchema'
 
 export const Icon = () => <ImageIcon size="1em" />
 
 export const title = 'Image'
 
-export const customImage = (fields: FieldDefinition[] = imageFields) => {
+export const customImage = (
+  fields: FieldDefinition[] = imageFields(),
+  config?: Exclude<CustomImageType, false>,
+) => {
   return defineType({
     name: 'customImage',
     title,
@@ -30,6 +35,8 @@ export const customImage = (fields: FieldDefinition[] = imageFields) => {
       },
     },
     fields,
+    validation: config?.validation,
+    ...createFieldConfig({fieldset: config?.fieldset, group: config?.group}),
   })
 }
 export function getImageObjectTitle() {
