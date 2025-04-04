@@ -187,7 +187,6 @@ export default defineConfig({
     heroBlock({
       image: {
         validation: (Rule) => Rule.required(), // require the image object as a whole
-        group: 'media',
         file: {
           // ensures that an image file is uploaded if alt text is provided
           validation: (Rule) =>
