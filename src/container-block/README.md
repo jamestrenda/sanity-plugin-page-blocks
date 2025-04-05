@@ -18,7 +18,18 @@ import {containerBlock} from '@trenda/sanity-plugin-page-blocks'
 
 export default defineConfig({
   //...
-  plugins: [containerBlock()],
+  plugins: [
+    containerBlock({
+      content: {
+        of: [
+          {
+            type: 'textBlock',
+          },
+          // ... other block types
+        ],
+      },
+    }),
+  ],
 })
 ```
 
@@ -38,6 +49,88 @@ export const page = defineType({
       title: 'Blocks',
       type: 'array',
       of: [{type: 'containerBlock'}],
+    }),
+  ],
+})
+```
+
+## Customization
+
+### Block Variations
+
+You might want multiple versions of a block. Calling `containerBlock` with a unique `name` will create a version of the **Container Block** schema with that name. You don't need to maintain two versions. If you just need one, but want to customize the name, you can just register the plugin once.
+
+```ts
+import {defineConfig} from 'sanity'
+import {containerBlock} from '@trenda/sanity-plugin-page-blocks'
+import {RatioIcon} from 'lucide-react'
+
+export default defineConfig({
+  //...
+  plugins: [
+    containerBlock({
+      name: 'fullBleedContainerBlock',
+      content: {
+        of: [
+          {
+            type: 'textBlock',
+          },
+          // ... other block types
+        ],
+      },
+      // optionally, override the preview config
+      preview: {
+        select: {
+          title: 'title',
+        },
+        prepare(selection) {
+          return {
+            title: selection.title,
+            subtitle: 'Full-Bleed Container Block',
+            media: <RatioIcon size="1em" />,
+          }
+        },
+      },
+    }),
+  ],
+})
+```
+
+Make sure to add it to the schema where you plan to use it:
+
+```ts
+import {defineField, defineType} from 'sanity'
+
+export const page = defineType({
+  name: 'page',
+  title: 'Page',
+  type: 'document',
+  fields: [
+    //...
+    defineField({
+      name: 'blocks',
+      title: 'Blocks',
+      type: 'array',
+      of: [{type: 'fullBleedContainerBlock'}],
+    }),
+  ],
+})
+```
+
+### Image
+
+**Container Block** comes with an `image` field by default. If you don't need this, you can remove it:
+
+```ts
+import {defineConfig} from 'sanity'
+import {containerBlock} from '@trenda/sanity-plugin-page-blocks'
+
+export default defineConfig({
+  //...
+  plugins: [
+    containerBlock({
+      //...
+      image: false,
     }),
   ],
 })
