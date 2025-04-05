@@ -39,13 +39,15 @@ export function getPortableTextPreview(
  * @returns A filtered array without empty "normal" blocks.
  */
 export function filterValidBlocks(blocks: PortableTextBlock[]): PortableTextBlock[] {
-  return blocks.filter(
-    (block) =>
-      block._type !== 'block' ||
-      block.style !== 'normal' ||
-      (isPortableTextTextBlock(block) &&
-        block.children.some((child) => String(child.text).trim() !== '')),
-  )
+  return Array.isArray(blocks)
+    ? blocks.filter(
+        (block) =>
+          block._type !== 'block' ||
+          block.style !== 'normal' ||
+          (isPortableTextTextBlock(block) &&
+            block.children.some((child) => String(child.text).trim() !== '')),
+      )
+    : []
 }
 
 /**

@@ -1,4 +1,5 @@
 import {Link2Icon} from 'lucide-react'
+import React from 'react'
 import type {PreviewConfig, PreviewValue, ReferenceTo, ValidationContext} from 'sanity'
 import {defineField, defineType} from 'sanity'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {FieldDefinition, FieldGroupDefinition, SchemaTypeDefinition} from 'sanity'
+import {FieldDefinition, FieldGroupDefinition, ObjectDefinition} from 'sanity'
 
 import {SchemaBaseFields} from '../../types'
 
@@ -73,13 +73,6 @@ export function isFieldHidden<T>(field: T | false | undefined): field is false {
 }
 
 /** Type-safe utility to filter out hidden fields */
-// export function getVisibleFields<T extends FieldDefinition>(
-//   fields: T[],
-//   options: Record<string, any>,
-// ): T[] {
-//   return fields.filter(({name}) => !isFieldHidden(options?.[name as keyof typeof options]))
-// }
-
 export function getVisibleFields<T extends FieldDefinition, O extends Record<string, unknown>>(
   fields: T[],
   options: O,
@@ -102,9 +95,6 @@ export function createFieldConfig<
 }
 
 /** Utility to generate a schema base structure */
-// export function createSchema<T extends SchemaBaseFields>(
-//   config: T & SchemaTypeDefinition
-// ): SchemaTypeDefinition
 export function createSchema<T extends Record<string, unknown> & SchemaBaseFields>({
   name,
   title,
@@ -117,7 +107,7 @@ export function createSchema<T extends Record<string, unknown> & SchemaBaseField
   icon: () => React.JSX.Element
   fields: FieldDefinition[]
   options?: T
-}): SchemaTypeDefinition {
+}): ObjectDefinition {
   const groups = mergeGroups([], options?.groups)
   const visibleFields = options ? getVisibleFields(fields, options) : fields
 

@@ -1,11 +1,11 @@
 import {SquareDashedIcon} from 'lucide-react'
-import {defineField, PreviewConfig, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition, PreviewConfig} from 'sanity'
 
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import {getDisplayImage} from '../lib/utils/getDisplayImageField'
 import {ContainerBlockConfig} from './types'
 
-export const schema = (options: ContainerBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: ContainerBlockConfig): ObjectDefinition => {
   const blockTitle = 'Container'
   const preview: PreviewConfig = {
     select: {

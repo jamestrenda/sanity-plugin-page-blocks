@@ -1,10 +1,10 @@
 import {RssIcon} from 'lucide-react'
-import {defineField, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition} from 'sanity'
 
 import {createFieldConfig, createSchema, isFieldHidden} from '../lib/utils/createSchema'
 import type {ArticleFeedBlockConfig} from './types'
 
-export const schema = (options: ArticleFeedBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: ArticleFeedBlockConfig): ObjectDefinition => {
   const blockTitle = 'Article Feed'
 
   const fields = [

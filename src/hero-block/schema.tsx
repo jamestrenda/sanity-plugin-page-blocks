@@ -1,5 +1,5 @@
 import {ArrowRightIcon, CrownIcon} from 'lucide-react'
-import {defineField, PreviewConfig, PreviewValue, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition, PreviewConfig, PreviewValue} from 'sanity'
 
 import {actionField} from '../lib/fields/action'
 import {preview as externalLinkPreview} from '../lib/objects/externalLink'
@@ -11,7 +11,7 @@ import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {HeroBlockConfig} from './types'
 
-export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: HeroBlockConfig): ObjectDefinition => {
   const blockTitle = 'Hero'
 
   const textDescription =

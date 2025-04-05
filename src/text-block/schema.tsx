@@ -1,12 +1,12 @@
 import {TextIcon} from 'lucide-react'
-import {defineField, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition} from 'sanity'
 
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {TextBlockConfig} from './types'
 
-export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefinition => {
+export const schema = (options: TextBlockConfig = undefined): ObjectDefinition => {
   const blockTitle = 'Text Block'
 
   return createSchema({

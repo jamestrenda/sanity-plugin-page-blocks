@@ -1,10 +1,10 @@
 import {MessageCircleQuestionIcon} from 'lucide-react'
-import {defineField, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition} from 'sanity'
 
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import type {FaqBlockConfig} from './types'
 
-export const schema = (options: FaqBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: FaqBlockConfig): ObjectDefinition => {
   const blockTitle = 'FAQ Block'
 
   const fields = [

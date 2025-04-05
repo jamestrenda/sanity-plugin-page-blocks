@@ -12,6 +12,8 @@ import {
   ValidationBuilder,
 } from 'sanity'
 
+import {createSchema} from './lib/utils/createSchema'
+
 export interface SchemaBaseFields {
   name?: string
   fieldsets?: Array<FieldsetDefinition>
@@ -51,3 +53,5 @@ export type CustomImageType =
         validation?: StringFieldValidationType
       }
     })
+
+export type BlockSchema = ReturnType<typeof createSchema>

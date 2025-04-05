@@ -1,4 +1,5 @@
 import {ExternalLinkIcon} from 'lucide-react'
+import React from 'react'
 import {defineField, defineType, PreviewConfig, PreviewValue} from 'sanity'
 
 import {prepareOutput} from '../utils/misc'

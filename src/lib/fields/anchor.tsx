@@ -1,3 +1,4 @@
+import React from 'react'
 import {defineField} from 'sanity'
 
 import {Description} from '../components/Description'
