@@ -7,6 +7,7 @@ import {
   ImageValue,
   ObjectRule,
   PreviewConfig,
+  StringComponents,
   StringRule,
   ValidationBuilder,
 } from 'sanity'
@@ -26,6 +27,13 @@ export interface SchemaFieldBaseFields {
 }
 
 export type StringFieldValidationType = ValidationBuilder<StringRule, string> | undefined
+
+export type StringFieldType =
+  | false
+  | ({
+      components?: StringComponents | undefined
+    } & SchemaFieldBaseFields &
+      StringFieldValidationType)
 
 export type CustomImageType =
   | false

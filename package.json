@@ -34,6 +34,11 @@
       "import": "./dist/article-list-block/types.mjs",
       "default": "./dist/article-list-block/types.js"
     },
+    "./container-block": {
+      "source": "./src/container-block/types.ts",
+      "import": "./dist/container-block/types.mjs",
+      "default": "./dist/container-block/types.js"
+    },
     "./carousel-block": {
       "source": "./src/carousel-block/types.ts",
       "import": "./dist/carousel-block/types.mjs",
