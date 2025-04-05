@@ -138,7 +138,7 @@ export default defineConfig({
 
 ## License
 
-[MIT](LICENSE) © James Trenda
+[MIT](../../LICENSE) © James Trenda
 
 ## Develop & test
 

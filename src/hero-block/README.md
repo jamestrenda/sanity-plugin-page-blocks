@@ -291,7 +291,7 @@ This trade-off makes the schema easier to maintain and reason about. Once unders
 
 ## License
 
-[MIT](LICENSE) © James Trenda
+[MIT](../../LICENSE) © James Trenda
 
 ## Develop & test
 

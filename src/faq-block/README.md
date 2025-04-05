@@ -129,7 +129,7 @@ A Next.js [demo](https://sanity-page-blocks-demo.vercel.app/faq-block) with a he
 
 ## License
 
-[MIT](LICENSE) © James Trenda
+[MIT](../../LICENSE) © James Trenda
 
 ## Develop & test
 

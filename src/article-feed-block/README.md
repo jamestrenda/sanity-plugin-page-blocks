@@ -184,7 +184,7 @@ See main [README](../../README.md) for more customizations.
 
 ## License
 
-[MIT](LICENSE) © James Trenda
+[MIT](../../LICENSE) © James Trenda
 
 ## Develop & test
 
