@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.5...v1.4.6) (2025-04-05)
+
+### Features
+
+- **container-block:** add container block, refactor image fields ([105a173](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/105a173fe9d5c224c18a5d823b5513776fb2a620))
+
 ## [1.4.5](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.4...v1.4.5) (2025-04-04)
 
 ### ⚠ BREAKING CHANGES
