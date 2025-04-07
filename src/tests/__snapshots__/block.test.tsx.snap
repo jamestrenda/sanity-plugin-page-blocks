@@ -97,6 +97,1141 @@ exports[`Sanity Page Block Schemas > { key: 'articleListBlock', schema: { name: 
 }
 `;
 
+exports[`Sanity Page Block Schemas > { key: 'callToActionBlock', schema: { name: 'callToActionBlock', title: 'Call to Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: { select: { text: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] }, { name: 'customImage', title: 'Image', type: 'object', icon: [Function Icon], preview: { select: { filename: 'image.asset.originalFilename', altText: 'altText', caption: 'caption', globalAltText: 'image.asset.altText', media: 'image' }, prepare: [Function prepare] }, fields: [ { name: 'file', title: 'File', type: 'image', options: { hotspot: true }, validation: undefined }, { name: 'altText', title: 'Alt Text', type: 'string', description: 'Override the alt text for this asset', validation: undefined } ], validation: undefined, components: undefined, fieldset: undefined, group: undefined }, { name: 'actions', title: 'Actions', type: 'array', description: 'Add a call-to-action button or link to direct visitors to a specific page.', of: [ { type: 'object', name: 'action', title: 'Action', fields: [ { name: 'action', title: 'Action', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function Link2], displayName: 'Link2' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'string' }, { name: 'to', title: 'To (Choose one)', description: 'Link to an internal reference, external or relative URL, or a file.', type: 'array', of: [ { type: 'object', name: 'external', title: 'External Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'External Link', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'URL', type: 'url', validation: [Function validation] }, { title: 'Open in a new window?', name: 'newWindow', type: 'boolean', initialValue: true } ], preview: { select: { title: 'url' }, prepare: [Function prepare] } } ], preview: { select: { title: 'link.url' }, prepare: [Function prepare] } }, { name: 'relative', title: 'Relative URL', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ArrowRight], displayName: 'ArrowRight' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'Relative URL', description: 'Example: /a-relative-url', type: 'string', validation: [Function validation] } ] }, { type: 'object', name: 'media', title: 'Media Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'Media', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'file', type: 'file', title: 'File', description: 'Select a file to link to' } ] } ], preview: { select: { title: 'link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ] } ], preview: { select: { title: 'action.text', to: 'action.to[0]', internalTitle: 'action.to.0.link.document.title', internalSlug: 'action.to.0.link.document.slug.current', internalAnchor: 'action.to[0].anchor', internalParams: 'action.to[0].params', mediaFilename: 'action.to.0.link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: undefined } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+    {
+      "components": undefined,
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+          "validation": undefined,
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+          "validation": undefined,
+        },
+      ],
+      "fieldset": undefined,
+      "group": undefined,
+      "icon": [Function],
+      "name": "customImage",
+      "preview": {
+        "prepare": [Function],
+        "select": {
+          "altText": "altText",
+          "caption": "caption",
+          "filename": "image.asset.originalFilename",
+          "globalAltText": "image.asset.altText",
+          "media": "image",
+        },
+      },
+      "title": "Image",
+      "type": "object",
+      "validation": undefined,
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                              "validation": [Function],
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "icon": <ExternalLink
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "url",
+                            },
+                          },
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <ExternalLink
+                        size="1em"
+                      />,
+                      "name": "external",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.url",
+                        },
+                      },
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                          "validation": [Function],
+                        },
+                      ],
+                      "icon": <ArrowRight
+                        size="1em"
+                      />,
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "icon": <FileDown
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "file.asset.originalFilename",
+                            },
+                          },
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <FileDown
+                        size="1em"
+                      />,
+                      "name": "media",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.file.asset.originalFilename",
+                        },
+                      },
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                  "validation": [Function],
+                },
+              ],
+              "icon": <Link2
+                size="1em"
+              />,
+              "name": "action",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "text",
+                },
+              },
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "preview": {
+            "prepare": [Function],
+            "select": {
+              "internalAnchor": "action.to[0].anchor",
+              "internalParams": "action.to[0].params",
+              "internalSlug": "action.to.0.link.document.slug.current",
+              "internalTitle": "action.to.0.link.document.title",
+              "mediaFilename": "action.to.0.link.file.asset.originalFilename",
+              "title": "action.text",
+              "to": "action.to[0]",
+            },
+          },
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+      "validation": undefined,
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "callToActionBlock",
+  "preview": {
+    "prepare": [Function],
+    "select": {
+      "text": "text",
+    },
+  },
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'callToActionBlock', schema: { name: 'callToActionBlock', title: 'Call to Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: undefined, fields: [ { name: 'text', title: 'Text', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "callToActionBlock",
+  "preview": undefined,
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'callToActionBlock', schema: { name: 'callToActionBlock', title: 'Call to Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: undefined, fields: [ { name: 'text', title: 'Text', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] }, { name: 'actions', title: 'Actions', type: 'array', description: 'Add a call-to-action button or link to direct visitors to a specific page.', of: [ { type: 'object', name: 'action', title: 'Action', fields: [ { name: 'action', title: 'Action', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function Link2], displayName: 'Link2' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'string' }, { name: 'to', title: 'To (Choose one)', description: 'Link to an internal reference, external or relative URL, or a file.', type: 'array', of: [ { type: 'object', name: 'external', title: 'External Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'External Link', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'URL', type: 'url', validation: [Function validation] }, { title: 'Open in a new window?', name: 'newWindow', type: 'boolean', initialValue: true } ], preview: { select: { title: 'url' }, prepare: [Function prepare] } } ], preview: { select: { title: 'link.url' }, prepare: [Function prepare] } }, { name: 'relative', title: 'Relative URL', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ArrowRight], displayName: 'ArrowRight' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'Relative URL', description: 'Example: /a-relative-url', type: 'string', validation: [Function validation] } ] }, { type: 'object', name: 'media', title: 'Media Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'Media', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'file', type: 'file', title: 'File', description: 'Select a file to link to' } ] } ], preview: { select: { title: 'link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ] } ], preview: { select: { title: 'action.text', to: 'action.to[0]', internalTitle: 'action.to.0.link.document.title', internalSlug: 'action.to.0.link.document.slug.current', internalAnchor: 'action.to[0].anchor', internalParams: 'action.to[0].params', mediaFilename: 'action.to.0.link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                              "validation": [Function],
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "icon": <ExternalLink
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "url",
+                            },
+                          },
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <ExternalLink
+                        size="1em"
+                      />,
+                      "name": "external",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.url",
+                        },
+                      },
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                          "validation": [Function],
+                        },
+                      ],
+                      "icon": <ArrowRight
+                        size="1em"
+                      />,
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "icon": <FileDown
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "file.asset.originalFilename",
+                            },
+                          },
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <FileDown
+                        size="1em"
+                      />,
+                      "name": "media",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.file.asset.originalFilename",
+                        },
+                      },
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                  "validation": [Function],
+                },
+              ],
+              "icon": <Link2
+                size="1em"
+              />,
+              "name": "action",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "text",
+                },
+              },
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "preview": {
+            "prepare": [Function],
+            "select": {
+              "internalAnchor": "action.to[0].anchor",
+              "internalParams": "action.to[0].params",
+              "internalSlug": "action.to.0.link.document.slug.current",
+              "internalTitle": "action.to.0.link.document.title",
+              "mediaFilename": "action.to.0.link.file.asset.originalFilename",
+              "title": "action.text",
+              "to": "action.to[0]",
+            },
+          },
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+      "validation": [Function],
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "callToActionBlock",
+  "preview": undefined,
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'callToActionBlock', schema: { name: 'callToActionBlock', title: 'Call to Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: undefined, fields: [ { name: 'text', title: 'Text', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] }, { name: 'actions', title: 'Actions', type: 'array', description: 'Add a call-to-action button or link to direct visitors to a specific page.', of: [ { type: 'object', name: 'action', title: 'Action', fields: [ { name: 'action', title: 'Action', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function Link2], displayName: 'Link2' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'string' }, { name: 'to', title: 'To (Choose one)', description: 'Link to an internal reference, external or relative URL, or a file.', type: 'array', of: [ { type: 'object', name: 'external', title: 'External Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'External Link', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'URL', type: 'url', validation: [Function validation] }, { title: 'Open in a new window?', name: 'newWindow', type: 'boolean', initialValue: true } ], preview: { select: { title: 'url' }, prepare: [Function prepare] } } ], preview: { select: { title: 'link.url' }, prepare: [Function prepare] } }, { name: 'relative', title: 'Relative URL', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ArrowRight], displayName: 'ArrowRight' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'Relative URL', description: 'Example: /a-relative-url', type: 'string', validation: [Function validation] } ] }, { type: 'object', name: 'media', title: 'Media Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'Media', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'file', type: 'file', title: 'File', description: 'Select a file to link to' } ] } ], preview: { select: { title: 'link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ] } ], preview: { select: { title: 'action.text', to: 'action.to[0]', internalTitle: 'action.to.0.link.document.title', internalSlug: 'action.to.0.link.document.slug.current', internalAnchor: 'action.to[0].anchor', internalParams: 'action.to[0].params', mediaFilename: 'action.to.0.link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: undefined } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                              "validation": [Function],
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "icon": <ExternalLink
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "url",
+                            },
+                          },
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <ExternalLink
+                        size="1em"
+                      />,
+                      "name": "external",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.url",
+                        },
+                      },
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                          "validation": [Function],
+                        },
+                      ],
+                      "icon": <ArrowRight
+                        size="1em"
+                      />,
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "icon": <FileDown
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "file.asset.originalFilename",
+                            },
+                          },
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <FileDown
+                        size="1em"
+                      />,
+                      "name": "media",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.file.asset.originalFilename",
+                        },
+                      },
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                  "validation": [Function],
+                },
+              ],
+              "icon": <Link2
+                size="1em"
+              />,
+              "name": "action",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "text",
+                },
+              },
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "preview": {
+            "prepare": [Function],
+            "select": {
+              "internalAnchor": "action.to[0].anchor",
+              "internalParams": "action.to[0].params",
+              "internalSlug": "action.to.0.link.document.slug.current",
+              "internalTitle": "action.to.0.link.document.title",
+              "mediaFilename": "action.to.0.link.file.asset.originalFilename",
+              "title": "action.text",
+              "to": "action.to[0]",
+            },
+          },
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+      "validation": undefined,
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "callToActionBlock",
+  "preview": undefined,
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'callToActionBlock', schema: { name: 'callToActionBlock', title: 'Call to Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: undefined, fields: [ { name: 'text', title: 'Text', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] }, { name: 'customImage', title: 'Image', type: 'object', icon: [Function Icon], preview: { select: { filename: 'image.asset.originalFilename', altText: 'altText', caption: 'caption', globalAltText: 'image.asset.altText', media: 'image' }, prepare: [Function prepare] }, fields: [ { name: 'file', title: 'File', type: 'image', options: { hotspot: true }, validation: undefined }, { name: 'altText', title: 'Alt Text', type: 'string', description: 'Override the alt text for this asset', validation: undefined } ], validation: undefined, components: undefined, fieldset: undefined, group: undefined }, { name: 'actions', title: 'Actions', type: 'array', description: 'Add a call-to-action button or link to direct visitors to a specific page.', of: [ { type: 'object', name: 'action', title: 'Action', fields: [ { name: 'action', title: 'Action', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function Link2], displayName: 'Link2' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'string' }, { name: 'to', title: 'To (Choose one)', description: 'Link to an internal reference, external or relative URL, or a file.', type: 'array', of: [ { type: 'object', name: 'external', title: 'External Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'External Link', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'URL', type: 'url', validation: [Function validation] }, { title: 'Open in a new window?', name: 'newWindow', type: 'boolean', initialValue: true } ], preview: { select: { title: 'url' }, prepare: [Function prepare] } } ], preview: { select: { title: 'link.url' }, prepare: [Function prepare] } }, { name: 'relative', title: 'Relative URL', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ArrowRight], displayName: 'ArrowRight' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'Relative URL', description: 'Example: /a-relative-url', type: 'string', validation: [Function validation] } ] }, { type: 'object', name: 'media', title: 'Media Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'Media', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'file', type: 'file', title: 'File', description: 'Select a file to link to' } ] } ], preview: { select: { title: 'link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ] } ], preview: { select: { title: 'action.text', to: 'action.to[0]', internalTitle: 'action.to.0.link.document.title', internalSlug: 'action.to.0.link.document.slug.current', internalAnchor: 'action.to[0].anchor', internalParams: 'action.to[0].params', mediaFilename: 'action.to.0.link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: undefined } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+    {
+      "components": undefined,
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+          "validation": undefined,
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+          "validation": undefined,
+        },
+      ],
+      "fieldset": undefined,
+      "group": undefined,
+      "icon": [Function],
+      "name": "customImage",
+      "preview": {
+        "prepare": [Function],
+        "select": {
+          "altText": "altText",
+          "caption": "caption",
+          "filename": "image.asset.originalFilename",
+          "globalAltText": "image.asset.altText",
+          "media": "image",
+        },
+      },
+      "title": "Image",
+      "type": "object",
+      "validation": undefined,
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                              "validation": [Function],
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "icon": <ExternalLink
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "url",
+                            },
+                          },
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <ExternalLink
+                        size="1em"
+                      />,
+                      "name": "external",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.url",
+                        },
+                      },
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                          "validation": [Function],
+                        },
+                      ],
+                      "icon": <ArrowRight
+                        size="1em"
+                      />,
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "icon": <FileDown
+                            size="1em"
+                          />,
+                          "name": "link",
+                          "preview": {
+                            "prepare": [Function],
+                            "select": {
+                              "title": "file.asset.originalFilename",
+                            },
+                          },
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "icon": <FileDown
+                        size="1em"
+                      />,
+                      "name": "media",
+                      "preview": {
+                        "prepare": [Function],
+                        "select": {
+                          "title": "link.file.asset.originalFilename",
+                        },
+                      },
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                  "validation": [Function],
+                },
+              ],
+              "icon": <Link2
+                size="1em"
+              />,
+              "name": "action",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "text",
+                },
+              },
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "preview": {
+            "prepare": [Function],
+            "select": {
+              "internalAnchor": "action.to[0].anchor",
+              "internalParams": "action.to[0].params",
+              "internalSlug": "action.to.0.link.document.slug.current",
+              "internalTitle": "action.to.0.link.document.title",
+              "mediaFilename": "action.to.0.link.file.asset.originalFilename",
+              "title": "action.text",
+              "to": "action.to[0]",
+            },
+          },
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+      "validation": undefined,
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "callToActionBlock",
+  "preview": undefined,
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'callToActionBlock', schema: { name: 'heroBlock', title: 'Hero', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: undefined, fields: [ { name: 'text', title: 'Text', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "heroBlock",
+  "preview": undefined,
+  "title": "Hero",
+  "type": "object",
+}
+`;
+
 exports[`Sanity Page Block Schemas > { key: 'carouselBlock', schema: { name: 'carouselBlock', title: 'Carousel', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: { select: { title: 'title' }, prepare: [Function prepare] }, fields: [ { name: 'title', title: 'Title', type: 'string', components: undefined, fieldset: undefined, group: undefined }, { name: 'items', title: 'Items', type: 'array', of: [ { type: 'heroBlock' } ], validation: [Function validation], components: undefined, fieldset: undefined, group: undefined } ], components: undefined } } schema matches snapshot 1`] = `
 {
   "components": undefined,
@@ -510,6 +1645,129 @@ exports[`Sanity Page Block Schemas > { key: 'heroBlock', schema: { name: 'heroBl
           "type": "object",
         },
       ],
+      "title": "Actions",
+      "type": "array",
+      "validation": [Function],
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "heroBlock",
+  "preview": {
+    "prepare": [Function],
+    "select": {
+      "text": "text",
+    },
+  },
+  "title": "Hero",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'heroBlock', schema: { name: 'heroBlock', title: 'Hero', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: { select: { text: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', description: 'The main text of the hero block. This is typically a value proposition or a short headline.', type: 'array', of: [ { type: 'block', styles: [ { title: 'Normal', value: 'normal' }, { title: 'H1', value: 'h1' } ], lists: [ { title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' } ], marks: { decorators: [ { title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }, { title: 'Underline', value: 'underline' }, { title: 'Strike', value: 'strike-through' }, { title: 'Code', value: 'code' } ], annotations: undefined } } ], validation: [Function validation] }, { name: 'customImage', title: 'Image', type: 'object', icon: [Function Icon], preview: { select: { filename: 'image.asset.originalFilename', altText: 'altText', caption: 'caption', globalAltText: 'image.asset.altText', media: 'image' }, prepare: [Function prepare] }, fields: [ { name: 'file', title: 'File', type: 'image', options: { hotspot: true }, validation: undefined }, { name: 'altText', title: 'Alt Text', type: 'string', description: 'Override the alt text for this asset', validation: undefined } ], validation: undefined, components: undefined, fieldset: undefined, group: undefined }, { name: 'actions', title: 'Actions', type: 'array', description: 'Add a call-to-action button or link to direct visitors to a specific page.', of: [], validation: [Function validation] } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "description": "The main text of the hero block. This is typically a value proposition or a short headline.",
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "annotations": undefined,
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H1",
+              "value": "h1",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+      "validation": [Function],
+    },
+    {
+      "components": undefined,
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+          "validation": undefined,
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+          "validation": undefined,
+        },
+      ],
+      "fieldset": undefined,
+      "group": undefined,
+      "icon": [Function],
+      "name": "customImage",
+      "preview": {
+        "prepare": [Function],
+        "select": {
+          "altText": "altText",
+          "caption": "caption",
+          "filename": "image.asset.originalFilename",
+          "globalAltText": "image.asset.altText",
+          "media": "image",
+        },
+      },
+      "title": "Image",
+      "type": "object",
+      "validation": undefined,
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [],
       "title": "Actions",
       "type": "array",
       "validation": [Function],

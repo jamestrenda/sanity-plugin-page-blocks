@@ -1,4 +1,11 @@
 import {
+  ArrayOfObjectsComponents,
+  ArrayOfPrimitivesComponents,
+  ArrayOfType,
+  ArrayRule,
+  BlockListDefinition,
+  BlockMarksDefinition,
+  BlockStyleDefinition,
   DocumentComponents,
   FieldDefinition,
   FieldGroupDefinition,
@@ -7,6 +14,7 @@ import {
   ImageValue,
   ObjectRule,
   PreviewConfig,
+  ReferenceTo,
   StringComponents,
   StringRule,
   ValidationBuilder,
@@ -53,5 +61,27 @@ export type CustomImageType =
         validation?: StringFieldValidationType
       }
     })
+
+export type TextType =
+  | false
+  | ({type: 'string'; components?: StringComponents} & SchemaFieldBaseFields)
+  | ({
+      type?: undefined
+      styles?: BlockStyleDefinition[]
+      lists?: BlockListDefinition[]
+      decorators?: BlockMarksDefinition['decorators']
+      annotations?: BlockMarksDefinition['annotations']
+      blocks?: ArrayOfType[]
+      components?: ArrayOfPrimitivesComponents | ArrayOfObjectsComponents
+      validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
+    } & SchemaFieldBaseFields)
+
+export type ActionsType = {
+  internal?: {
+    types: ReferenceTo
+  }
+  validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
+  customFields?: FieldDefinition[]
+}
 
 export type BlockSchema = ReturnType<typeof createSchema>

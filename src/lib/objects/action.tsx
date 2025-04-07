@@ -9,7 +9,7 @@ import {
   QueryParams,
 } from 'sanity'
 
-import {HeroActionsType} from '../../hero-block/types'
+import {ActionsType} from '../../types'
 import {anchorField} from '../fields/anchor'
 import {externalLinkField} from '../fields/externalLink'
 import {internalLinkField} from '../fields/internalLink'
@@ -19,7 +19,7 @@ import {icon as ExternalLinkIcon, preview as externalLinkPreview} from '../objec
 import {icon as InternalLinkIcon, preview as internalLinkPreview} from '../objects/internalLink'
 import {icon as MediaLinkIcon, preview as mediaLinkPreview} from '../objects/mediaLink'
 
-export const action = (options?: HeroActionsType) =>
+export const action = (options?: ActionsType) =>
   defineType({
     name: 'action',
     title: 'Action',
