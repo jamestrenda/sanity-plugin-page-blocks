@@ -42,8 +42,8 @@ export type StringFieldType =
   | false
   | ({
       components?: StringComponents | undefined
-    } & SchemaFieldBaseFields &
-      StringFieldValidationType)
+      validation?: StringFieldValidationType
+    } & SchemaFieldBaseFields)
 
 export type CustomImageType =
   | false
