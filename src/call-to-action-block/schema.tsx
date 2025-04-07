@@ -5,7 +5,7 @@ import {actionField} from '../lib/fields/action'
 import {preview as externalLinkPreview} from '../lib/objects/externalLink'
 import {preview as internalLinkPreview} from '../lib/objects/internalLink'
 import {preview as mediaLinkPreview} from '../lib/objects/mediaLink'
-import {createSchema} from '../lib/utils/createSchema'
+import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import {getDisplayImage} from '../lib/utils/getDisplayImageField'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {getTextField} from '../lib/utils/getTextField'
@@ -18,14 +18,22 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
 
   // Determine the preview dynamically
   const preview = ((): PreviewConfig | undefined => {
-    if (options?.text === false || options?.text?.type === 'string') return undefined
+    if (options?.text && options?.text?.type === 'string') return undefined
 
     return {
       select: {
         text: 'text',
+        title: 'title',
       },
-      prepare(selection) {
-        return getPortableTextPreview(selection.text, blockTitle)
+      prepare({text, title}) {
+        if (text) {
+          return getPortableTextPreview(text, blockTitle)
+        }
+        return {
+          title: title,
+          subtitle: blockTitle,
+          media: icon,
+        }
       },
     }
   })()
@@ -35,8 +43,34 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
     title: blockTitle,
     icon,
     fields: [
-      getTextField(),
-      ...(options && options.image !== false ? [getDisplayImage(options.image)] : []),
+      ...(options?.title === false
+        ? []
+        : [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: options?.title?.validation,
+              ...createFieldConfig(options?.title),
+            }),
+          ]),
+      getTextField(
+        options?.text,
+        {
+          styles: [
+            {
+              title: 'Normal',
+              value: 'normal',
+            },
+            {
+              title: 'H2',
+              value: 'h2',
+            },
+          ],
+        },
+        'The main text of the call to action block.',
+      ),
+      ...(options?.image === false ? [] : [getDisplayImage(options?.image)]),
       defineField({
         name: 'actions',
         title: 'Actions',
