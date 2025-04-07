@@ -42,10 +42,10 @@ export const schema = (options: HeroBlockConfig): ObjectDefinition => {
 
   // Determine the text field dynamically
   const textField = (() => {
-    // remove the field if valueProposition is false
+    // remove the field if text is false
     if (text === false) return defaultTextFieldBase
 
-    // use the default field if the user doesn't pass any customizations for valueProposition
+    // use the default field if the user doesn't pass any customizations for text
     if (!text) {
       return defineField({
         ...defaultTextFieldBase,
@@ -57,7 +57,7 @@ export const schema = (options: HeroBlockConfig): ObjectDefinition => {
       })
     }
 
-    // use a simple string field if the valueProposition is a string
+    // use a simple string field if the text is a string
     if (text.type === 'string') {
       return defineField({
         name: defaultTextFieldBase.name,
