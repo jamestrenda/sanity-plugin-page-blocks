@@ -105,20 +105,22 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
     icon: () => <CrownIcon size="1em" />,
     fields: [
       textField,
-      ...(options && options.image !== false ? [getDisplayImage(options.image)] : []),
-      defineField({
-        name: 'actions',
-        title: 'Actions',
-        type: 'array',
-        description: 'Add a call-to-action button or link to direct visitors to a specific page.',
-        of:
-          options && options.actions !== false
-            ? [
+      ...(options?.image === false ? [] : [getDisplayImage(options?.image)]),
+      ...(options?.actions === false
+        ? []
+        : [
+            defineField({
+              name: 'actions',
+              title: 'Actions',
+              type: 'array',
+              description:
+                'Add a call-to-action button or link to direct visitors to a specific page.',
+              of: [
                 {
                   type: 'object',
                   name: 'action',
                   title: 'Action',
-                  fields: [actionField(options.actions)],
+                  fields: [actionField(options?.actions)],
                   preview: {
                     select: {
                       title: 'action.text',
@@ -184,17 +186,16 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                     },
                   },
                 },
-              ]
-            : [],
-
-        validation: (Rule) => {
-          const max =
-            typeof options?.actions === 'object' && options.actions.max
-              ? options.actions.max
-              : undefined
-          return max ? Rule.max(max) : Rule
-        },
-      }),
+              ],
+              validation: (Rule) => {
+                const max =
+                  typeof options?.actions === 'object' && options.actions.max
+                    ? options.actions.max
+                    : undefined
+                return max ? Rule.max(max) : Rule
+              },
+            }),
+          ]),
       ...(options?.customFields ?? []),
     ],
     options: options
