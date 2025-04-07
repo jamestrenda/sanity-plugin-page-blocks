@@ -25,16 +25,17 @@ export const schema = (options: ContainerBlockConfig): ObjectDefinition => {
     title: 'Container',
     icon: () => <SquareDashedIcon size="1em" />,
     fields: [
-      ...(options && options.title !== false
-        ? [
+      ...(options.title === false
+        ? []
+        : [
             defineField({
               name: 'title',
               title: 'Title',
               type: 'string',
+              validation: options.title?.validation,
               ...createFieldConfig(options.title),
             }),
-          ]
-        : []),
+          ]),
       defineField({
         name: 'content',
         title: 'Content',
@@ -43,7 +44,7 @@ export const schema = (options: ContainerBlockConfig): ObjectDefinition => {
         validation: (Rule) => Rule.min(1),
         ...createFieldConfig(options.content),
       }),
-      ...(options && options.image !== false ? [getDisplayImage(options.image)] : []),
+      ...(options.image === false ? [] : [getDisplayImage(options.image)]),
       ...(options.customFields ?? []),
     ],
     options: options
