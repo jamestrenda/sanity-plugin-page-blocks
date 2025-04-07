@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.7](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.6...v1.4.7) (2025-04-07)
+
+### Features
+
+- **hero-block:** replace default validation on actions field with optional user validation rules ([3204795](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/3204795b1d04fe63cb38094a894aab330336e543))
+
+### Bug Fixes
+
+- **hero-block:** squash bug preventing default actions from being added ([7f04fd4](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/7f04fd4d07a57a4853a56d19cfd4e44e67e8d006))
+
 ## [1.4.6](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.5...v1.4.6) (2025-04-05)
 
 ### Features
