@@ -1,11 +1,6 @@
 import {
-  ArrayOfObjectsComponents,
-  ArrayOfPrimitivesComponents,
-  ArrayOfType,
   ArrayRule,
-  BlockListDefinition,
-  BlockMarksDefinition,
-  BlockStyleDefinition,
+  BlockDefinition,
   DocumentComponents,
   FieldDefinition,
   FieldGroupDefinition,
@@ -38,12 +33,11 @@ export interface SchemaFieldBaseFields {
 
 export type StringFieldValidationType = ValidationBuilder<StringRule, string> | undefined
 
-export type StringFieldType =
-  | false
-  | ({
-      components?: StringComponents | undefined
-      validation?: StringFieldValidationType
-    } & SchemaFieldBaseFields)
+export type StringFieldType = {
+  type: 'string'
+  components?: StringComponents | undefined
+  validation?: StringFieldValidationType
+} & SchemaFieldBaseFields
 
 export type CustomImageType =
   | false
@@ -64,17 +58,12 @@ export type CustomImageType =
 
 export type TextType =
   | false
-  | ({type: 'string'; components?: StringComponents} & SchemaFieldBaseFields)
+  | StringFieldType
   | ({
       type?: undefined
-      styles?: BlockStyleDefinition[]
-      lists?: BlockListDefinition[]
-      decorators?: BlockMarksDefinition['decorators']
-      annotations?: BlockMarksDefinition['annotations']
-      blocks?: ArrayOfType[]
-      components?: ArrayOfPrimitivesComponents | ArrayOfObjectsComponents
       validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
-    } & SchemaFieldBaseFields)
+    } & Omit<BlockDefinition, 'type' | 'name' | 'validation'> &
+      SchemaFieldBaseFields)
 
 export type ActionsType = {
   internal?: {

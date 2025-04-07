@@ -8,7 +8,7 @@ import {CustomImageType, SchemaBaseFields, SchemaFieldBaseFields, StringFieldTyp
  * @public
  */
 export interface ContainerBlockConfig extends SchemaBaseFields {
-  title?: StringFieldType
+  title?: Omit<StringFieldType, 'type'> | false
   image?: CustomImageType
   content: {
     of: ArrayOfType[]
