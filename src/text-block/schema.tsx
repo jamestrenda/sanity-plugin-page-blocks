@@ -23,8 +23,10 @@ export const schema = (options: TextBlockConfig = undefined): ObjectDefinition =
           ...getPortableTextBlocks({
             styles: options?.text?.styles,
             lists: options?.text?.lists,
-            decorators: options?.text?.decorators,
-            annotations: options?.text?.annotations,
+            marks: {
+              decorators: options?.text?.decorators,
+              annotations: options?.text?.annotations,
+            },
           }),
           ...(options?.text?.blocks ?? []), // Add any additional block types defined by the user
         ],
