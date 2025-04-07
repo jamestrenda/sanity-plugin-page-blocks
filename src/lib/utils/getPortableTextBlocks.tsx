@@ -1,9 +1,4 @@
-import {
-  type BlockListDefinition,
-  type BlockMarksDefinition,
-  type BlockStyleDefinition,
-  defineArrayMember,
-} from 'sanity'
+import {BlockDefinition, defineArrayMember} from 'sanity'
 
 export const portableTextBlocks = defineArrayMember({
   type: 'block',
@@ -37,16 +32,11 @@ export const portableTextBlocks = defineArrayMember({
   },
 })
 
-export function getPortableTextBlocks(options?: {
-  styles?: BlockStyleDefinition[]
-  lists?: BlockListDefinition[]
-  decorators?: BlockMarksDefinition['decorators'][][number]
-  annotations?: BlockMarksDefinition['annotations']
-}) {
+export function getPortableTextBlocks(options?: Omit<BlockDefinition, 'type' | 'name'>) {
   if (!options) {
     return [portableTextBlocks]
   }
-  const {styles, lists, decorators, annotations} = options
+  const {styles, lists, marks} = options
 
   const result = [
     defineArrayMember({
@@ -56,12 +46,12 @@ export function getPortableTextBlocks(options?: {
         ? portableTextBlocks.lists?.filter((list) => lists?.some((l) => l.value === list.value))
         : portableTextBlocks.lists,
       marks: {
-        decorators: decorators
+        decorators: marks?.decorators
           ? portableTextBlocks.marks?.decorators?.filter((decorator) =>
-              decorators?.some((d) => d.value === decorator.value),
+              marks?.decorators?.some((d) => d.value === decorator.value),
             )
           : portableTextBlocks.marks?.decorators,
-        annotations: annotations ?? portableTextBlocks.marks?.annotations,
+        annotations: marks?.annotations ?? portableTextBlocks.marks?.annotations,
       },
     }),
   ]

@@ -1,46 +1,39 @@
-import {BlockStyleDefinition, defineField} from 'sanity'
+import {BlockDefinition, BlockStyleDefinition, defineField} from 'sanity'
 
 import {TextType} from '../../types'
 import {createFieldConfig} from './createSchema'
-import {getPortableTextBlocks} from './getPortableTextBlocks'
+import {getPortableTextBlocks, portableTextBlocks} from './getPortableTextBlocks'
 
 export function getTextField(
   options?: TextType,
-  styles: BlockStyleDefinition[] = [
-    {
-      title: 'Normal',
-      value: 'normal',
+  blockDef: Omit<BlockDefinition, 'type' | 'name'> = {
+    styles: portableTextBlocks.styles ?? [],
+    marks: {
+      decorators: portableTextBlocks.marks?.decorators ?? [],
+      annotations: portableTextBlocks.marks?.annotations ?? [],
     },
-    {
-      title: 'H2',
-      value: 'h2',
-    },
-  ],
+  },
+  description?: string,
 ) {
   const text = options
 
   const defaultTextFieldBase = defineField({
     name: 'text',
     title: 'Text',
+    description,
     type: 'array',
     of: [],
-    validation: (Rule) => Rule.required(),
   })
 
   // Determine the text field dynamically
-
-  // remove the field if text is false
   if (text === false) return defaultTextFieldBase
 
   // use the default field if the user doesn't pass any customizations for text
   if (!text) {
     return defineField({
       ...defaultTextFieldBase,
-      of: [
-        ...getPortableTextBlocks({
-          styles,
-        }),
-      ],
+      of: [...getPortableTextBlocks(blockDef)],
+      validation: (Rule) => Rule.required(),
     })
   }
 
@@ -49,7 +42,9 @@ export function getTextField(
     return defineField({
       name: defaultTextFieldBase.name,
       title: defaultTextFieldBase.title,
+      description,
       type: 'string',
+      validation: text.validation ? text.validation : (Rule) => Rule.required(),
       ...createFieldConfig(text),
     })
   }
@@ -59,13 +54,16 @@ export function getTextField(
     ...defaultTextFieldBase,
     of: [
       ...getPortableTextBlocks({
-        styles: text.styles ?? styles,
+        styles: text.styles ?? blockDef.styles,
         lists: text.lists ?? [],
-        decorators: text.decorators ?? undefined,
-        annotations: text.annotations ?? undefined,
+        marks: {
+          decorators: text?.marks?.decorators ?? undefined,
+          annotations: text?.marks?.annotations ?? undefined,
+        },
       }),
-      ...(text.blocks ?? []), // Add any additional block types defined by the user
+      ...(text.of ?? []), // Add any additional block types defined by the user
     ],
+    validation: text.validation ?? defaultTextFieldBase.validation,
     ...createFieldConfig(text),
   })
 }
