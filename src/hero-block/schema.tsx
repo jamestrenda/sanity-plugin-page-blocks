@@ -187,13 +187,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
                   },
                 },
               ],
-              validation: (Rule) => {
-                const max =
-                  typeof options?.actions === 'object' && options.actions.max
-                    ? options.actions.max
-                    : undefined
-                return max ? Rule.max(max) : Rule
-              },
+              validation: options?.actions?.validation,
             }),
           ]),
       ...(options?.customFields ?? []),

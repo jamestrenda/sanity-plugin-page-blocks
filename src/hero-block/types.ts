@@ -32,10 +32,10 @@ interface Config extends SchemaBaseFields {
   actions?:
     | false
     | {
-        max?: number
         internal?: {
           types: ReferenceTo
         }
+        validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
         customFields?: FieldDefinition[]
       }
 }
