@@ -1,6 +1,7 @@
-import {ActionsType, CustomImageType, SchemaBaseFields, TextType} from '../types'
+import {ActionsType, CustomImageType, SchemaBaseFields, StringFieldType, TextType} from '../types'
 
 interface Config extends SchemaBaseFields {
+  title?: Omit<StringFieldType, 'type'> | false
   text?: TextType
   image?: CustomImageType
   actions?: ActionsType
