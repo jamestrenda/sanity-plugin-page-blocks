@@ -14,6 +14,10 @@ import {CallToActionBlockConfig} from './types'
 export const icon = () => <MousePointerClickIcon size="1em" />
 
 export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
+  // @ts-expect-error make sure users can't disable the actions field
+  if (options?.actions === false) {
+    throw new Error("callToActionBlock: 'actions: false' is not a supported configuration option.")
+  }
   const blockTitle = 'Call to Action'
 
   // Determine the preview dynamically

@@ -84,7 +84,8 @@
     "commit": "commit",
     "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
     "prepare": "husky",
-    "test": "vitest"
+    "test": "vitest",
+    "test-update": "vitest -u"
   },
   "dependencies": {
     "@sanity/incompatible-plugin": "^1.0.5",
