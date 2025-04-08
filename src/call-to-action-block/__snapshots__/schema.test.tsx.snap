@@ -1,0 +1,499 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`call-to-action-block generates default schema > Default callToAction schema 1`] = `
+{
+  "fields": [
+    {
+      "name": "title",
+      "title": "Title",
+      "type": "string",
+    },
+    {
+      "description": "The main text of the call to action block.",
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+    },
+    {
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+        },
+      ],
+      "name": "customImage",
+      "title": "Image",
+      "type": "object",
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "name": "link",
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "name": "external",
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                        },
+                      ],
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "name": "link",
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "name": "media",
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                },
+              ],
+              "name": "action",
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "name": "callToActionBlock",
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`call-to-action-block generates default schema without text field when text set to false > callToAction schema without text 1`] = `
+{
+  "fields": [
+    {
+      "name": "title",
+      "title": "Title",
+      "type": "string",
+    },
+    {
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+        },
+      ],
+      "name": "customImage",
+      "title": "Image",
+      "type": "object",
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "name": "link",
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "name": "external",
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                        },
+                      ],
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "name": "link",
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "name": "media",
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                },
+              ],
+              "name": "action",
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "name": "callToActionBlock",
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
+
+exports[`call-to-action-block generates default schema without title field when title set to false > callToAction schema without title 1`] = `
+{
+  "fields": [
+    {
+      "description": "The main text of the call to action block.",
+      "name": "text",
+      "of": [
+        {
+          "lists": [
+            {
+              "title": "Bullet",
+              "value": "bullet",
+            },
+            {
+              "title": "Number",
+              "value": "number",
+            },
+          ],
+          "marks": {
+            "decorators": [
+              {
+                "title": "Strong",
+                "value": "strong",
+              },
+              {
+                "title": "Emphasis",
+                "value": "em",
+              },
+              {
+                "title": "Underline",
+                "value": "underline",
+              },
+              {
+                "title": "Strike",
+                "value": "strike-through",
+              },
+              {
+                "title": "Code",
+                "value": "code",
+              },
+            ],
+          },
+          "styles": [
+            {
+              "title": "Normal",
+              "value": "normal",
+            },
+            {
+              "title": "H2",
+              "value": "h2",
+            },
+          ],
+          "type": "block",
+        },
+      ],
+      "title": "Text",
+      "type": "array",
+    },
+    {
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+        },
+      ],
+      "name": "customImage",
+      "title": "Image",
+      "type": "object",
+    },
+    {
+      "description": "Add a call-to-action button or link to direct visitors to a specific page.",
+      "name": "actions",
+      "of": [
+        {
+          "fields": [
+            {
+              "fields": [
+                {
+                  "name": "text",
+                  "title": "Text",
+                  "type": "string",
+                },
+                {
+                  "description": "Link to an internal reference, external or relative URL, or a file.",
+                  "name": "to",
+                  "of": [
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "name": "url",
+                              "title": "URL",
+                              "type": "url",
+                            },
+                            {
+                              "initialValue": true,
+                              "name": "newWindow",
+                              "title": "Open in a new window?",
+                              "type": "boolean",
+                            },
+                          ],
+                          "name": "link",
+                          "title": "External Link",
+                          "type": "object",
+                        },
+                      ],
+                      "name": "external",
+                      "title": "External Link",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "description": "Example: /a-relative-url",
+                          "name": "url",
+                          "title": "Relative URL",
+                          "type": "string",
+                        },
+                      ],
+                      "name": "relative",
+                      "title": "Relative URL",
+                      "type": "object",
+                    },
+                    {
+                      "fields": [
+                        {
+                          "fields": [
+                            {
+                              "description": "Select a file to link to",
+                              "name": "file",
+                              "title": "File",
+                              "type": "file",
+                            },
+                          ],
+                          "name": "link",
+                          "title": "Media",
+                          "type": "object",
+                        },
+                      ],
+                      "name": "media",
+                      "title": "Media Link",
+                      "type": "object",
+                    },
+                  ],
+                  "title": "To (Choose one)",
+                  "type": "array",
+                },
+              ],
+              "name": "action",
+              "title": "Action",
+              "type": "object",
+            },
+          ],
+          "name": "action",
+          "title": "Action",
+          "type": "object",
+        },
+      ],
+      "title": "Actions",
+      "type": "array",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "name": "callToActionBlock",
+  "title": "Call to Action",
+  "type": "object",
+}
+`;
