@@ -33,7 +33,6 @@ export function getTextField(
     return defineField({
       ...defaultTextFieldBase,
       of: [...getPortableTextBlocks(blockDef)],
-      validation: (Rule) => Rule.required(),
     })
   }
 
@@ -44,7 +43,7 @@ export function getTextField(
       title: defaultTextFieldBase.title,
       description,
       type: 'string',
-      validation: text.validation ? text.validation : (Rule) => Rule.required(),
+      validation: text.validation,
       ...createFieldConfig(text),
     })
   }
