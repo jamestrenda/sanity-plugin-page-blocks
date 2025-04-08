@@ -1,12 +1,12 @@
 import {TextIcon} from 'lucide-react'
-import {defineField, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition} from 'sanity'
 
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {TextBlockConfig} from './types'
 
-export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefinition => {
+export const schema = (options: TextBlockConfig = undefined): ObjectDefinition => {
   const blockTitle = 'Text Block'
 
   return createSchema({
@@ -23,8 +23,10 @@ export const schema = (options: TextBlockConfig = undefined): SchemaTypeDefiniti
           ...getPortableTextBlocks({
             styles: options?.text?.styles,
             lists: options?.text?.lists,
-            decorators: options?.text?.decorators,
-            annotations: options?.text?.annotations,
+            marks: {
+              decorators: options?.text?.decorators,
+              annotations: options?.text?.annotations,
+            },
           }),
           ...(options?.text?.blocks ?? []), // Add any additional block types defined by the user
         ],

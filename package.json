@@ -34,15 +34,20 @@
       "import": "./dist/article-list-block/types.mjs",
       "default": "./dist/article-list-block/types.js"
     },
-    "./container-block": {
-      "source": "./src/container-block/types.ts",
-      "import": "./dist/container-block/types.mjs",
-      "default": "./dist/container-block/types.js"
+    "./call-to-action-block": {
+      "source": "./src/call-to-action-block/types.ts",
+      "import": "./dist/call-to-action-block/types.mjs",
+      "default": "./dist/call-to-action-block/types.js"
     },
     "./carousel-block": {
       "source": "./src/carousel-block/types.ts",
       "import": "./dist/carousel-block/types.mjs",
       "default": "./dist/carousel-block/types.js"
+    },
+    "./container-block": {
+      "source": "./src/container-block/types.ts",
+      "import": "./dist/container-block/types.mjs",
+      "default": "./dist/container-block/types.js"
     },
     "./faq-block": {
       "source": "./src/faq-block/types.ts",
@@ -79,7 +84,8 @@
     "commit": "commit",
     "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
     "prepare": "husky",
-    "test": "vitest"
+    "test": "vitest",
+    "test-update": "vitest -u"
   },
   "dependencies": {
     "@sanity/incompatible-plugin": "^1.0.5",

@@ -1,11 +1,11 @@
 import {SquareDashedIcon} from 'lucide-react'
-import {defineField, PreviewConfig, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition, PreviewConfig} from 'sanity'
 
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
 import {getDisplayImage} from '../lib/utils/getDisplayImageField'
 import {ContainerBlockConfig} from './types'
 
-export const schema = (options: ContainerBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: ContainerBlockConfig): ObjectDefinition => {
   const blockTitle = 'Container'
   const preview: PreviewConfig = {
     select: {
@@ -25,16 +25,17 @@ export const schema = (options: ContainerBlockConfig): SchemaTypeDefinition => {
     title: 'Container',
     icon: () => <SquareDashedIcon size="1em" />,
     fields: [
-      ...(options && options.title !== false
-        ? [
+      ...(options.title === false
+        ? []
+        : [
             defineField({
               name: 'title',
               title: 'Title',
               type: 'string',
+              validation: options.title?.validation,
               ...createFieldConfig(options.title),
             }),
-          ]
-        : []),
+          ]),
       defineField({
         name: 'content',
         title: 'Content',
@@ -43,7 +44,7 @@ export const schema = (options: ContainerBlockConfig): SchemaTypeDefinition => {
         validation: (Rule) => Rule.min(1),
         ...createFieldConfig(options.content),
       }),
-      ...(options && options.image !== false ? [getDisplayImage(options.image)] : []),
+      ...(options.image === false ? [] : [getDisplayImage(options.image)]),
       ...(options.customFields ?? []),
     ],
     options: options

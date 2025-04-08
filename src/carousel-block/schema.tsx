@@ -24,16 +24,16 @@ export const schema = (options: CarouselBlockConfig): SchemaTypeDefinition => {
     title: 'Carousel',
     icon: () => <GalleryThumbnailsIcon size="1em" />,
     fields: [
-      ...(options && options.title !== false
-        ? [
+      ...(options?.title === false
+        ? []
+        : [
             defineField({
               name: 'title',
               title: 'Title',
               type: 'string',
               ...createFieldConfig(options?.title),
             }),
-          ]
-        : []),
+          ]),
       defineField({
         name: 'items',
         title: 'Items',

@@ -1,10 +1,11 @@
 import {LayoutListIcon} from 'lucide-react'
-import {defineField, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition} from 'sanity'
 
 import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
+import {BlockSchema} from '../types'
 import type {ArticleListBlockConfig} from './types'
 
-export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: ArticleListBlockConfig): ObjectDefinition => {
   const blockTitle = 'Article List'
 
   const fields = [
@@ -57,3 +58,4 @@ export const schema = (options: ArticleListBlockConfig): SchemaTypeDefinition =>
       : undefined,
   })
 }
+export type ArticleListBlockSchema = BlockSchema

@@ -1,88 +1,37 @@
 import {ArrowRightIcon, CrownIcon} from 'lucide-react'
-import {defineField, PreviewConfig, PreviewValue, SchemaTypeDefinition} from 'sanity'
+import {defineField, ObjectDefinition, PreviewConfig, PreviewValue} from 'sanity'
 
 import {actionField} from '../lib/fields/action'
 import {preview as externalLinkPreview} from '../lib/objects/externalLink'
 import {preview as internalLinkPreview} from '../lib/objects/internalLink'
 import {preview as mediaLinkPreview} from '../lib/objects/mediaLink'
-import {createFieldConfig, createSchema} from '../lib/utils/createSchema'
+import {createSchema} from '../lib/utils/createSchema'
 import {getDisplayImage} from '../lib/utils/getDisplayImageField'
-import {getPortableTextBlocks} from '../lib/utils/getPortableTextBlocks'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {HeroBlockConfig} from './types'
+import {getTextField} from '../lib/utils/getTextField'
 
-export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
+export const schema = (options: HeroBlockConfig): ObjectDefinition => {
   const blockTitle = 'Hero'
 
   const textDescription =
     'The main text of the hero block. This is typically a value proposition or a short headline.'
   // "Write an effective value proposition that's clear, concise, and compelling. Identify who your target customer is, what problem you solve, and what makes your solution unique."
 
-  const defaultStyles = [
-    {
-      title: 'Normal',
-      value: 'normal',
-    },
-    {
-      title: 'H1',
-      value: 'h1',
-    },
-  ]
+  const defaultBlockDef = {
+    styles: [
+      {
+        title: 'Normal',
+        value: 'normal',
+      },
+      {
+        title: 'H1',
+        value: 'h1',
+      },
+    ],
+  }
 
   const text = options?.text
-
-  const defaultTextFieldBase = defineField({
-    name: 'text',
-    title: 'Text',
-    description: textDescription,
-    type: 'array',
-    of: [],
-    validation: (Rule) => Rule.required(),
-  })
-
-  // Determine the text field dynamically
-  const textField = (() => {
-    // remove the field if valueProposition is false
-    if (text === false) return defaultTextFieldBase
-
-    // use the default field if the user doesn't pass any customizations for valueProposition
-    if (!text) {
-      return defineField({
-        ...defaultTextFieldBase,
-        of: [
-          ...getPortableTextBlocks({
-            styles: defaultStyles,
-          }),
-        ],
-      })
-    }
-
-    // use a simple string field if the valueProposition is a string
-    if (text.type === 'string') {
-      return defineField({
-        name: defaultTextFieldBase.name,
-        title: defaultTextFieldBase.title,
-        type: 'string',
-        description: textDescription,
-        ...createFieldConfig(text),
-      })
-    }
-
-    // Merge user-defined properties with defaults
-    return defineField({
-      ...defaultTextFieldBase,
-      of: [
-        ...getPortableTextBlocks({
-          styles: text.styles ?? defaultStyles,
-          lists: text.lists ?? [],
-          decorators: text.decorators ?? undefined,
-          annotations: text.annotations ?? undefined,
-        }),
-        ...(text.blocks ?? []), // Add any additional block types defined by the user
-      ],
-      ...createFieldConfig(text),
-    })
-  })()
 
   // Determine the preview dynamically
   const preview = ((): PreviewConfig | undefined => {
@@ -104,7 +53,7 @@ export const schema = (options: HeroBlockConfig): SchemaTypeDefinition => {
 
     icon: () => <CrownIcon size="1em" />,
     fields: [
-      textField,
+      getTextField(options?.text, defaultBlockDef, textDescription),
       ...(options?.image === false ? [] : [getDisplayImage(options?.image)]),
       ...(options?.actions === false
         ? []

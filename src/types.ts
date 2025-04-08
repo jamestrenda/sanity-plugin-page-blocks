@@ -1,4 +1,6 @@
 import {
+  ArrayRule,
+  BlockDefinition,
   DocumentComponents,
   FieldDefinition,
   FieldGroupDefinition,
@@ -7,10 +9,13 @@ import {
   ImageValue,
   ObjectRule,
   PreviewConfig,
+  ReferenceTo,
   StringComponents,
   StringRule,
   ValidationBuilder,
 } from 'sanity'
+
+import {createSchema} from './lib/utils/createSchema'
 
 export interface SchemaBaseFields {
   name?: string
@@ -28,12 +33,11 @@ export interface SchemaFieldBaseFields {
 
 export type StringFieldValidationType = ValidationBuilder<StringRule, string> | undefined
 
-export type StringFieldType =
-  | false
-  | ({
-      components?: StringComponents | undefined
-    } & SchemaFieldBaseFields &
-      StringFieldValidationType)
+export type StringFieldType = {
+  type: 'string'
+  components?: StringComponents | undefined
+  validation?: StringFieldValidationType
+} & SchemaFieldBaseFields
 
 export type CustomImageType =
   | false
@@ -51,3 +55,22 @@ export type CustomImageType =
         validation?: StringFieldValidationType
       }
     })
+
+export type TextType =
+  | false
+  | StringFieldType
+  | ({
+      type?: undefined
+      validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
+    } & Omit<BlockDefinition, 'type' | 'name' | 'validation'> &
+      SchemaFieldBaseFields)
+
+export type ActionsType = {
+  internal?: {
+    types: ReferenceTo
+  }
+  validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
+  customFields?: FieldDefinition[]
+}
+
+export type BlockSchema = ReturnType<typeof createSchema>
