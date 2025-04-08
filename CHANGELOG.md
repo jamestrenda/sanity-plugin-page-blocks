@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.7...v1.4.8) (2025-04-08)
+
+### Features
+
+- **call-to-action-block:** add cta block ([#4](https://github.com/jamestrenda/sanity-plugin-page-blocks/issues/4)) ([cfd3dbf](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/cfd3dbf074a9c1fd8a915246061092945332fcee))
+
 ## [1.4.7](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.6...v1.4.7) (2025-04-07)
 
 ### Features
