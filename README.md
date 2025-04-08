@@ -216,21 +216,9 @@ Many Sanity field types support an `options` property. This is not yet implement
 
 TODO: Add support for custom `options`.
 
-## Coming Soon
+## Stay tuned for updates! 🚀
 
-This is just the beginning! More **pre-configured page builder blocks** are in development, including:
-
-- **Media Block**
-- **Logo Cloud Block**
-- **Image/Text Split Block**
-- **Icon Card Block**
-- **Featured Section Block**
-- **Call-to-Action Block**
-- **Testimonials Block**
-- **Global Section Block**
-- **And more...**
-
-These plugins will make it even easier to build **rich, structured pages** in Sanity Studio without reinventing the wheel. Stay tuned for updates! 🚀
+This is just the beginning! More **pre-configured page builder blocks** are in development.
 
 ## Contributing
 
