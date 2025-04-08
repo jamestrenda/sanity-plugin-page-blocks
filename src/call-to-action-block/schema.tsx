@@ -26,12 +26,19 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
         title: 'title',
       },
       prepare({text, title}) {
-        if (text) {
+        if (title) {
+          return {
+            title: title,
+            subtitle: blockTitle,
+            media: icon,
+          }
+        }
+        if (text && !title) {
           return getPortableTextPreview(text, blockTitle)
         }
+
         return {
-          title: title,
-          subtitle: blockTitle,
+          title: blockTitle,
           media: icon,
         }
       },
@@ -154,6 +161,6 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
           preview,
           ...options,
         }
-      : {},
+      : {preview},
   })
 }
