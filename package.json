@@ -123,7 +123,7 @@
     "vitest": "^3.0.9"
   },
   "peerDependencies": {
-    "lucide-react": "^0.359.0",
+    "lucide-react": ">=0.359.0",
     "react": "^18",
     "sanity": "^3"
   },
