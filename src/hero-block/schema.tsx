@@ -14,9 +14,7 @@ import {getTextField} from '../lib/utils/getTextField'
 export const schema = (options: HeroBlockConfig): ObjectDefinition => {
   const blockTitle = 'Hero'
 
-  const textDescription =
-    'The main text of the hero block. This is typically a value proposition or a short headline.'
-  // "Write an effective value proposition that's clear, concise, and compelling. Identify who your target customer is, what problem you solve, and what makes your solution unique."
+  const textDescription = 'This is typically a value proposition or a short headline.'
 
   const defaultBlockDef = {
     styles: [
