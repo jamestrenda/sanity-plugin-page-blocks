@@ -28,6 +28,13 @@ export const schema = (options: SiteLogoBlockConfig): ObjectDefinition => {
     title: 'Site Logo',
     icon: () => <ImageIcon size="1em" />,
     fields: [
+      // make sure the block is not empty so that it is actually saved to the array in which it is added
+      defineField({
+        name: 'show',
+        type: 'boolean',
+        initialValue: true,
+        hidden: true,
+      }),
       defineField({
         name: 'logo',
         title: ' ',
