@@ -44,8 +44,6 @@ const LogoReferenceInput = (
 
   const schemaType = useSchema().get('siteLogoBlock')
 
-  // * Fetch and subscribe to the listOption documents
-
   useEffect(() => {
     let subscription: Subscription
     const listen = () => {
@@ -71,8 +69,6 @@ const LogoReferenceInput = (
       .then(listen)
       .finally(() => setLoading(false))
 
-    // * Cleanup
-    // Never forget to unsubscribe from the listener
     return function cleanup() {
       if (subscription) {
         subscription.unsubscribe()
@@ -122,7 +118,6 @@ const LogoReferenceInput = (
       <Card padding={4} border>
         <Stack space={4}>
           <Flex align="center" justify="space-between">
-            {/* Show the settings logo as preview */}
             {settingsDoc?.logo && (
               <Box>
                 <SanityDefaultPreview
