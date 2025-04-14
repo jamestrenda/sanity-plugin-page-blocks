@@ -97,6 +97,24 @@ export default defineConfig({
 
 You can also pass [`StructureDocumentPaneParams`](https://www.sanity.io/docs/reference/api/sanity/presentation/StructureDocumentPaneParams), which will be added by the Sanity `Router`. Use with caution as this has not been tested thoroughly.
 
+## Peer Dependencies
+
+This plugin requires the following dependencies to be installed in your Sanity Studio project:
+
+- [Sanity UI](https://www.sanity.io/ui)
+- [Lucide Icons](https://lucide.dev/)
+- [RXJS](https://rxjs.dev/)
+
+```sh
+npm install @sanity/ui lucide-react rxjs
+```
+
+or:
+
+```sh
+pnpm add @sanity/ui lucide-react rxjs
+```
+
 ## TODO
 
 - Add Inline SVG support
