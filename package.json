@@ -95,7 +95,8 @@
   "dependencies": {
     "@sanity/incompatible-plugin": "^1.0.5",
     "@sanity/ui": "^2.15.13",
-    "lucide-react": "^0.482.0"
+    "lucide-react": "^0.482.0",
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "@changesets/cli": "^2.28.1",
@@ -133,6 +134,7 @@
     "@sanity/ui": "^2.15.13",
     "lucide-react": ">=0.359.0",
     "react": "^18",
+    "rxjs": "^7.8.2",
     "sanity": "^3"
   },
   "engines": {

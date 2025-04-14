@@ -8,8 +8,8 @@ import {preview as mediaLinkPreview} from '../lib/objects/mediaLink'
 import {createSchema} from '../lib/utils/createSchema'
 import {getDisplayImage} from '../lib/utils/getDisplayImageField'
 import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
-import {HeroBlockConfig} from './types'
 import {getTextField} from '../lib/utils/getTextField'
+import {HeroBlockConfig} from './types'
 
 export const schema = (options: HeroBlockConfig): ObjectDefinition => {
   const blockTitle = 'Hero'

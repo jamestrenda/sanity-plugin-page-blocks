@@ -1,6 +1,7 @@
-import {describe, expect, it} from 'vitest'
-import {callToActionBlock} from '.'
 import {ObjectDefinition, SchemaTypeDefinition} from 'sanity'
+import {describe, expect, it} from 'vitest'
+
+import {callToActionBlock} from '.'
 
 describe('callToActionBlock preview', () => {
   const plugin = callToActionBlock()

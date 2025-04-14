@@ -1,18 +1,84 @@
-import React, {useEffect, useState} from 'react'
-import {Button, Card, Stack, Flex, Text, Box} from '@sanity/ui'
-import {useClient} from 'sanity'
-import {ObjectInputProps, ImageValue, ObjectSchemaType} from 'sanity'
+import {Box, Button, Card, Flex, Spinner, Stack} from '@sanity/ui'
 import {EditIcon} from 'lucide-react'
-import {useRouter} from 'sanity/router'
+import React, {ReactNode, useEffect, useMemo, useState} from 'react'
+import {Subscription} from 'rxjs'
+import {SanityDefaultPreview, useClient, useSchema} from 'sanity'
+import {ImageValue, ObjectInputProps, ObjectSchemaType} from 'sanity'
+import {useRouter, useRouterState} from 'sanity/router'
+import {RouterPanes} from 'sanity/structure'
+
+import {apiVersion} from '../lib/api'
+
+const LoadingIndicator = () => {
+  return (
+    <Flex justify={'center'} align={'center'} padding={4}>
+      <Spinner />
+    </Flex>
+  )
+}
 
 const LogoReferenceInput = (
-  props: ObjectInputProps<ImageValue, ObjectSchemaType> & {query: string},
+  props: ObjectInputProps<ImageValue, ObjectSchemaType> & {
+    query?: string
+    params?: Record<string, unknown>
+  },
 ) => {
-  const {renderDefault} = props
-  const router = useRouter()
+  const {params: userParams} = props
+
+  // * Initialize the Studio client
+  const client = useClient({apiVersion}).withConfig({
+    perspective: 'drafts',
+  })
+
+  // * Initialize the router and get the pane groups
+  const {navigate} = useRouter()
+  const routerState = useRouterState()
+
+  const routerPaneGroups = useMemo<RouterPanes>(
+    () => (routerState?.panes || []) as RouterPanes,
+    [routerState?.panes],
+  )
+  const [loading, setLoading] = useState(true)
   const [settingsDoc, setSettingsDoc] = useState<{_id: string; logo?: ImageValue} | null>(null)
-  const client = useClient({apiVersion: '2025-04-12'})
   const query = props.query || '*[_type == "settings"][0]{_id, logo}'
+
+  const schemaType = useSchema().get('siteLogoBlock')
+
+  // * Fetch and subscribe to the listOption documents
+
+  useEffect(() => {
+    let subscription: Subscription
+    const listen = () => {
+      subscription = client
+        .listen(query, {
+          visibility: 'query',
+          tag: `site-logo-${props.id}`,
+          includeResult: false,
+        })
+        .subscribe(() =>
+          client.fetch(query).then((data) => {
+            setSettingsDoc(data)
+            setLoading(false)
+          }),
+        )
+    }
+    client
+      .fetch(query)
+      .then((data) => {
+        setSettingsDoc(data)
+        setLoading(false)
+      })
+      .then(listen)
+      .finally(() => setLoading(false))
+
+    // * Cleanup
+    // Never forget to unsubscribe from the listener
+    return function cleanup() {
+      if (subscription) {
+        subscription.unsubscribe()
+      }
+    }
+  }, [])
 
   // Fetch the settings document info
   useEffect(() => {
@@ -29,44 +95,51 @@ const LogoReferenceInput = (
   // Function to open the settings document in a side pane
   const openSettingsDocument = () => {
     if (settingsDoc?._id) {
-      // This uses the Sanity router to open a document in a side pane
-      router.navigate({
-        id: settingsDoc._id,
-        // type: 'settings'
+      const nextPanes: RouterPanes = [
+        // keep existing panes
+        ...routerPaneGroups,
+        [
+          {
+            id: settingsDoc._id,
+            params: {
+              type: settingsDoc._id,
+              ...userParams,
+            },
+          },
+        ],
+      ]
+
+      navigate({
+        panes: nextPanes,
       })
     }
   }
+
+  if (loading) return <LoadingIndicator />
 
   return (
     <Stack space={4}>
       <Card padding={4} border>
         <Stack space={4}>
           <Flex align="center" justify="space-between">
-            <Text weight="semibold">Logo from Settings</Text>
+            {/* Show the settings logo as preview */}
+            {settingsDoc?.logo && (
+              <Box>
+                <SanityDefaultPreview
+                  title="Site Logo"
+                  schemaType={schemaType}
+                  media={settingsDoc.logo.asset as ReactNode}
+                />
+              </Box>
+            )}
             <Button
-              icon={EditIcon}
+              icon={() => <EditIcon size="1em" />}
               text="Edit in Settings"
               onClick={openSettingsDocument}
-              tone="primary"
               mode="ghost"
               disabled={!settingsDoc}
             />
           </Flex>
-
-          {/* Show the settings logo as preview */}
-          {/* {settingsDoc?.logo && (
-            <Box>
-              <img
-                src={client.image(settingsDoc.logo).width(300).url()}
-                alt="Logo from settings"
-                style={{maxWidth: '100%'}}
-              />
-            </Box>
-          )} */}
-
-          <Text size={1} muted>
-            This logo is managed in the Settings document. Click the button above to edit it.
-          </Text>
         </Stack>
       </Card>
     </Stack>

@@ -2,7 +2,6 @@ import {definePlugin} from 'sanity'
 
 import {schema} from './schema'
 import {SiteLogoBlockConfig} from './types'
-import LogoReferenceInput from './input'
 
 /**
  * @public
@@ -24,13 +23,5 @@ export const siteLogoBlock = definePlugin<SiteLogoBlockConfig>((config) => {
     schema: {
       types: [schema(config)],
     },
-    // form: {
-    //   components: {
-    //     input: {
-    //       // Register your custom input for image fields with a specific name or custom type
-    //       logoReference: LogoReferenceInput,
-    //     },
-    //   },
-    // },
   }
 })

@@ -1,12 +1,16 @@
 import {FieldDefinition} from 'sanity'
+
 import {SchemaBaseFields} from '../types'
 
+export interface Config extends SchemaBaseFields {
+  query?: string
+  params?: Record<string, unknown>
+  customFields?: FieldDefinition[]
+}
+
 /**
- * Configuration options for the Site Logo Block.
+ * The type of the Site Logo Block.
  *
  * @public
  */
-export interface SiteLogoBlockConfig extends SchemaBaseFields {
-  query: string
-  customFields?: FieldDefinition[]
-}
+export type SiteLogoBlockConfig = Config | void

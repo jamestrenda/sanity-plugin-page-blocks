@@ -1,7 +1,8 @@
 import {ObjectDefinition, SchemaTypeDefinition} from 'sanity'
 import {describe, expect, it} from 'vitest'
-import {callToActionBlock} from '.'
+
 import {sanitizeSchema} from '../tests/lib/utils'
+import {callToActionBlock} from '.'
 
 describe('call-to-action-block', () => {
   it('should generate default schema', () => {
