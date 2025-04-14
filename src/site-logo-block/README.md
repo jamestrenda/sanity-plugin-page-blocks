@@ -97,6 +97,10 @@ export default defineConfig({
 
 You can also pass [`StructureDocumentPaneParams`](https://www.sanity.io/docs/reference/api/sanity/presentation/StructureDocumentPaneParams), which will be added by the Sanity `Router`. Use with caution as this has not been tested thoroughly.
 
+## TODO
+
+- Add Inline SVG support
+
 ## License
 
 [MIT](../../LICENSE) © James Trenda
