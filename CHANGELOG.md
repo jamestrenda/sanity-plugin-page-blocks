@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.9](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.8...v1.4.9) (2025-04-14)
+
+### Features
+
+- **site-logo-block:** add site logo block ([#5](https://github.com/jamestrenda/sanity-plugin-page-blocks/issues/5)) ([abc5b39](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/abc5b395def58a2902e33cb554ece48133784628))
+
 ## [1.4.8](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.7...v1.4.8) (2025-04-08)
 
 ### Features

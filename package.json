@@ -1,6 +1,6 @@
 {
   "name": "@trenda/sanity-plugin-page-blocks",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "A collection of open-source Sanity page blocks designed for modular content modeling. Each plugin provides ready-to-use and customizable schemas for common content blocks, making it easy to build structured, flexible pages in Sanity.",
   "keywords": [
     "sanity",
