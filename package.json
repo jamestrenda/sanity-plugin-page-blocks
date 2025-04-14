@@ -108,7 +108,6 @@
     "@sanity/pkg-utils": "^7.1.0",
     "@sanity/plugin-kit": "^4.0.19",
     "@sanity/semantic-release-preset": "^5.0.0",
-    "@sanity/types": "3.79.0",
     "@types/react": "^18",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
