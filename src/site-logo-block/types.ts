@@ -2,7 +2,7 @@ import {FieldDefinition} from 'sanity'
 
 import {SchemaBaseFields} from '../types'
 
-export interface Config extends SchemaBaseFields {
+interface Config extends SchemaBaseFields {
   query?: string
   params?: Record<string, unknown>
   customFields?: FieldDefinition[]
