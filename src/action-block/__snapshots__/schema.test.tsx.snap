@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`action-block > should generate default schema > Default action schema 1`] = `
+{
+  "fields": [
+    {
+      "fields": [
+        {
+          "name": "text",
+          "title": "Text",
+          "type": "string",
+        },
+        {
+          "description": "Link to an internal reference, external or relative URL, or a file.",
+          "name": "to",
+          "of": [
+            {
+              "fields": [
+                {
+                  "fields": [
+                    {
+                      "name": "url",
+                      "title": "URL",
+                      "type": "url",
+                    },
+                    {
+                      "initialValue": true,
+                      "name": "newWindow",
+                      "title": "Open in a new window?",
+                      "type": "boolean",
+                    },
+                  ],
+                  "name": "link",
+                  "title": "External Link",
+                  "type": "object",
+                },
+              ],
+              "name": "external",
+              "title": "External Link",
+              "type": "object",
+            },
+            {
+              "fields": [
+                {
+                  "description": "Example: /a-relative-url",
+                  "name": "url",
+                  "title": "Relative URL",
+                  "type": "string",
+                },
+              ],
+              "name": "relative",
+              "title": "Relative URL",
+              "type": "object",
+            },
+            {
+              "fields": [
+                {
+                  "fields": [
+                    {
+                      "description": "Select a file to link to",
+                      "name": "file",
+                      "title": "File",
+                      "type": "file",
+                    },
+                  ],
+                  "name": "link",
+                  "title": "Media",
+                  "type": "object",
+                },
+              ],
+              "name": "media",
+              "title": "Media Link",
+              "type": "object",
+            },
+          ],
+          "title": "To (Choose one)",
+          "type": "array",
+        },
+      ],
+      "name": "action",
+      "title": "Action",
+      "type": "object",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "name": "actionBlock",
+  "title": "Action",
+  "type": "object",
+}
+`;

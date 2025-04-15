@@ -1,5 +1,306 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Sanity Page Block Schemas > { key: 'actionBlock', schema: { name: 'actionBlock', title: 'Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: { prepare: [Function prepare] }, fields: [ { name: 'action', title: 'Action', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function Link2], displayName: 'Link2' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'string' }, { name: 'to', title: 'To (Choose one)', description: 'Link to an internal reference, external or relative URL, or a file.', type: 'array', of: [ { type: 'object', name: 'external', title: 'External Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'External Link', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'URL', type: 'url', validation: [Function validation] }, { title: 'Open in a new window?', name: 'newWindow', type: 'boolean', initialValue: true } ], preview: { select: { title: 'url' }, prepare: [Function prepare] } } ], preview: { select: { title: 'link.url' }, prepare: [Function prepare] } }, { name: 'relative', title: 'Relative URL', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ArrowRight], displayName: 'ArrowRight' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'Relative URL', description: 'Example: /a-relative-url', type: 'string', validation: [Function validation] } ] }, { type: 'object', name: 'media', title: 'Media Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'Media', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'file', type: 'file', title: 'File', description: 'Select a file to link to' } ] } ], preview: { select: { title: 'link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ] } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "fields": [
+        {
+          "name": "text",
+          "title": "Text",
+          "type": "string",
+        },
+        {
+          "description": "Link to an internal reference, external or relative URL, or a file.",
+          "name": "to",
+          "of": [
+            {
+              "fields": [
+                {
+                  "fields": [
+                    {
+                      "name": "url",
+                      "title": "URL",
+                      "type": "url",
+                      "validation": [Function],
+                    },
+                    {
+                      "initialValue": true,
+                      "name": "newWindow",
+                      "title": "Open in a new window?",
+                      "type": "boolean",
+                    },
+                  ],
+                  "icon": <ExternalLink
+                    size="1em"
+                  />,
+                  "name": "link",
+                  "preview": {
+                    "prepare": [Function],
+                    "select": {
+                      "title": "url",
+                    },
+                  },
+                  "title": "External Link",
+                  "type": "object",
+                },
+              ],
+              "icon": <ExternalLink
+                size="1em"
+              />,
+              "name": "external",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "link.url",
+                },
+              },
+              "title": "External Link",
+              "type": "object",
+            },
+            {
+              "fields": [
+                {
+                  "description": "Example: /a-relative-url",
+                  "name": "url",
+                  "title": "Relative URL",
+                  "type": "string",
+                  "validation": [Function],
+                },
+              ],
+              "icon": <ArrowRight
+                size="1em"
+              />,
+              "name": "relative",
+              "title": "Relative URL",
+              "type": "object",
+            },
+            {
+              "fields": [
+                {
+                  "fields": [
+                    {
+                      "description": "Select a file to link to",
+                      "name": "file",
+                      "title": "File",
+                      "type": "file",
+                    },
+                  ],
+                  "icon": <FileDown
+                    size="1em"
+                  />,
+                  "name": "link",
+                  "preview": {
+                    "prepare": [Function],
+                    "select": {
+                      "title": "file.asset.originalFilename",
+                    },
+                  },
+                  "title": "Media",
+                  "type": "object",
+                },
+              ],
+              "icon": <FileDown
+                size="1em"
+              />,
+              "name": "media",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "link.file.asset.originalFilename",
+                },
+              },
+              "title": "Media Link",
+              "type": "object",
+            },
+          ],
+          "title": "To (Choose one)",
+          "type": "array",
+          "validation": [Function],
+        },
+      ],
+      "icon": <Link2
+        size="1em"
+      />,
+      "name": "action",
+      "preview": {
+        "prepare": [Function],
+        "select": {
+          "title": "text",
+        },
+      },
+      "title": "Action",
+      "type": "object",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "actionBlock",
+  "preview": {
+    "prepare": [Function],
+  },
+  "title": "Action",
+  "type": "object",
+}
+`;
+
+exports[`Sanity Page Block Schemas > { key: 'actionBlock', schema: { name: 'actionBlock', title: 'Action', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: { select: { title: 'action.text', to: 'action.to[0]', internalTitle: 'action.to.0.link.document.title', internalSlug: 'action.to.0.link.document.slug.current', internalAnchor: 'action.to[0].anchor', internalParams: 'action.to[0].params', mediaFilename: 'action.to.0.link.file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'action', title: 'Action', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function Link2], displayName: 'Link2' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'text' }, prepare: [Function prepare] }, fields: [ { name: 'text', title: 'Text', type: 'string' }, { name: 'to', title: 'To (Choose one)', description: 'Link to an internal reference, external or relative URL, or a file.', type: 'array', of: [ { type: 'object', name: 'external', title: 'External Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'External Link', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ExternalLink], displayName: 'ExternalLink' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'URL', type: 'url', validation: [Function validation] }, { title: 'Open in a new window?', name: 'newWindow', type: 'boolean', initialValue: true } ], preview: { select: { title: 'url' }, prepare: [Function prepare] } } ], preview: { select: { title: 'link.url' }, prepare: [Function prepare] } }, { name: 'relative', title: 'Relative URL', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function ArrowRight], displayName: 'ArrowRight' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { name: 'url', title: 'Relative URL', description: 'Example: /a-relative-url', type: 'string', validation: [Function validation] } ] }, { type: 'object', name: 'media', title: 'Media Link', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, fields: [ { title: 'Media', name: 'link', type: 'object', icon: { 'undefined': Symbol(react.transitional.element), type: { 'undefined': Symbol(react.forward_ref), render: [Function FileDown], displayName: 'FileDown' }, key: null, props: { size: '1em' }, _owner: null, ref: null, _store: { validated: +0 }, _debugInfo: null }, preview: { select: { title: 'file.asset.originalFilename' }, prepare: [Function prepare] }, fields: [ { name: 'file', type: 'file', title: 'File', description: 'Select a file to link to' } ] } ], preview: { select: { title: 'link.file.asset.originalFilename' }, prepare: [Function prepare] } } ], validation: [Function validation] } ] } ], components: undefined } } schema matches snapshot 1`] = `
+{
+  "components": undefined,
+  "fields": [
+    {
+      "fields": [
+        {
+          "name": "text",
+          "title": "Text",
+          "type": "string",
+        },
+        {
+          "description": "Link to an internal reference, external or relative URL, or a file.",
+          "name": "to",
+          "of": [
+            {
+              "fields": [
+                {
+                  "fields": [
+                    {
+                      "name": "url",
+                      "title": "URL",
+                      "type": "url",
+                      "validation": [Function],
+                    },
+                    {
+                      "initialValue": true,
+                      "name": "newWindow",
+                      "title": "Open in a new window?",
+                      "type": "boolean",
+                    },
+                  ],
+                  "icon": <ExternalLink
+                    size="1em"
+                  />,
+                  "name": "link",
+                  "preview": {
+                    "prepare": [Function],
+                    "select": {
+                      "title": "url",
+                    },
+                  },
+                  "title": "External Link",
+                  "type": "object",
+                },
+              ],
+              "icon": <ExternalLink
+                size="1em"
+              />,
+              "name": "external",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "link.url",
+                },
+              },
+              "title": "External Link",
+              "type": "object",
+            },
+            {
+              "fields": [
+                {
+                  "description": "Example: /a-relative-url",
+                  "name": "url",
+                  "title": "Relative URL",
+                  "type": "string",
+                  "validation": [Function],
+                },
+              ],
+              "icon": <ArrowRight
+                size="1em"
+              />,
+              "name": "relative",
+              "title": "Relative URL",
+              "type": "object",
+            },
+            {
+              "fields": [
+                {
+                  "fields": [
+                    {
+                      "description": "Select a file to link to",
+                      "name": "file",
+                      "title": "File",
+                      "type": "file",
+                    },
+                  ],
+                  "icon": <FileDown
+                    size="1em"
+                  />,
+                  "name": "link",
+                  "preview": {
+                    "prepare": [Function],
+                    "select": {
+                      "title": "file.asset.originalFilename",
+                    },
+                  },
+                  "title": "Media",
+                  "type": "object",
+                },
+              ],
+              "icon": <FileDown
+                size="1em"
+              />,
+              "name": "media",
+              "preview": {
+                "prepare": [Function],
+                "select": {
+                  "title": "link.file.asset.originalFilename",
+                },
+              },
+              "title": "Media Link",
+              "type": "object",
+            },
+          ],
+          "title": "To (Choose one)",
+          "type": "array",
+          "validation": [Function],
+        },
+      ],
+      "icon": <Link2
+        size="1em"
+      />,
+      "name": "action",
+      "preview": {
+        "prepare": [Function],
+        "select": {
+          "title": "text",
+        },
+      },
+      "title": "Action",
+      "type": "object",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "icon": [Function],
+  "name": "actionBlock",
+  "preview": {
+    "prepare": [Function],
+    "select": {
+      "internalAnchor": "action.to[0].anchor",
+      "internalParams": "action.to[0].params",
+      "internalSlug": "action.to.0.link.document.slug.current",
+      "internalTitle": "action.to.0.link.document.title",
+      "mediaFilename": "action.to.0.link.file.asset.originalFilename",
+      "title": "action.text",
+      "to": "action.to[0]",
+    },
+  },
+  "title": "Action",
+  "type": "object",
+}
+`;
+
 exports[`Sanity Page Block Schemas > { key: 'articleFeedBlock', schema: { name: 'articleFeedBlock', title: 'Article Feed', type: 'object', fieldsets: [], groups: [], icon: [Function icon], preview: { select: { title: 'title' }, prepare: [Function prepare] }, fields: [ { name: 'articleType', title: 'Article Type', description: 'Select the type of articles to display.', type: 'string', options: { list: [ { title: 'Post', value: 'post' } ] }, validation: [Function validation], components: undefined, fieldset: undefined, group: undefined }, { name: 'title', title: 'Title', type: 'string', description: 'Optional title to display above the article feed.', components: undefined, fieldset: undefined, group: undefined }, { name: 'filterBy', title: 'Filter by', type: 'array', of: [], description: 'Optional: Show only articles that match the selected filter.', components: undefined, fieldset: undefined, group: undefined } ], components: undefined } } schema matches snapshot 1`] = `
 {
   "components": undefined,

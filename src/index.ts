@@ -1,3 +1,4 @@
+export {actionBlock} from './action-block'
 export {articleFeedBlock} from './article-feed-block'
 export {articleListBlock} from './article-list-block'
 export {callToActionBlock} from './call-to-action-block'

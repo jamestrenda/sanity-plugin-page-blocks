@@ -65,12 +65,15 @@ export type TextType =
     } & Omit<BlockDefinition, 'type' | 'name' | 'validation'> &
       SchemaFieldBaseFields)
 
-export type ActionsType = {
+export type ActionType = {
   internal?: {
     types: ReferenceTo
   }
-  validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
   customFields?: FieldDefinition[]
+}
+
+export type ActionsType = ActionType & {
+  validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]> | undefined
 }
 
 export type BlockSchema = ReturnType<typeof createSchema>
