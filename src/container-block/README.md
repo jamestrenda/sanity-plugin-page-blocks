@@ -141,7 +141,10 @@ export const page = defineType({
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
-      of: [{type: 'fullBleedContainerBlock'}, {type: 'column'}],
+      of: [
+        {type: 'fullBleedContainerBlock'},
+        {type: 'column', title: 'Column', icon: () => <Columns3Icon size="1em" />}
+      ],
     }),
   ],
 })
