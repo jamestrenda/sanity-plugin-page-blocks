@@ -1,4 +1,4 @@
-import {ArrowRightIcon, MousePointerClickIcon} from 'lucide-react'
+import {ArrowRightIcon, MegaphoneIcon} from 'lucide-react'
 import {defineField, ObjectDefinition, PreviewConfig, PreviewValue} from 'sanity'
 
 import {actionField} from '../lib/fields/action'
@@ -11,7 +11,7 @@ import {getPortableTextPreview} from '../lib/utils/getPortableTextPreview'
 import {getTextField} from '../lib/utils/getTextField'
 import {CallToActionBlockConfig} from './types'
 
-export const icon = () => <MousePointerClickIcon size="1em" />
+export const Icon = () => <MegaphoneIcon size="1em" />
 
 export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
   // @ts-expect-error make sure users can't disable the actions field
@@ -34,7 +34,7 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
           return {
             title: title,
             subtitle: blockTitle,
-            media: icon,
+            media: Icon,
           }
         }
         if (text && !title) {
@@ -43,7 +43,7 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
 
         return {
           title: blockTitle,
-          media: icon,
+          media: Icon,
         }
       },
     }
@@ -52,7 +52,7 @@ export const schema = (options: CallToActionBlockConfig): ObjectDefinition => {
   return createSchema({
     name: 'callToActionBlock',
     title: blockTitle,
-    icon,
+    icon: Icon,
     fields: [
       ...(options?.title === false
         ? []
