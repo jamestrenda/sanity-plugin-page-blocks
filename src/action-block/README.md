@@ -77,4 +77,4 @@ export default defineConfig({
 
 #### Actions
 
-TODO
+For now, refer to [Hero Block](../hero-block/README.md) to see how the actions themselves work.
