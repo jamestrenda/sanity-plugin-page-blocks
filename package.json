@@ -24,6 +24,11 @@
       "import": "./dist/index.mjs",
       "default": "./dist/index.js"
     },
+    "./action-block": {
+      "source": "./src/action-block/types.ts",
+      "import": "./dist/action-block/types.mjs",
+      "default": "./dist/action-block/types.js"
+    },
     "./article-feed-block": {
       "source": "./src/article-feed-block/types.ts",
       "import": "./dist/article-feed-block/types.mjs",

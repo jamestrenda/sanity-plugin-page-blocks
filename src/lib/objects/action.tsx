@@ -9,7 +9,7 @@ import {
   QueryParams,
 } from 'sanity'
 
-import {ActionsType} from '../../types'
+import {ActionType} from '../../types'
 import {anchorField} from '../fields/anchor'
 import {externalLinkField} from '../fields/externalLink'
 import {internalLinkField} from '../fields/internalLink'
@@ -19,7 +19,7 @@ import {icon as ExternalLinkIcon, preview as externalLinkPreview} from '../objec
 import {icon as InternalLinkIcon, preview as internalLinkPreview} from '../objects/internalLink'
 import {icon as MediaLinkIcon, preview as mediaLinkPreview} from '../objects/mediaLink'
 
-export const action = (options?: ActionsType) =>
+export const action = (options?: ActionType) =>
   defineType({
     name: 'action',
     title: 'Action',
