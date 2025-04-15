@@ -96,6 +96,36 @@ export default defineConfig({
 })
 ```
 
+This block is useful for other scenarios as well, like defining your own `column` page block:
+
+```ts
+containerBlock({
+  name: 'column',
+  image: false,
+  content: false,
+  blocks: {
+    of: [
+      //...
+      {
+        type: 'textBlock',
+      },
+    ],
+  },
+  preview: {
+    select: {
+      title: 'title',
+    },
+    prepare({title}) {
+      return {
+        title: title,
+        subtitle: 'Column',
+        media: Columns3Icon, // import from Lucide
+      }
+    },
+  },
+})
+```
+
 Make sure to add it to the schema where you plan to use it:
 
 ```ts
@@ -111,7 +141,7 @@ export const page = defineType({
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
-      of: [{type: 'fullBleedContainerBlock'}],
+      of: [{type: 'fullBleedContainerBlock'}, {type: 'column'}],
     }),
   ],
 })
