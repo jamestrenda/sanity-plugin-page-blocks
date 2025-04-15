@@ -39,6 +39,7 @@ Instead of providing a **full project starter**, these plugins are like **_start
 - [Container Block](./src/container-block)
 - [FAQ Block](./src/faq-block/)
 - [Hero Block](./src/hero-block/)
+- [Site Logo Block](./src/site-logo-block)
 - [Text Block](./src/text-block)
 
 ## Installation
