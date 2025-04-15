@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`container-block > should generate default schema > Default containerBlock schema 1`] = `
+{
+  "fields": [
+    {
+      "name": "title",
+      "title": "Title",
+      "type": "string",
+    },
+    {
+      "name": "blocks",
+      "of": [],
+      "title": "Blocks",
+      "type": "array",
+    },
+    {
+      "fields": [
+        {
+          "name": "file",
+          "options": {
+            "hotspot": true,
+          },
+          "title": "File",
+          "type": "image",
+        },
+        {
+          "description": "Override the alt text for this asset",
+          "name": "altText",
+          "title": "Alt Text",
+          "type": "string",
+        },
+      ],
+      "name": "customImage",
+      "title": "Image",
+      "type": "object",
+    },
+  ],
+  "fieldsets": [],
+  "groups": [],
+  "name": "containerBlock",
+  "title": "Container",
+  "type": "object",
+}
+`;

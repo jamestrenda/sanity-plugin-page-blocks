@@ -10,7 +10,18 @@ import {CustomImageType, SchemaBaseFields, SchemaFieldBaseFields, StringFieldTyp
 export interface ContainerBlockConfig extends SchemaBaseFields {
   title?: Omit<StringFieldType, 'type'> | false
   image?: CustomImageType
-  content: {
+  blocks?: {
     of: ArrayOfType[]
   } & SchemaFieldBaseFields
+  /**
+   * @deprecated Use `blocks` instead.
+   * @remarks
+   * The `content` field is deprecated and will be removed in a future release.
+   * Migrate to the `blocks` property, which aligns with existing naming conventions.
+   */
+  content?:
+    | false
+    | ({
+        of: ArrayOfType[]
+      } & SchemaFieldBaseFields)
 }
