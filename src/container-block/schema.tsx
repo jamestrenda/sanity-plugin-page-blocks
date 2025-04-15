@@ -37,13 +37,28 @@ export const schema = (options: ContainerBlockConfig): ObjectDefinition => {
             }),
           ]),
       defineField({
-        name: 'content',
-        title: 'Content',
+        name: 'blocks',
+        title: 'Blocks',
         type: 'array',
-        of: options.content.of ?? [],
+
+        of: options.blocks?.of ?? [],
         validation: (Rule) => Rule.min(1),
-        ...createFieldConfig(options.content),
+        ...createFieldConfig(options.blocks),
       }),
+      ...(options.content
+        ? [
+            defineField({
+              name: 'content',
+              title: 'Content',
+              type: 'array',
+              deprecated: {
+                reason: 'Use the `blocks` field instead',
+              },
+              of: options.content?.of ?? [],
+              ...createFieldConfig(options.content),
+            }),
+          ]
+        : []),
       ...(options.image === false ? [] : [getDisplayImage(options.image)]),
       ...(options.customFields ?? []),
     ],
