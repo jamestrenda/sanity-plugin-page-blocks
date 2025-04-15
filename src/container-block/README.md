@@ -1,6 +1,6 @@
 # Container Block
 
-A configurable page builder block for container sections.
+A configurable page builder block for multi-purpose container sections.
 
 ## Installation
 
@@ -20,7 +20,7 @@ export default defineConfig({
   //...
   plugins: [
     containerBlock({
-      content: {
+      blocks: {
         of: [
           {
             type: 'textBlock',
@@ -58,7 +58,7 @@ export const page = defineType({
 
 ### Block Variations
 
-You might want multiple versions of a block. Calling `containerBlock` with a unique `name` will create a version of the **Container Block** schema with that name. You don't need to maintain two versions. If you just need one, but want to customize the name, you can just register the plugin once.
+You might want multiple versions of a block. Calling `containerBlock` with a unique `name` will create a version of the **Container Block** schema with that name. You don't need to maintain two versions. If you just need one, but you want to customize the name, you can just register the plugin once.
 
 ```ts
 import {defineConfig} from 'sanity'
@@ -70,7 +70,7 @@ export default defineConfig({
   plugins: [
     containerBlock({
       name: 'fullBleedContainerBlock',
-      content: {
+      blocks: {
         of: [
           {
             type: 'textBlock',
