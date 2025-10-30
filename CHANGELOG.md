@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.10](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.9...v1.4.10) (2025-10-30)
+
+### Features
+
+- **action-block:** add action block ([#7](https://github.com/jamestrenda/sanity-plugin-page-blocks/issues/7)) ([69b5969](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/69b5969527a96a3fa7dc2644208d13bac0129aef))
+
+### Bug Fixes
+
+- **deps:** update packages ([ad080eb](https://github.com/jamestrenda/sanity-plugin-page-blocks/commit/ad080ebd9c349de1fa491b968ec44769ba50f065))
+
 ## [1.4.9](https://github.com/jamestrenda/sanity-plugin-page-blocks/compare/v1.4.8...v1.4.9) (2025-04-14)
 
 ### Features
